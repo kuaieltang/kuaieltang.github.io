@@ -113,6 +113,9 @@ a { color: inherit; }
   letter-spacing: 0;
 }
 .brand small { color: var(--gold-deep); font-weight: 600; font-size: 12px; letter-spacing: 2px; }
+@media (prefers-color-scheme: dark) {
+  .brand .seal { box-shadow: 0 0 0 1px var(--line); }
+}
 .nav-links { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 .nav-links a {
   text-decoration: none;
