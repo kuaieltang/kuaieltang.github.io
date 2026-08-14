@@ -315,6 +315,17 @@ section { padding: 64px 0; }
   text-align: center;
 }
 .figure-band { max-width: 880px; margin: 44px auto 0; }
+.bg-row {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 28px;
+  align-items: center;
+  margin-top: 28px;
+}
+.figure-side { margin: 0; }
+@media (max-width: 900px) {
+  .bg-row { grid-template-columns: 1fr; }
+}
 .who-grid {
   display: grid;
   grid-template-columns: 1.2fr .8fr;
