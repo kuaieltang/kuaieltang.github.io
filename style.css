@@ -298,6 +298,36 @@ section { padding: 64px 0; }
 .client h3 { font-size: 22px; }
 .client p { color: var(--text-soft); margin-top: 6px; }
 
+/* 插画 */
+.figure { margin: 0; }
+.figure img {
+  width: 100%;
+  display: block;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.figure figcaption {
+  font-size: 13px;
+  color: var(--text-faint);
+  margin-top: 10px;
+  letter-spacing: 1px;
+  text-align: center;
+}
+.figure-band { max-width: 880px; margin: 44px auto 0; }
+.who-grid {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 44px;
+  align-items: start;
+  margin-top: 26px;
+}
+.who-grid .figure { position: sticky; top: 96px; }
+@media (max-width: 900px) {
+  .who-grid { grid-template-columns: 1fr; }
+  .who-grid .figure { position: static; max-width: 560px; }
+}
+
 /* 说明书页头像 */
 .head-flex { display: flex; align-items: center; gap: 28px; }
 .avatar {
