@@ -1,676 +1,447 @@
 <!DOCTYPE html>
-<html lang="zh-CN"><head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="format-detection" content="telephone=no"><title>教培机构经营自查清单 · 老板自测版</title>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f4ed">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#12151b">
+<title>教培机构经营自查清单 · 老板自测版 | 老唐管理咨询</title>
+<meta name="description" content="25 个问题，15 分钟，凭第一直觉作答，立刻得到一张教培机构的「经营体检单」：几盏红灯、红灯扎堆在哪一块。由 17 年教培一线管理经验的唐平（老唐）整理，免费自测。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="老唐管理咨询">
+<meta property="og:title" content="教培机构经营自查清单 · 老板自测版 | 老唐管理咨询">
+<meta property="og:description" content="25 个问题，15 分钟，立刻得到一张您机构的「经营体检单」：几盏红灯、扎堆在哪一块。免费自测。">
+<meta property="og:url" content="https://kuaieltang.github.io/selfcheck.html">
+<meta property="og:image" content="https://kuaieltang.github.io/img-skyline.jpg">
+<meta property="og:locale" content="zh_CN">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="icon" type="image/png" sizes="64x64" href="logo-64.png">
+<link rel="stylesheet" href="style.css">
 <style>
-  :root {
-    --navy: #1a3c5e;
-    --navy-soft: #2d5580;
-    --red: #c0392b;
-    --red-soft: #fdf6f5;
-    --green: #27ae60;
-    --yellow: #e0a318;
-    --ink: #22262b;
-    --ink-2: #5a646e;
-    --ink-3: #8b959e;
-    --line: #e4e8ed;
-    --paper: #ffffff;
-    --bg: #eef1f5;
-    --card: #f8f9fa;
-  }
-  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-  html { -webkit-text-size-adjust: 100%; }
-  html { overflow-x: hidden; }
-  body {
-    margin: 0;
-    padding: 0;
-    background: var(--bg);
-    overflow-x: hidden;
-    color: var(--ink);
-    font-family: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Source Han Sans SC", system-ui, sans-serif;
-    font-size: 16px;
-    line-height: 1.75;
-    -webkit-font-smoothing: antialiased;
-  }
-  .wrap {
-    max-width: 720px;
-    margin: 0 auto;
-    background: var(--paper);
-    min-height: 100vh;
-    padding-bottom: 40px;
-    box-shadow: 0 0 40px rgba(26,60,94,.08);
-  }
+/* ============ 经营自查清单 · 页面专属样式（全部基于站点变量，自动适配深色模式） ============ */
+:root {
+  --sc-g: #3f7d58;   /* 绿：说得清 */
+  --sc-y: #b8862b;   /* 黄：不太确定 */
+  --sc-r: #a6392b;   /* 红：说不清 */
+  --sc-top: 63px;    /* 粘性条偏移，由脚本按导航实际高度同步 */
+}
+@media (prefers-color-scheme: dark) {
+  :root { --sc-g: #6dbb8e; --sc-y: #d6a44a; --sc-r: #e0705f; }
+}
 
-  /* ---------- 顶部 ---------- */
-  header.hero {
-    background: linear-gradient(160deg, #1a3c5e 0%, #24506f 100%);
-    color: #fff;
-    padding: 30px 22px 26px;
-    position: relative;
-    overflow: hidden;
-  }
-  header.hero::after {
-    content: "";
-    position: absolute;
-    right: -60px; top: -60px;
-    width: 200px; height: 200px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.05);
-  }
-  .hero .rule {
-    width: 56px; height: 5px; background: var(--red);
-    border-radius: 3px;
-    margin-bottom: 18px;
-  }
-  .hero h1 {
-    font-size: 25px;
-    line-height: 1.32;
-    margin: 0 0 8px;
-    font-weight: 700;
-    letter-spacing: .5px;
-  }
-  .hero .sub {
-    font-size: 14px;
-    color: #f0b8b1;
-    letter-spacing: 4px;
-    margin: 0 0 20px;
-    font-weight: 600;
-  }
-  .hero .by {
-    font-size: 13.5px;
-    color: #c3d3e2;
-    padding-top: 14px;
-    border-top: 1px solid rgba(255,255,255,.16);
-  }
-  .hero .by strong { color: #fff; font-weight: 700; }
+/* ---------- 粘性进度条 ---------- */
+.sc-bar {
+  position: sticky;
+  top: var(--sc-top);
+  z-index: 40;
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.sc-bar-in {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 4px 14px;
+  padding-top: 10px;
+  padding-bottom: 11px;
+}
+.sc-bar-txt { font-size: 14px; color: var(--text-soft); }
+.sc-bar-txt b { color: var(--text); font-size: 15px; font-variant-numeric: tabular-nums; }
+.sc-bar-txt b.sc-red { color: var(--sc-r); }
+.sc-reset {
+  font: inherit; font-size: 13.5px;
+  color: var(--text-faint);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 14px;
+  cursor: pointer;
+  transition: all .18s;
+  white-space: nowrap;
+}
+.sc-reset:hover { background: var(--gold-soft); color: var(--text); border-color: var(--gold-border); }
+.sc-track { grid-column: 1 / -1; height: 5px; background: var(--line); border-radius: 999px; overflow: hidden; }
+.sc-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-deep));
+  border-radius: 999px;
+  transition: width .35s cubic-bezier(.4,0,.2,1);
+}
 
-  /* ---------- 粘性进度条 ---------- */
-  .bar {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: rgba(255,255,255,.96);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
-    padding: 10px 18px 11px;
-  }
-  .bar-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 13px;
-    color: var(--ink-2);
-    margin-bottom: 8px;
-  }
-  .bar-top b { color: var(--navy); font-size: 14.5px; font-weight: 700; }
-  .bar-top .rd { color: var(--red); font-weight: 700; }
-  .reset {
-    font-size: 12.5px;
-    color: var(--ink-3);
-    background: none;
-    border: 1px solid var(--line);
-    border-radius: 20px;
-    padding: 3px 12px;
-    cursor: pointer;
-    font-family: inherit;
-  }
-  .reset:active { background: var(--card); }
-  .track {
-    height: 6px;
-    background: #e9edf2;
-    border-radius: 6px;
-    overflow: hidden;
-  }
-  .fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #2d5580, #1a3c5e);
-    border-radius: 6px;
-    transition: width .35s cubic-bezier(.4,0,.2,1);
-  }
+/* ---------- 引言 / 怎么填 ---------- */
+.sc-legend { display: grid; gap: 10px; margin-top: 18px; }
+.sc-legend .row { display: flex; gap: 10px; align-items: flex-start; font-size: 15.5px; color: var(--text-soft); }
+.sc-legend .row b { color: var(--text); }
+.sc-dot { flex: none; width: 13px; height: 13px; border-radius: 50%; margin-top: 8px; }
+.sc-dot.g { background: var(--sc-g); }
+.sc-dot.y { background: var(--sc-y); }
+.sc-dot.r { background: var(--sc-r); }
+.sc-fine { font-size: 14px; color: var(--text-faint); margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--line); }
 
-  /* ---------- 通用区块 ---------- */
-  section { padding: 0 22px; }
-  .sec-title {
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--navy);
-    margin: 34px 0 12px;
-    padding-left: 12px;
-    border-left: 4px solid var(--navy);
-    line-height: 1.4;
-  }
-  p { margin: 0 0 14px; }
+/* ---------- 模块 ---------- */
+.sc-mod { margin-top: 30px; }
+.sc-mod:first-child { margin-top: 0; }
+.sc-mod-head {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 12px 22px;
+  background: var(--panel);
+  color: var(--panel-fg);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+.sc-mod-head .t {
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "SimSun", "宋体", serif;
+  font-size: 17px; font-weight: 700; letter-spacing: .5px;
+}
+.sc-mod-head .n { font-size: 13px; color: #9aa5b3; white-space: nowrap; }
+.sc-badge {
+  display: none;
+  font-size: 12px; font-weight: 700;
+  background: var(--sc-r); color: #fff;
+  border-radius: 999px; padding: 1px 9px; margin-left: 8px;
+}
+.sc-badge.on { display: inline-block; }
 
-  /* ---------- 引言 ---------- */
-  .lede { padding-top: 26px; }
-  .lede p { color: #2c333a; }
-  .em { font-weight: 700; color: var(--navy); }
-  .pull {
-    border-left: 4px solid var(--navy);
-    background: #f5f7fa;
-    padding: 15px 17px;
-    margin: 20px 0;
-    color: var(--navy);
-    font-weight: 700;
-    font-size: 15.5px;
-    line-height: 1.7;
-    border-radius: 0 6px 6px 0;
-  }
+/* ---------- 题目 ---------- */
+.sc-q { background: var(--card); border: 1px solid var(--line); border-top: none; padding: 17px 22px 16px; }
+.sc-q:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+.sc-q.done { background: var(--bg-alt); }
+.sc-q .main { font-size: 16px; line-height: 1.85; color: var(--text); scroll-margin-top: calc(var(--sc-top) + 80px); }
+.sc-num {
+  font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  color: var(--gold); font-weight: 700;
+  margin-right: 8px; font-variant-numeric: tabular-nums;
+}
+.sc-hint { display: block; font-size: 14px; color: var(--text-faint); line-height: 1.75; margin-top: 7px; }
 
-  /* ---------- 怎么填 ---------- */
-  .howto {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 18px 18px 16px;
-    margin-top: 8px;
-  }
-  .howto h3 {
-    font-size: 15.5px;
-    color: var(--navy);
-    margin: 0 0 12px;
-    font-weight: 700;
-  }
-  .legend { display: flex; flex-direction: column; gap: 9px; margin-bottom: 14px; }
-  .legend .row { display: flex; align-items: flex-start; gap: 9px; font-size: 14.5px; }
-  .legend .dot { flex: 0 0 auto; width: 12px; height: 12px; border-radius: 50%; margin-top: 7px; }
-  .legend .row b { color: var(--navy); }
-  .dot-g { background: var(--green); }
-  .dot-y { background: var(--yellow); }
-  .dot-r { background: var(--red); }
-  .howto .fine {
-    font-size: 13px;
-    color: var(--ink-3);
-    border-top: 1px dashed #d5dbe2;
-    padding-top: 11px;
-    margin: 0;
-    line-height: 1.65;
-  }
+/* 三档圆环：独占一行、右对齐 */
+.sc-picks { display: flex; justify-content: flex-end; gap: 8px; padding-top: 13px; }
+.sc-pick {
+  width: 32px; height: 32px; padding: 0;
+  border: 2.5px solid currentColor;
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-appearance: none; appearance: none;
+  transition: transform .16s ease, background-color .16s ease, box-shadow .16s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.sc-pick.g { color: var(--sc-g); }
+.sc-pick.y { color: var(--sc-y); }
+.sc-pick.r { color: var(--sc-r); }
+.sc-pick:hover { box-shadow: 0 0 0 4px var(--gold-soft); }
+.sc-pick:active { transform: scale(.92); }
+.sc-pick[aria-pressed="true"] { background: currentColor; box-shadow: 0 2px 8px rgba(31,39,51,.16); }
+.sc-pick:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
 
-  /* ---------- 模块 ---------- */
-  .module { margin-top: 30px; }
-  .m-head {
-    background: var(--navy);
-    color: #fff;
-    padding: 11px 16px;
-    border-radius: 10px 10px 0 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    position: relative;
-  }
-  .m-head .t { font-size: 16px; font-weight: 700; letter-spacing: .3px; }
-  .m-head .n { font-size: 12.5px; color: #b9c9d9; }
-  .m-head .badge {
-    font-size: 12px;
-    background: var(--red);
-    color: #fff;
-    border-radius: 20px;
-    padding: 1px 9px;
-    font-weight: 700;
-    margin-left: 8px;
-    display: none;
-  }
-  .m-head .badge.on { display: inline-block; }
+/* ---------- 提交 ---------- */
+.sc-submit { padding: 34px 0 0; text-align: center; }
+.sc-submit .btn { border: none; cursor: pointer; font-family: inherit; }
+.sc-submit .btn.wait { opacity: .5; }
+.sc-submit .hint { font-size: 14px; color: var(--text-faint); margin-top: 12px; }
 
-  .q {
-    display: block;
-    border: 1px solid var(--line);
-    border-top: none;
-    padding: 15px 16px 14px;
-    background: #fff;
-  }
-  .q:last-child { border-radius: 0 0 10px 10px; }
-  .q.done { background: #fbfcfd; }
-  .q .main {
-    display: flex;
-    gap: 11px;
-    font-size: 15.5px;
-    line-height: 1.7;
-    margin: 0;
-    font-weight: 500;
-  }
-  .q .num {
-    flex: 0 0 auto;
-    color: var(--red);
-    font-weight: 700;
-    font-size: 14px;
-    padding-top: 2px;
-    font-variant-numeric: tabular-nums;
-  }
-  .hint {
-    font-size: 13px;
-    color: var(--ink-3);
-    line-height: 1.65;
-    margin: 6px 0 0;
-    font-weight: 400;
-  }
+/* ---------- 结果 ---------- */
+#result { display: none; scroll-margin-top: calc(var(--sc-top) + 20px); }
+#result.show { display: block; animation: scFade .45s ease both; }
+@keyframes scFade { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.sc-sheet {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--gold);
+  border-radius: 12px;
+  padding: 32px 34px;
+  box-shadow: var(--shadow);
+  margin-top: 34px;
+}
+.sc-kick { font-size: 14px; color: var(--gold-deep); letter-spacing: 3px; font-weight: 700; }
+.sc-bigarea { display: flex; align-items: baseline; gap: 10px; margin-top: 14px; }
+.sc-big {
+  font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  font-size: 58px; font-weight: 800; color: var(--sc-r); line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.sc-bigarea .u { font-size: 17px; color: var(--text-soft); font-weight: 600; }
+.sc-verdict {
+  font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  font-size: 22px; font-weight: 700; margin: 16px 0 8px;
+}
+.sc-desc { color: var(--text-soft); font-size: 15.5px; }
 
-  /* 三档作答：纯色圆环，独占一行、右对齐 */
-  .picks { display: flex; flex-direction: row; gap: 8px; justify-content: flex-end; padding-top: 12px; }
-  .pick {
-    flex: 0 0 auto;
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    border: 2.5px solid currentColor;
-    background: transparent;
-    border-radius: 50%;
-    color: var(--ink-3);
-    cursor: pointer;
-    display: block;
-    -webkit-appearance: none;
-    appearance: none;
-    transition: transform .16s ease, background-color .16s ease, box-shadow .16s ease;
-    user-select: none;
-  }
-  .pick.g { color: var(--green); }
-  .pick.y { color: var(--yellow); }
-  .pick.r { color: var(--red); }
-  .pick:active { transform: scale(.92); }
-  .pick.on { background: currentColor; box-shadow: 0 2px 7px rgba(26,60,94,.18); }
+.sc-scale { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 26px; }
+.sc-tier {
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 12px;
+  padding: 16px 14px;
+  text-align: center;
+}
+.sc-tier b {
+  display: block;
+  font-family: "Noto Serif SC", "Songti SC", "SimSun", serif;
+  font-size: 17px; color: var(--text-soft);
+}
+.sc-tier span { display: block; font-size: 13px; color: var(--text-faint); margin-top: 6px; line-height: 1.6; }
+.sc-tier.hit { background: var(--panel); border-color: var(--panel); }
+.sc-tier.hit b { color: #e6c877; }
+.sc-tier.hit span { color: #aeb6c2; }
 
-  /* ---------- 提交 ---------- */
-  .submit-wrap { padding: 32px 22px 8px; }
-  .btn-main {
-    width: 100%;
-    border: none;
-    background: var(--navy);
-    color: #fff;
-    font-family: inherit;
-    font-size: 17px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    padding: 17px;
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 6px 18px rgba(26,60,94,.22);
-    transition: all .2s;
-  }
-  .btn-main:active { transform: translateY(1px); box-shadow: 0 3px 10px rgba(26,60,94,.2); }
-  .btn-main.wait { background: #9aa8b6; box-shadow: none; }
-  .submit-hint {
-    text-align: center;
-    font-size: 13px;
-    color: var(--ink-3);
-    margin: 11px 0 0;
-  }
+.sc-dist { margin-top: 30px; }
+.sc-dist h4 { font-size: 16px; margin-bottom: 4px; }
+.sc-dist .sub { font-size: 13.5px; color: var(--text-faint); margin-bottom: 18px; }
+.sc-row { margin-bottom: 14px; }
+.sc-row .lb { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--text-soft); margin-bottom: 6px; }
+.sc-row .lb b { color: var(--text); font-weight: 600; }
+.sc-row .cnt { color: var(--text-faint); font-variant-numeric: tabular-nums; }
+.sc-row.hot .cnt { color: var(--sc-r); font-weight: 700; }
+.sc-track2 { height: 9px; background: var(--line); border-radius: 999px; overflow: hidden; }
+.sc-fill2 {
+  height: 100%; width: 0%;
+  background: var(--gold); border-radius: 999px;
+  transition: width .5s cubic-bezier(.4,0,.2,1), background .3s;
+}
+.sc-row.hot .sc-fill2 { background: var(--sc-r); }
 
-  /* ---------- 结果 ---------- */
-  #result { display: none; }
-  #result.show { display: block; animation: fadeup .45s ease both; }
-  @keyframes fadeup {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .res-card {
-    background: linear-gradient(165deg, #f9fbfd, #eef3f8);
-    border: 1px solid #dde5ed;
-    border-radius: 14px;
-    padding: 24px 20px 20px;
-    margin-top: 14px;
-  }
-  .res-card .kick {
-    font-size: 13px;
-    color: var(--red);
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin: 0 0 14px;
-  }
-  .big-red {
-    display: flex;
-    align-items: baseline;
-    gap: 9px;
-    margin-bottom: 6px;
-  }
-  .big-red .v { font-size: 52px; font-weight: 800; color: var(--red); line-height: 1; font-variant-numeric: tabular-nums; }
-  .big-red .u { font-size: 17px; color: var(--ink-2); font-weight: 600; }
-  .verdict {
-    font-size: 19px;
-    font-weight: 700;
-    color: var(--navy);
-    margin: 12px 0 8px;
-    line-height: 1.45;
-  }
-  .res-card .desc { font-size: 14.5px; color: var(--ink-2); margin: 0; line-height: 1.7; }
+.sc-note {
+  margin-top: 22px;
+  background: var(--gold-soft);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 12px 12px 0;
+  padding: 20px 24px;
+  font-size: 15.5px;
+  line-height: 1.85;
+  color: var(--text);
+}
+.sc-note .h { font-weight: 700; color: var(--gold-deep); display: block; margin-bottom: 8px; }
+.sc-note b { color: var(--text); }
 
-  .scale { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 20px 0 0; }
-  .scale .s {
-    border: 1px solid var(--line);
-    background: #fff;
-    border-radius: 9px;
-    padding: 11px 6px;
-    text-align: center;
-  }
-  .scale .s .r { font-size: 14px; font-weight: 700; color: var(--navy); display: block; line-height: 1.4; }
-  .scale .s .c { font-size: 11.5px; color: var(--ink-3); line-height: 1.5; display: block; margin-top: 3px; }
-  .scale .s.hit { border-color: var(--red); background: var(--red-soft); box-shadow: 0 2px 10px rgba(192,57,43,.12); }
-  .scale .s.hit .r { color: var(--red); }
+/* ---------- CTA ---------- */
+.sc-copy, .sc-wx {
+  display: inline-block;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  padding: 13px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .18s;
+  border: 1.5px solid var(--text);
+}
+.sc-copy { background: transparent; color: var(--text); }
+.sc-copy:hover { background: var(--text); color: var(--bg); }
+.sc-wx { background: var(--btn-bg); color: var(--btn-fg); border-color: var(--btn-bg); margin-left: 14px; }
+.sc-wx:hover { transform: translateY(-2px); opacity: .92; }
+.sc-btns { margin-top: 26px; }
+.sc-stamp { font-size: 13px; color: var(--text-faint); letter-spacing: 1px; text-align: center; margin: 52px 24px 0; }
 
-  /* 模块分布 */
-  .dist { margin-top: 26px; }
-  .dist h4 {
-    font-size: 15px; color: var(--navy); font-weight: 700;
-    margin: 0 0 4px;
-  }
-  .dist .sub { font-size: 13px; color: var(--ink-3); margin: 0 0 15px; line-height: 1.6; }
-  .dist .row { margin-bottom: 13px; }
-  .dist .row .lb {
-    display: flex; justify-content: space-between;
-    font-size: 13.5px; margin-bottom: 5px; color: var(--ink-2);
-  }
-  .dist .row .lb b { color: var(--navy); font-weight: 600; }
-  .dist .row .lb .cnt { font-variant-numeric: tabular-nums; color: var(--ink-3); }
-  .dist .row.hot .lb .cnt { color: var(--red); font-weight: 700; }
-  .dist .row .track2 {
-    height: 9px; background: #eceff3; border-radius: 6px; overflow: hidden;
-  }
-  .dist .row .fill2 {
-    height: 100%; width: 0%; border-radius: 6px;
-    background: #c6d1dc; transition: width .5s cubic-bezier(.4,0,.2,1), background .3s;
-  }
-  .dist .row.hot .fill2 { background: var(--red); }
+/* ---------- 浮标 / toast ---------- */
+.sc-fab {
+  position: fixed; right: 22px; bottom: 24px;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: var(--btn-bg); color: var(--btn-fg);
+  border: none; font-size: 18px; cursor: pointer;
+  box-shadow: var(--shadow);
+  display: none; align-items: center; justify-content: center;
+  z-index: 60;
+}
+.sc-fab.show { display: flex; }
+.sc-toast {
+  position: fixed; left: 50%; bottom: 92px;
+  transform: translateX(-50%) translateY(18px);
+  background: var(--panel); color: var(--panel-fg);
+  font-size: 14px; padding: 11px 20px; border-radius: 999px;
+  opacity: 0; pointer-events: none;
+  transition: all .28s ease;
+  z-index: 80;
+  white-space: nowrap; max-width: 88vw; overflow: hidden; text-overflow: ellipsis;
+}
+.sc-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
-  .cluster-note {
-    margin-top: 20px;
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 16px;
-    font-size: 14.5px;
-    line-height: 1.75;
-  }
-  .cluster-note .h {
-    font-weight: 700; color: var(--red);
-    display: block; margin-bottom: 7px;
-  }
-  .cluster-note .h.navy { color: var(--navy); }
-  .cluster-note b { color: var(--navy); }
-
-  /* ---------- CTA ---------- */
-  .cta {
-    margin-top: 34px;
-    border-left: 4px solid var(--red);
-    background: var(--card);
-    border-radius: 0 10px 10px 0;
-    padding: 22px 20px;
-  }
-  .cta h3 { font-size: 17px; color: var(--navy); margin: 0 0 12px; font-weight: 700; }
-  .cta p { font-size: 15px; margin: 0 0 12px; color: #2c333a; }
-  .cta p:last-child { margin-bottom: 0; }
-  .cta .hl { color: var(--navy); font-weight: 700; }
-  .copy-btn {
-    display: inline-flex; align-items: center; gap: 7px;
-    margin-top: 6px;
-    background: #fff;
-    border: 1.5px solid var(--navy);
-    color: var(--navy);
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 700;
-    border-radius: 9px;
-    padding: 10px 16px;
-    cursor: pointer;
-  }
-  .copy-btn:active { background: #eef3f8; }
-  .wx {
-    display: block;
-    margin-top: 14px;
-    background: var(--navy);
-    color: #fff;
-    text-align: center;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 15.5px;
-    padding: 14px;
-    border-radius: 10px;
-    letter-spacing: .5px;
-  }
-
-  /* ---------- 署名 ---------- */
-  .signoff {
-    margin: 34px 22px 0;
-    padding-top: 20px;
-    border-top: 2px solid var(--navy);
-  }
-  .signoff .who { font-size: 16px; color: var(--navy); font-weight: 700; margin: 0 0 6px; }
-  .signoff .desc { font-size: 13.5px; color: var(--ink-2); margin: 0 0 14px; line-height: 1.65; }
-  .signoff table { border-collapse: collapse; font-size: 14px; }
-  .signoff td { padding: 4px 0; vertical-align: top; }
-  .signoff td.k { color: var(--ink-3); padding-right: 16px; white-space: nowrap; }
-  .signoff td.v { color: var(--ink); }
-  .signoff .stamp { margin: 16px 0 0; font-size: 12.5px; color: #9aa4ad; line-height: 1.6; }
-
-  /* ---------- 浮动按钮 ---------- */
-  .fab {
-    position: fixed;
-    right: 18px;
-    bottom: 22px;
-    width: 46px; height: 46px;
-    border-radius: 50%;
-    background: var(--navy);
-    color: #fff;
-    border: none;
-    font-size: 18px;
-    cursor: pointer;
-    box-shadow: 0 6px 18px rgba(26,60,94,.3);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 60;
-  }
-  .fab.show { display: flex; }
-
-  /* ---------- toast ---------- */
-  .toast {
-    position: fixed;
-    left: 50%;
-    bottom: 90px;
-    transform: translateX(-50%) translateY(20px);
-    background: rgba(26,60,94,.94);
-    color: #fff;
-    font-size: 14px;
-    padding: 11px 20px;
-    border-radius: 22px;
-    opacity: 0;
-    pointer-events: none;
-    transition: all .28s ease;
-    z-index: 80;
-    white-space: nowrap;
-    max-width: 86vw;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
-
-  @media (max-width: 380px) {
-    header.hero { padding: 24px 16px 22px; }
-    section { padding: 0 16px; }
-    .submit-wrap { padding: 28px 16px 8px; }
-    .signoff { margin: 30px 16px 0; }
-    .hero h1 { font-size: 22px; }
-    .q { padding: 14px 13px 13px; }
-    .pick { width: 28px; height: 28px; border-width: 2px; }
-    .picks { gap: 7px; padding-top: 10px; }
-  }
+/* ---------- 响应式 ---------- */
+@media (max-width: 620px) {
+  .sc-mod-head { padding: 11px 16px; }
+  .sc-mod-head .t { font-size: 16px; }
+  .sc-q { padding: 15px 16px 14px; }
+  .sc-sheet { padding: 26px 20px; }
+  .sc-scale { grid-template-columns: 1fr; }
+  .sc-copy, .sc-wx { display: block; text-align: center; margin-left: 0; }
+  .sc-wx { margin-top: 12px; }
+}
+@media (max-width: 380px) {
+  .sc-pick { width: 28px; height: 28px; border-width: 2px; }
+  .sc-picks { gap: 7px; padding-top: 11px; }
+}
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <header class="hero">
-    <div class="rule"></div>
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <img class="seal" src="logo.svg" alt="老唐管理咨询">
+      <span>老唐管理咨询<small>庄敬自强</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="record.html">管理实战</a>
+      <a href="selfcheck.html" class="active">经营自查</a>
+      <a href="manual.html">使用说明书</a>
+      <a href="index.html#contact" class="btn-mini">联系我</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="crumb">老唐管理咨询 / 经营自查清单</div>
     <h1>教培机构经营自查清单</h1>
-    <p class="sub">老板自测版</p>
-    <p class="by"><strong>唐平（老唐）</strong>　｜　广州庄敬自强管理咨询有限公司</p>
-  </header>
-
-  <div class="bar">
-    <div class="bar-top">
-      <span>已填 <b id="n-filled">1</b> / 25　·　红灯 <b class="rd" id="n-red">0</b> 盏</span>
-      <button class="reset" id="btn-reset">重新开始</button>
-    </div>
-    <div class="track"><div class="fill" id="prog" style="width: 4%;"></div>
-</div>
+    <p class="sub">25 个问题，15 分钟，一张您自己机构的「经营体检单」。不考理论，也没有标准答案——每一题问的都是：这件事，您心里有没有数。</p>
   </div>
+</header>
 
-  <section class="lede">
-    <p style="white-space: pre-wrap;">这份清单，是我做教培管理十七年、看过上百家机构之后，把最常见的「教培机构经营问题」浓缩成的 25 个问题。</p>
-    <p>它不考理论，也没有标准答案。每一题，问的都是：<span class="em">这件事，您心里有没有数。</span></p>
-    <div class="pull">很多机构出问题，不是因为老板不努力，而是因为老板对关键环节、关键数字，其实是模糊的。模糊的地方，问题就在那里慢慢变大，直到某天爆发。</div>
-    <p style="white-space: pre-wrap; box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0px 0px 14px; color: rgb(44, 51, 58);">只需花 15 分钟，凭第一直觉点完，您会拿到一张您机构的「经营体检单」。</p>
-  </section>
-
-  <section>
-    <div class="howto">
-      <h3>怎么填</h3>
-      <div class="legend">
-        <div class="row"><span class="dot dot-g"></span><span><b>绿</b>　说得清，而且手上有依据</span></div>
-        <div class="row"><span class="dot dot-y"></span><span><b>黄</b>　大概知道，但不太确定</span></div>
-        <div class="row"><span class="dot dot-r"></span><span><b>红</b>　说不清、没做过，或者从来没想过</span></div>
-      </div>
-      <p class="fine">不用查资料、不用问人、不用纠结对错，凭第一直觉点就行。</p>
-    </div>
-  </section>
-
-  <div id="quiz"><section class="module" id="mod-A"><div class="m-head"><span class="t">一、定位与赛道<span class="badge" id="badge-A">0 红</span></span><span class="n">3 题</span></div>
-<div class="q done" id="q-1"><div class="main"><span class="num">1</span><span>您能用一句话说清楚「我们跟附近别的机构有什么不一样」吗？</span></div>
-<div class="picks"><button class="pick g on" data-q="1" data-v="g" aria-label="绿"></button><button class="pick y" data-q="1" data-v="y" aria-label="黄"></button><button class="pick r" data-q="1" data-v="r" aria-label="红"></button></div>
-</div><div class="q" id="q-2"><div class="main"><span class="num">2</span><span>您能说出「我们主要收什么样的学生，什么样的学生我们不收」吗？<span class="hint" style="white-space: pre-wrap;">说不清「不收什么学生」，通常意味着什么学生都收，最后什么定位不清，交付成本很大。</span></span></div>
-<div class="picks"><button class="pick g" data-q="2" data-v="g" aria-label="绿"></button><button class="pick y" data-q="2" data-v="y" aria-label="黄"></button><button class="pick r" data-q="2" data-v="r" aria-label="红"></button></div>
-</div><div class="q" id="q-3"><div class="main"><span class="num">3</span><span>家长问「你们比 XX 机构好在哪」，您的一线员工答得上来吗？</span></div>
-<div class="picks"><button class="pick g" data-q="3" data-v="g" aria-label="绿"></button><button class="pick y" data-q="3" data-v="y" aria-label="黄"></button><button class="pick r" data-q="3" data-v="r" aria-label="红"></button></div>
-</div></section>
-<section class="module" id="mod-B"><div class="m-head"><span class="t">二、招生与获客<span class="badge" id="badge-B">0 红</span></span><span class="n">5 题</span></div>
-<div class="q" id="q-4"><div class="main"><span class="num">4</span><span>招一个学生平均要花多少钱？哪个渠道最划算、哪个在烧钱，您清楚吗？</span></div>
-<div class="picks"><button class="pick g" data-q="4" data-v="g" aria-label="绿"></button><button class="pick y" data-q="4" data-v="y" aria-label="黄"></button><button class="pick r" data-q="4" data-v="r" aria-label="红"></button></div>
-</div><div class="q" id="q-5"><div class="main"><span class="num">5</span><span style="white-space: pre-wrap; cursor: text;">从家长第一次看到您，到最后交钱报名，中间有几个环节？哪一个环节流失最多？</span></div>
-<div class="picks"><button class="pick g" data-q="5" data-v="g" aria-label="绿"></button><button class="pick y" data-q="5" data-v="y" aria-label="黄"></button><button class="pick r" data-q="5" data-v="r" aria-label="红"></button></div>
-</div><div class="q" id="q-6"><div class="main"><span class="num">6</span><span>在读学员里有多少是「老带新」来的？这个比例，比去年是升还是降？</span></div>
-<div class="picks"><button class="pick g" data-q="6" data-v="g" aria-label="绿"></button><button class="pick y" data-q="6" data-v="y" aria-label="黄"></button><button class="pick r" data-q="6" data-v="r" aria-label="红"></button></div>
-</div><div class="q" id="q-7"><div class="main"><span class="num">7</span><span>招生团队每个人每月扛多少指标、达成能拿多少，他们自己算得清楚吗？</span></div>
-<div class="picks"><button class="pick g" data-q="7" data-v="g" aria-label="绿"></button><button class="pick y" data-q="7" data-v="y" aria-label="黄"></button><button class="pick r" data-q="7" data-v="r" aria-label="红"></button></div>
-</div><div class="q" id="q-8"><div class="main"><span class="num">8</span><span>下个招生季如果比预期少招 20%，您手里有能立刻启动的补救方案吗？</span></div>
-<div class="picks"><button class="pick g" data-q="8" data-v="g" aria-label="绿"></button><button class="pick y" data-q="8" data-v="y" aria-label="黄"></button><button class="pick r" data-q="8" data-v="r" aria-label="红"></button></div>
-</div></section>
-<section class="module" id="mod-C"><div class="m-head"><span class="t">三、产品与定价<span class="badge" id="badge-C">0 红</span></span><span class="n">3 题</span></div>
-<div class="q" id="q-9"><div class="main"><span class="num">9</span><span>您的课程价格是怎么定出来的——是凭感觉、紧盯对手呢，还是算过毛利之后定的？</span></div>
-<div class="picks"><button class="pick g" data-q="9" data-v="g" aria-label="绿"></button><button class="pick y" data-q="9" data-v="y" aria-label="黄"></button><button class="pick r" data-q="9" data-v="r" aria-label="红"></button></div>
-</div><div class="q" id="q-10"><div class="main"><span class="num">10</span><span>您的课程产品里，哪些在赚钱、哪些其实在亏钱，您能清楚说出来吗？</span></div>
-<div class="picks"><button class="pick g" data-q="10" data-v="g" aria-label="绿"></button><button class="pick y" data-q="10" data-v="y" aria-label="黄"></button><button class="pick r" data-q="10" data-v="r" aria-label="红"></button></div>
-</div><div class="q" id="q-11"><div class="main"><span class="num">11</span><span>您的课程中：哪门课负责把学生拉进来，哪门课负责赚钱，哪门课负责撑口碑？<span class="hint">只有「什么都想赚钱」的产品线，往往什么都赚不到。</span></span></div>
-<div class="picks"><button class="pick g" data-q="11" data-v="g" aria-label="绿"></button><button class="pick y" data-q="11" data-v="y" aria-label="黄"></button><button class="pick r" data-q="11" data-v="r" aria-label="红"></button></div>
-</div></section>
-<section class="module" id="mod-D"><div class="m-head"><span class="t">四、教学与口碑<span class="badge" id="badge-D">0 红</span></span><span class="n">5 题</span></div>
-<div class="q" id="q-12"><div class="main"><span class="num">12</span><span>您的老师上课，是各凭自己的经验，还是有一套全员标准教案和教学流程？</span></div>
-<div class="picks"><button class="pick g" data-q="12" data-v="g" aria-label="绿"></button><button class="pick y" data-q="12" data-v="y" aria-label="黄"></button><button class="pick r" data-q="12" data-v="r" aria-label="红"></button></div>
-</div><div class="q" id="q-13"><div class="main"><span class="num">13</span><span>一个新老师入职，多久能独立带班、达到您认为的合格线，您清楚吗？</span></div>
-<div class="picks"><button class="pick g" data-q="13" data-v="g" aria-label="绿"></button><button class="pick y" data-q="13" data-v="y" aria-label="黄"></button><button class="pick r" data-q="13" data-v="r" aria-label="红"></button></div>
-</div><div class="q" id="q-14"><div class="main"><span class="num">14</span><span>最近一个学期，老学员的续费率大概几成？跟前年比是升还是降？</span></div>
-<div class="picks"><button class="pick g" data-q="14" data-v="g" aria-label="绿"></button><button class="pick y" data-q="14" data-v="y" aria-label="黄"></button><button class="pick r" data-q="14" data-v="r" aria-label="红"></button></div>
-</div><div class="q" id="q-15"><div class="main"><span class="num">15</span><span>家长不再续费时，通常排在前三位的原因是什么？您清楚吗？</span></div>
-<div class="picks"><button class="pick g" data-q="15" data-v="g" aria-label="绿"></button><button class="pick y" data-q="15" data-v="y" aria-label="黄"></button><button class="pick r" data-q="15" data-v="r" aria-label="红"></button></div>
-</div><div class="q" id="q-16"><div class="main"><span class="num">16</span><span>除了看续费率，您还靠什么判断教学质量好不好？</span></div>
-<div class="picks"><button class="pick g" data-q="16" data-v="g" aria-label="绿"></button><button class="pick y" data-q="16" data-v="y" aria-label="黄"></button><button class="pick r" data-q="16" data-v="r" aria-label="红"></button></div>
-</div></section>
-<section class="module" id="mod-E"><div class="m-head"><span class="t">五、组织与激励<span class="badge" id="badge-E">0 红</span></span><span class="n">4 题</span></div>
-<div class="q" id="q-17"><div class="main"><span class="num">17</span><span>您的机构里有没有「少了这个人，就玩不转」的情况？</span></div>
-<div class="picks"><button class="pick g" data-q="17" data-v="g" aria-label="绿"></button><button class="pick y" data-q="17" data-v="y" aria-label="黄"></button><button class="pick r" data-q="17" data-v="r" aria-label="红"></button></div>
-</div><div class="q" id="q-18"><div class="main"><span class="num">18</span><span style="white-space: pre-wrap; cursor: text;">员工能算清「多续一单、多招一个学生，自己多拿多少钱」吗？</span></div>
-<div class="picks"><button class="pick g" data-q="18" data-v="g" aria-label="绿"></button><button class="pick y" data-q="18" data-v="y" aria-label="黄"></button><button class="pick r" data-q="18" data-v="r" aria-label="红"></button></div>
-</div><div class="q" id="q-19"><div class="main"><span class="num">19</span><span>过去一年有没有关键岗位的人离开？离开的时候，您是有预期的还是懵的？</span></div>
-<div class="picks"><button class="pick g" data-q="19" data-v="g" aria-label="绿"></button><button class="pick y" data-q="19" data-v="y" aria-label="黄"></button><button class="pick r" data-q="19" data-v="r" aria-label="红"></button></div>
-</div><div class="q" id="q-20"><div class="main"><span class="num">20</span><span>您的「企业文化」，除了挂在墙上，在日常里靠什么落地？</span></div>
-<div class="picks"><button class="pick g" data-q="20" data-v="g" aria-label="绿"></button><button class="pick y" data-q="20" data-v="y" aria-label="黄"></button><button class="pick r" data-q="20" data-v="r" aria-label="红"></button></div>
-</div></section>
-<section class="module" id="mod-F"><div class="m-head"><span class="t">六、经营指标与财务<span class="badge" id="badge-F">0 红</span></span><span class="n">5 题</span></div>
-<div class="q" id="q-21"><div class="main"><span class="num">21</span><span>人效、坪效、满班率、生均成本——这四个数，您算过吗？<span class="hint">算过，说明您在「经营」机构；没算过，多半是在「撑着」机构。</span></span></div>
-<div class="picks"><button class="pick g" data-q="21" data-v="g" aria-label="绿"></button><button class="pick y" data-q="21" data-v="y" aria-label="黄"></button><button class="pick r" data-q="21" data-v="r" aria-label="红"></button></div>
-</div><div class="q" id="q-22"><div class="main"><span class="num">22</span><span>去年机构到底赚了多少，是「凭感觉」的，还是「账上数字」告诉您的？</span></div>
-<div class="picks"><button class="pick g" data-q="22" data-v="g" aria-label="绿"></button><button class="pick y" data-q="22" data-v="y" aria-label="黄"></button><button class="pick r" data-q="22" data-v="r" aria-label="红"></button></div>
-</div><div class="q" id="q-23"><div class="main"><span class="num">23</span><span>明年打算花多少、赚多少，有没有一份白纸黑字的预算？</span></div>
-<div class="picks"><button class="pick g" data-q="23" data-v="g" aria-label="绿"></button><button class="pick y" data-q="23" data-v="y" aria-label="黄"></button><button class="pick r" data-q="23" data-v="r" aria-label="红"></button></div>
-</div><div class="q" id="q-24"><div class="main"><span class="num">24</span><span>家长预收款收上来以后怎么用、留多少做退费准备，您有明确规则吗？</span></div>
-<div class="picks"><button class="pick g" data-q="24" data-v="g" aria-label="绿"></button><button class="pick y" data-q="24" data-v="y" aria-label="黄"></button><button class="pick r" data-q="24" data-v="r" aria-label="红"></button></div>
-</div><div class="q" id="q-25"><div class="main"><span class="num">25</span><span>未来半年您的现金流，是「很踏实」「有点紧」，还是「心里没底」？</span></div>
-<div class="picks"><button class="pick g" data-q="25" data-v="g" aria-label="绿"></button><button class="pick y" data-q="25" data-v="y" aria-label="黄"></button><button class="pick r" data-q="25" data-v="r" aria-label="红"></button></div>
-</div></section>
-</div>
-
-  <div class="submit-wrap">
-    <button class="btn-main wait" id="btn-submit">看我的经营体检单</button>
-    <p class="submit-hint" id="submit-hint">还剩 24 题没填</p>
+<div class="sc-bar">
+  <div class="wrap sc-bar-in">
+    <div class="sc-bar-txt">已填 <b id="n-filled">0</b> / 25　·　红灯 <b class="sc-red" id="n-red">0</b> 盏</div>
+    <button class="sc-reset" id="btn-reset" type="button">重新开始</button>
+    <div class="sc-track"><div class="sc-fill" id="prog"></div></div>
   </div>
-
-  <!-- ============ 结果 ============ -->
-  <section id="result">
-    <div class="res-card">
-      <p class="kick">您的经营体检单</p>
-      <div class="big-red"><span class="v" id="red-big">0</span><span class="u">盏红灯</span></div>
-      <p class="verdict" id="verdict">底盘扎实</p>
-      <p class="desc" id="verdict-desc"></p>
-
-      <div class="scale">
-        <div class="s" id="sc-low"><span class="r">0–2 盏</span><span class="c">底盘扎实<br>这类机构不多</span></div>
-        <div class="s" id="sc-mid"><span class="r">3–5 盏</span><span class="c">已有明显短板<br>靠单点努力补不回</span></div>
-        <div class="s" id="sc-high"><span class="r">6 盏以上</span><span class="c">在「带病奔跑」<br>赚得比该赚的少</span></div>
-      </div>
-
-      <div class="dist">
-        <h4>红灯扎堆在哪一块</h4>
-        <p class="sub">红灯不是均匀分布的，它扎堆的地方，才是真正的问题所在。</p>
-        <div id="dist-rows"></div>
-      </div>
-
-      <div class="cluster-note" id="cluster-note"></div>
-    </div>
-  </section>
-
-  <section class="cta">
-    <h3>自测只是照镜子</h3>
-    <p id="cta-lead">如果您的红灯亮了 3 盏以上，或者某一块扎堆亮红灯，那通常意味着：问题已经不在「知不知道」，而在「怎么调」。</p>
-    <p>这恰好是我做的事。</p>
-    <p>我是唐平（老唐），十七年教培一线管理经验，现在专做教培机构的经营诊断与陪跑。<span class="hl">自测是免费的，聊一聊也是。</span></p>
-    <p style="box-sizing: border-box; -webkit-tap-highlight-color: transparent; margin: 0px 0px 12px; font-size: 15px; color: rgb(44, 51, 58); white-space: pre-wrap; cursor: text;">请您把这份体检单发给我，我帮您标一下：哪几盏红灯是要先处理的，哪几盏可以缓缓。加微信备注「自查」，再送您一份《逐题解读》——把这 25 道题背后的门道，一道一道拆开讲。</p>
-    <button class="copy-btn" id="btn-copy">复制这份体检结果</button>
-    <a class="wx" href="javascript:;" id="btn-wx">微信：tangcping</a>
-  </section>
-
-  <section class="signoff">
-    <p class="who">唐平（老唐）｜ 广州庄敬自强管理咨询有限公司</p>
-    <p class="desc">专注教培机构经营诊断 · 组织激活 · 精细化运营 · 数字化落地</p>
-    <table>
-      <tbody><tr><td class="k">微信</td>
-<td class="v">tangcping</td>
-</tr>
-      <tr><td class="k">手机号</td>
-<td class="v">&#49;&#57;&#49; &#50;&#52;&#50;&#48; &#48;&#53;&#48;&#56;</td>
-</tr>
-      <tr><td class="k">邮箱</td>
-<td class="v">tohyo@foxmail.com</td>
-</tr>
-      <tr><td class="k">公众号</td>
-<td class="v">老唐谈教育管理</td>
-</tr>
-    
-      </tbody>
-</table>
-    <p class="stamp">本清单仅供教培机构自我评估参考　　更新日期：2026 年 9 月</p>
-  </section>
-
 </div>
 
-<button class="fab show" id="fab" title="回到顶部">↑</button>
-<div class="toast" id="toast">微信号已复制：tangcping</div>
+<section>
+  <div class="wrap" style="max-width:860px;">
+    <div class="prose">
+      <p>这份清单，是我做教培管理十七年、看过上百家机构之后，把最常见的「教培机构经营问题」浓缩成的 25 个问题。</p>
+      <p>它不考理论，也没有标准答案。每一题，问的都是：<b>这件事，您心里有没有数。</b></p>
+    </div>
+
+    <div class="callout">
+      <b>很多机构出问题，不是因为老板不努力</b>，而是因为老板对关键环节、关键数字，其实是模糊的。模糊的地方，问题就在那里慢慢变大，直到某天爆发。
+    </div>
+
+    <p style="color:var(--text-soft);">只需花 15 分钟，凭第一直觉点完，您会拿到一张您机构的「经营体检单」。</p>
+
+    <div class="card" style="margin-top:34px;">
+      <h3 style="margin-bottom:4px;">怎么填</h3>
+      <div class="sc-legend">
+        <div class="row"><span class="sc-dot g"></span><span><b>绿</b>　说得清，而且手上有依据</span></div>
+        <div class="row"><span class="sc-dot y"></span><span><b>黄</b>　大概知道，但不太确定</span></div>
+        <div class="row"><span class="sc-dot r"></span><span><b>红</b>　说不清、没做过，或者从来没想过</span></div>
+      </div>
+      <p class="sc-fine">不用查资料、不用问人、不用纠结对错，凭第一直觉点就行。点同一档可以取消。</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap" style="max-width:860px;">
+
+    <div id="quiz">
+      <noscript>
+        <div class="callout">这份自查清单需要在浏览器里启用 JavaScript 才能作答。请在手机或电脑浏览器的设置中开启后重新打开本页。</div>
+      </noscript>
+    </div>
+
+    <div class="sc-submit">
+      <button class="btn btn-primary wait" id="btn-submit" type="button">看我的经营体检单</button>
+      <p class="hint" id="submit-hint">还剩 25 题没填</p>
+    </div>
+
+    <div id="result">
+      <div class="sc-sheet">
+        <p class="sc-kick">您的经营体检单</p>
+        <div class="sc-bigarea"><span class="sc-big" id="red-big">0</span><span class="u">盏红灯</span></div>
+        <p class="sc-verdict" id="verdict">底盘扎实</p>
+        <p class="sc-desc" id="verdict-desc"></p>
+
+        <div class="sc-scale">
+          <div class="sc-tier" id="sc-low"><b>0–2 盏</b><span>底盘扎实<br>这类机构不多</span></div>
+          <div class="sc-tier" id="sc-mid"><b>3–5 盏</b><span>已有明显短板<br>靠单点努力补不回</span></div>
+          <div class="sc-tier" id="sc-high"><b>6 盏以上</b><span>在「带病奔跑」<br>赚得比该赚的少</span></div>
+        </div>
+
+        <div class="sc-dist">
+          <h4>红灯扎堆在哪一块</h4>
+          <p class="sub">红灯不是均匀分布的，它扎堆的地方，才是真正的问题所在。</p>
+          <div id="dist-rows"></div>
+        </div>
+
+        <div class="sc-note" id="cluster-note"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="wrap" style="max-width:860px;">
+    <span class="eyebrow">下一步</span>
+    <h2 class="section-title">自测只是照镜子</h2>
+    <div class="rule"></div>
+
+    <div class="prose" style="margin-top:26px;">
+      <p id="cta-lead">如果您的红灯亮了 3 盏以上，或者某一块扎堆亮红灯，那通常意味着：问题已经不在「知不知道」，而在「怎么调」。</p>
+      <p>这恰好是我做的事。</p>
+      <p>我是唐平（老唐），十七年教培一线管理经验，现在专做教培机构的经营诊断与陪跑。<b>自测是免费的，聊一聊也是。</b></p>
+      <p>请您把这份体检单发给我，我帮您标一下：哪几盏红灯是要先处理的，哪几盏可以缓缓。加微信备注「自查」，再送您一份《逐题解读》——把这 25 道题背后的门道，一道一道拆开讲。</p>
+    </div>
+
+    <div class="sc-btns">
+      <button class="sc-copy" id="btn-copy" type="button">复制这份体检结果</button>
+      <a class="sc-wx" href="#contact" id="btn-wx">微信：tangcping</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <span class="eyebrow" style="color:#e6c877;">联系方式</span>
+        <h2 class="section-title">把体检单发我，我帮您看看</h2>
+        <p class="lead">自测是免费的，聊一聊也是。您方便的时候找我就行。</p>
+        <ul class="contact-list">
+          <li><span class="k">顾问</span><span class="v">唐平（老唐）</span></li>
+          <li><span class="k">公司</span><span class="v">广州庄敬自强管理咨询有限公司</span></li>
+          <li><span class="k">所在地</span><span class="v">广州市黄埔区</span></li>
+          <li><span class="k">公众号</span><span class="v">老唐谈教育管理</span></li>
+        </ul>
+      </div>
+      <div class="contact-card">
+        <h3>手机 / 微信</h3>
+        <p>加微信请备注「自查」，另送《逐题解读》一份。</p>
+        <div class="big">&#49;&#57;&#49; &#50;&#52;&#50;&#48; &#48;&#53;&#48;&#56;</div>
+        <div class="note">唐平 · 广州庄敬自强管理咨询有限公司</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<p class="sc-stamp">本清单仅供教培机构自我评估参考　　更新日期：2026 年 9 月</p>
+
+<footer>
+  <div class="wrap">
+    <span>© 老唐管理咨询 · 广州庄敬自强管理咨询有限公司 · 唐平</span>
+    <span>
+      <a href="index.html">首页</a>
+      <a href="record.html">管理实战记录</a>
+      <a href="manual.html">使用说明书</a>
+      <a href="index.html#contact">联系我</a>
+    </span>
+  </div>
+</footer>
+
+<button class="sc-fab" id="fab" type="button" title="回到顶部" aria-label="回到顶部">↑</button>
+<div class="sc-toast" id="toast" role="status" aria-live="polite">微信号已复制：tangcping</div>
 
 <script>
 (function () {
   "use strict";
 
-    var MODULES = [
+  /* ========== 题目内容（唯一数据源，页面由脚本渲染） ========== */
+  var MODULES = [
     { key: "A", title: "一、定位与赛道", qs: [
       { t: "您能用一句话说清楚「我们跟附近别的机构有什么不一样」吗？" },
       { t: "您能说出「我们主要收什么样的学生，什么样的学生我们不收」吗？",
@@ -723,44 +494,53 @@
   };
 
   var ORDER = ["A", "B", "C", "D", "E", "F"];
-  var STATE = {};        // 题号 -> 'g' | 'y' | 'r'
-  var QINDEX = [];       // 扁平题号 -> {mid, qi}
+  var STATE = {};
+  var QINDEX = [];
+  var TOTAL = 0;
 
-  /* ---------- 渲染题目 ---------- */
+  /* ========== 渲染题目 ========== */
   var quizEl = document.getElementById("quiz");
   var html = [];
   var globalNo = 0;
+
   MODULES.forEach(function (m) {
-    html.push('<section class="module" id="mod-' + m.key + '">');
-    html.push('<div class="m-head"><span class="t">' + m.title +
-      '<span class="badge" id="badge-' + m.key + '">0 红</span></span>' +
+    html.push('<div class="sc-mod" id="mod-' + m.key + '">');
+    html.push('<div class="sc-mod-head"><span class="t">' + m.title +
+      '<span class="sc-badge" id="badge-' + m.key + '">0 红</span></span>' +
       '<span class="n">' + m.qs.length + ' 题</span></div>');
     m.qs.forEach(function (q, qi) {
       globalNo += 1;
       QINDEX[globalNo] = { mk: m.key, qi: qi };
-      html.push('<div class="q" id="q-' + globalNo + '">');
-      html.push('<div class="main"><span class="num">' + globalNo + '</span><span>' + q.t +
-        (q.h ? '<span class="hint">' + q.h + '</span>' : '') + '</span></div>');
-      html.push('<div class="picks">' +
-        '<button class="pick g" data-q="' + globalNo + '" data-v="g" aria-label="绿"></button>' +
-        '<button class="pick y" data-q="' + globalNo + '" data-v="y" aria-label="黄"></button>' +
-        '<button class="pick r" data-q="' + globalNo + '" data-v="r" aria-label="红"></button>' +
+      html.push('<div class="sc-q" id="q-' + globalNo + '">');
+      html.push('<div class="main"><span class="sc-num">' + globalNo + '</span>' + q.t +
+        (q.h ? '<span class="sc-hint">' + q.h + '</span>' : '') + '</div>');
+      html.push('<div class="sc-picks">' +
+        '<button class="sc-pick g" type="button" data-q="' + globalNo + '" data-v="g" aria-pressed="false" aria-label="第 ' + globalNo + ' 题：绿，说得清"></button>' +
+        '<button class="sc-pick y" type="button" data-q="' + globalNo + '" data-v="y" aria-pressed="false" aria-label="第 ' + globalNo + ' 题：黄，大概知道"></button>' +
+        '<button class="sc-pick r" type="button" data-q="' + globalNo + '" data-v="r" aria-pressed="false" aria-label="第 ' + globalNo + ' 题：红，说不清"></button>' +
         '</div>');
       html.push('</div>');
     });
-    html.push('</section>');
+    html.push('</div>');
   });
-  // 若 #quiz 内已存在静态题目（文件被外部编辑器保存过），保留它，
-  // 避免模板内容把编辑器里的改动覆盖掉；只有容器为空时才由脚本渲染。
-  if (!quizEl.querySelector(".q")) {
-    quizEl.innerHTML = html.join("");
+  quizEl.innerHTML = html.join("");
+  TOTAL = globalNo;
+
+  /* ========== 导航高度 → 粘性条偏移 ========== */
+  function syncNavOffset() {
+    var nav = document.querySelector(".nav");
+    var h = nav ? Math.round(nav.getBoundingClientRect().height) : 63;
+    document.documentElement.style.setProperty("--sc-top", h + "px");
   }
+  syncNavOffset();
+  window.addEventListener("resize", syncNavOffset);
+  window.addEventListener("orientationchange", syncNavOffset);
+  window.addEventListener("load", syncNavOffset);
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(syncNavOffset); }
 
-  var TOTAL = globalNo;
-
-  /* ---------- 交互 ---------- */
+  /* ========== 交互 ========== */
   quizEl.addEventListener("click", function (e) {
-    var btn = e.target.closest(".pick");
+    var btn = e.target.closest(".sc-pick");
     if (!btn) return;
     var qno = btn.getAttribute("data-q");
     var val = btn.getAttribute("data-v");
@@ -771,10 +551,11 @@
 
   function paintQuestion(qno) {
     var box = document.getElementById("q-" + qno);
-    var btns = box.querySelectorAll(".pick");
+    if (!box) return;
+    var btns = box.querySelectorAll(".sc-pick");
     for (var i = 0; i < btns.length; i++) {
       var on = btns[i].getAttribute("data-v") === STATE[qno];
-      btns[i].classList.toggle("on", on);
+      btns[i].setAttribute("aria-pressed", on ? "true" : "false");
     }
     box.classList.toggle("done", !!STATE[qno]);
   }
@@ -785,43 +566,11 @@
     return n;
   }
 
-  function refresh() {
-    var filled = Object.keys(STATE).length;
-    var reds = redCount();
-
-    document.getElementById("n-filled").textContent = filled;
-    document.getElementById("n-red").textContent = reds;
-    document.getElementById("prog").style.width = (filled / TOTAL * 100) + "%";
-
-    // 模块红标
-    ORDER.forEach(function (mk) {
-      var r = moduleRed(mk);
-      var b = document.getElementById("badge-" + mk);
-      b.textContent = r + " 红";
-      b.classList.toggle("on", r > 0);
-    });
-
-    // 提交按钮
-    var btn = document.getElementById("btn-submit");
-    var hint = document.getElementById("submit-hint");
-    if (filled >= TOTAL) {
-      btn.classList.remove("wait");
-      btn.textContent = "查看我的经营体检单";
-      hint.textContent = "已填完，点上面按钮看结果";
-    } else {
-      btn.classList.add("wait");
-      btn.textContent = "看我的经营体检单";
-      hint.textContent = "还剩 " + (TOTAL - filled) + " 题没填";
+  function globalNoOf(mk, qi) {
+    for (var k in QINDEX) {
+      if (QINDEX[k].mk === mk && QINDEX[k].qi === qi) return Number(k);
     }
-
-    // 填满后自动展开结果区（刷新页面也能恢复）
-    var resEl = document.getElementById("result");
-    if (filled >= TOTAL) {
-      if (!resEl.classList.contains("show")) resEl.classList.add("show");
-      renderResult();
-    } else if (resEl.classList.contains("show")) {
-      renderResult();
-    }
+    return -1;
   }
 
   function moduleRed(mk) {
@@ -834,14 +583,43 @@
     return n;
   }
 
-  function globalNoOf(mk, qi) {
-    for (var k in QINDEX) {
-      if (QINDEX[k].mk === mk && QINDEX[k].qi === qi) return Number(k);
+  function refresh() {
+    var filled = Object.keys(STATE).length;
+    var reds = redCount();
+
+    document.getElementById("n-filled").textContent = filled;
+    document.getElementById("n-red").textContent = reds;
+    document.getElementById("prog").style.width = (filled / TOTAL * 100) + "%";
+
+    ORDER.forEach(function (mk) {
+      var r = moduleRed(mk);
+      var b = document.getElementById("badge-" + mk);
+      b.textContent = r + " 红";
+      b.classList.toggle("on", r > 0);
+    });
+
+    var btn = document.getElementById("btn-submit");
+    var hint = document.getElementById("submit-hint");
+    if (filled >= TOTAL) {
+      btn.classList.remove("wait");
+      btn.textContent = "查看我的经营体检单";
+      hint.textContent = "已填完，点上面按钮看结果";
+    } else {
+      btn.classList.add("wait");
+      btn.textContent = "看我的经营体检单";
+      hint.textContent = "还剩 " + (TOTAL - filled) + " 题没填";
     }
-    return -1;
+
+    var resEl = document.getElementById("result");
+    if (filled >= TOTAL) {
+      if (!resEl.classList.contains("show")) resEl.classList.add("show");
+      renderResult();
+    } else if (resEl.classList.contains("show")) {
+      renderResult();
+    }
   }
 
-  /* ---------- 结果 ---------- */
+  /* ========== 结果 ========== */
   function renderResult() {
     var reds = redCount();
     document.getElementById("red-big").textContent = reds;
@@ -864,31 +642,27 @@
     document.getElementById("sc-mid").classList.toggle("hit", reds >= 3 && reds <= 5);
     document.getElementById("sc-high").classList.toggle("hit", reds >= 6);
 
-    // 分布
-    var rows = [], max = 0;
+    var rows = [];
     ORDER.forEach(function (mk) {
       var m = MODULES.filter(function (x) { return x.key === mk; })[0];
-      var r = moduleRed(mk);
-      if (r > max) max = r;
-      rows.push({ mk: mk, title: m.title, total: m.qs.length, red: r });
+      rows.push({ mk: mk, title: m.title, total: m.qs.length, red: moduleRed(mk) });
     });
 
     var maxRed = Math.max.apply(null, rows.map(function (x) { return x.red; }));
     document.getElementById("dist-rows").innerHTML = rows.map(function (x) {
       var hot = (maxRed > 0 && x.red === maxRed);
       var w = x.total ? Math.round(x.red / x.total * 100) : 0;
-      return '<div class="row' + (hot ? ' hot' : '') + '">' +
+      return '<div class="sc-row' + (hot ? ' hot' : '') + '">' +
         '<div class="lb"><b>' + x.title + '</b>' +
         '<span class="cnt">' + x.red + ' / ' + x.total + ' 盏红</span></div>' +
-        '<div class="track2"><div class="fill2" style="width:' + Math.max(w, x.red > 0 ? 8 : 0) + '%"></div></div>' +
+        '<div class="sc-track2"><div class="sc-fill2" style="width:' + Math.max(w, x.red > 0 ? 8 : 0) + '%"></div></div>' +
         '</div>';
     }).join("");
 
-    // 扎堆解读
     var note = document.getElementById("cluster-note");
     var hotMods = rows.filter(function (x) { return x.red > 0 && x.red === maxRed; });
     if (maxRed === 0) {
-      note.innerHTML = '<span class="h navy">没有明显扎堆</span>' +
+      note.innerHTML = '<span class="h">没有明显扎堆</span>' +
         '25 题里没有集中的红灯，说明您的问题不在一块，而是零散分布。<b>这种情况适合做的是一次全面梳理，把零散的小漏洞一次性补掉。</b>';
     } else {
       var names = hotMods.map(function (x) { return "「" + x.title.replace(/^[一二三四五六]、/, "") + "」"; }).join("、");
@@ -896,7 +670,6 @@
       note.innerHTML = '<span class="h">红灯最集中的是' + names + '（各 ' + maxRed + ' 盏）</span>' + body;
     }
 
-    // CTA 微调
     var lead = document.getElementById("cta-lead");
     if (reds >= 3) {
       lead.textContent = "您的红灯亮了 " + reds + " 盏。到这个数，通常意味着：问题已经不在「知不知道」，而在「怎么调」。";
@@ -908,14 +681,14 @@
   document.getElementById("btn-submit").addEventListener("click", function () {
     var filled = Object.keys(STATE).length;
     if (filled < TOTAL) {
-      // 滚到第一个没填的题
       for (var i = 1; i <= TOTAL; i++) {
         if (!STATE[i]) {
           var el = document.getElementById("q-" + i);
           el.scrollIntoView({ behavior: "smooth", block: "center" });
-          var p = el.querySelector(".picks");
+          var p = el.querySelector(".sc-picks");
           p.style.transition = "box-shadow .3s";
-          p.style.boxShadow = "0 0 0 3px rgba(192,57,43,.18)";
+          p.style.borderRadius = "999px";
+          p.style.boxShadow = "0 0 0 3px var(--gold-border)";
           setTimeout(function () { p.style.boxShadow = "none"; }, 900);
           break;
         }
@@ -931,7 +704,7 @@
     }, 60);
   });
 
-  /* ---------- 复制结果 ---------- */
+  /* ========== 复制结果 ========== */
   document.getElementById("btn-copy").addEventListener("click", function () {
     if (Object.keys(STATE).length < TOTAL) { toast("先填完 25 题再复制"); return; }
     var reds = redCount();
@@ -953,7 +726,7 @@
     if (bad.length) { lines.push("第 " + bad.join("、") + " 题"); }
     else { lines.push("（无红灯）"); }
     lines.push("");
-    lines.push("—— 来自《教培机构经营自查清单（老板自测版）》 唐平（老唐）");
+    lines.push("—— 来自《教培机构经营自查清单》 https://kuaieltang.github.io/selfcheck.html");
 
     var text = lines.join("\n");
     var done = function () { toast("已复制，粘到微信发给我就行"); };
@@ -975,18 +748,20 @@
     document.body.removeChild(ta);
   }
 
+  /* 微信按钮：顺手把微信号复制到剪贴板，再跳到联系区 */
   document.getElementById("btn-wx").addEventListener("click", function () {
     var t = "tangcping";
-    var ok = function () { toast("微信号已复制：" + t); };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(t).then(ok, function () { fallback(t, ok); });
-    } else { fallback(t, ok); }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(t).then(function () { toast("微信号已复制：" + t); }, function () {});
+      }
+    } catch (err) {}
   });
 
-  /* ---------- 重置 ---------- */
+  /* ========== 重置 ========== */
   document.getElementById("btn-reset").addEventListener("click", function () {
     if (!Object.keys(STATE).length) { toast("还没开始填呢"); return; }
-    if (!confirm("清空所有已填内容，从头开始？")) return;
+    if (!window.confirm("清空所有已填内容，从头开始？")) return;
     STATE = {};
     for (var i = 1; i <= TOTAL; i++) paintQuestion(i);
     document.getElementById("result").classList.remove("show");
@@ -994,10 +769,10 @@
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
 
-  /* ---------- 浮标 / toast ---------- */
+  /* ========== 浮标 / toast ========== */
   var fab = document.getElementById("fab");
   window.addEventListener("scroll", function () {
-    fab.classList.toggle("show", window.scrollY > 600);
+    fab.classList.toggle("show", window.scrollY > 700);
   }, { passive: true });
   fab.addEventListener("click", function () {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -1008,17 +783,16 @@
     toastEl.textContent = msg;
     toastEl.classList.add("show");
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () { toastEl.classList.remove("show"); }, 2000);
+    toastTimer = setTimeout(function () { toastEl.classList.remove("show"); }, 2200);
   }
 
-  /* ---------- 本地保存进度 ---------- */
-  var KEY = "laotang_selfcheck_v1";
+  /* ========== 本地保存进度 ========== */
+  var KEY = "laotang_selfcheck_v2";
   try {
     var saved = localStorage.getItem(KEY);
     if (saved) {
       var obj = JSON.parse(saved);
       for (var k in obj) { if (QINDEX[k]) STATE[k] = obj[k]; }
-      for (var j = 1; j <= TOTAL; j++) paintQuestion(j);
     }
   } catch (e) {}
   window.addEventListener("beforeunload", function () {
@@ -1028,12 +802,13 @@
     try { localStorage.setItem(KEY, JSON.stringify(STATE)); } catch (e) {}
   }, 5000);
 
-  // 初始化时若已有进度，同步顶部
   for (var i = 1; i <= TOTAL; i++) paintQuestion(i);
   refresh();
+  syncNavOffset();
   window.scrollTo(0, 0);
 
 })();
 </script>
 
-</body></html>
+</body>
+</html>
