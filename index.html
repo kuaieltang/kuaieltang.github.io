@@ -30,7 +30,13 @@
     <div class="nav-links">
       <a href="index.html" class="active">首页</a>
       <a href="record.html">管理实战</a>
-      <a href="selfcheck.html">经营自查</a>
+      <div class="nav-drop">
+        <button type="button" class="nav-drop-btn" aria-haspopup="true" aria-expanded="false" aria-controls="nav-res">资源库 <span class="caret">&#9662;</span></button>
+        <div class="nav-drop-menu" id="nav-res">
+          <a href="meeting.html"><span class="t">高效会议与决策体系指南</span><span class="d">会议怎么开、决策怎么落</span></a>
+          <a href="selfcheck.html"><span class="t">经营自查清单</span><span class="d">25 题红黄绿灯自测</span></a>
+        </div>
+      </div>
       <a href="manual.html">使用说明书</a>
       <a href="#contact" class="btn-mini">联系我</a>
     </div>
@@ -280,12 +286,15 @@
     <span>© 老唐管理咨询 · 广州庄敬自强管理咨询有限公司 · 唐平</span>
     <span>
       <a href="record.html">管理实战记录</a>
+      <a href="meeting.html">高效会议与决策体系指南</a>
       <a href="selfcheck.html">经营自查清单</a>
       <a href="manual.html">使用说明书</a>
       <a href="#contact">联系我</a>
     </span>
   </div>
 </footer>
+
+<script src="nav.js"></script>
 
 </body>
 </html>

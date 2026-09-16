@@ -133,6 +133,68 @@ a { color: inherit; }
 }
 .nav-links a.btn-mini:hover { opacity: .88; }
 
+/* ---------- 导航下拉（资源库） ---------- */
+.nav-drop { position: relative; display: inline-block; }
+.nav-drop-btn {
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text-soft);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: 7px 13px;
+  border-radius: 8px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all .18s;
+}
+.nav-drop-btn:hover,
+.nav-drop.is-open .nav-drop-btn { background: var(--gold-soft); color: var(--text); }
+.nav-drop.is-current .nav-drop-btn { color: var(--gold-deep); font-weight: 600; }
+.nav-drop .caret {
+  font-size: 11px; line-height: 1;
+  display: inline-block;
+  transition: transform .18s;
+  transform: translateY(-1px);
+}
+.nav-drop.is-open .caret { transform: translateY(-1px) rotate(180deg); }
+.nav-drop-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 224px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 8px;
+  z-index: 60;
+  opacity: 0; visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity .16s, transform .16s, visibility .16s;
+}
+.nav-drop.is-open .nav-drop-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.nav-drop-menu a {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  color: var(--text-soft);
+  text-decoration: none;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.nav-drop-menu a:hover { background: var(--gold-soft); color: var(--text); }
+.nav-drop-menu a.is-current { color: var(--gold-deep); font-weight: 600; }
+.nav-drop-menu a .t { display: block; }
+.nav-drop-menu a .d { font-size: 12px; color: var(--text-faint); font-weight: 400; }
+@media (hover: hover) and (min-width: 761px) {
+  .nav-drop:hover .nav-drop-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+  .nav-drop:hover .caret { transform: translateY(-1px) rotate(180deg); }
+}
+
 /* ---------- 通用区块 ---------- */
 section { padding: 64px 0; }
 .section-alt { background: var(--bg-alt); }
@@ -508,8 +570,10 @@ footer a:hover { color: #e6c877; }
 @media (max-width: 760px) {
   .nav-inner { flex-wrap: wrap; padding: 12px 18px; row-gap: 2px; }
   .nav-links { width: 100%; justify-content: flex-start; gap: 0 2px; }
-  .nav-links a { padding: 6px 10px; font-size: 14px; }
-  .nav-links a.btn-mini { margin-left: 0; }
+  .nav-links > a { padding: 6px 10px; font-size: 14px; }
+  .nav-links > a.btn-mini { margin-left: 0; }
+  .nav-drop-btn { padding: 6px 10px; font-size: 14px; }
+  .nav-drop-menu { left: auto; right: 0; min-width: 210px; }
 }
 
 @media (max-width: 620px) {

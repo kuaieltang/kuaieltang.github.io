@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f4ed">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#12151b">
+<title>教培机构高效会议与决策体系指南 | 老唐管理咨询</title>
+<meta name="description" content="基于 17 年教培机构管理经验与德鲁克管理思想总结的高效会议与决策体系指南：认知、规划、执行、领导、治理五篇，附经营分析会开会指南。唐平（老唐）著。">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="老唐管理咨询">
+<meta property="og:title" content="教培机构高效会议与决策体系指南">
+<meta property="og:description" content="基于 17 年教培机构管理经验与德鲁克管理思想总结的高效会议与决策体系指南：认知、规划、执行、领导、治理五篇，附经营分析会开会指南。">
+<meta property="og:url" content="https://kuaieltang.github.io/meeting.html">
+<meta property="og:image" content="https://kuaieltang.github.io/img-meeting.jpg">
+<meta property="og:locale" content="zh_CN">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="icon" type="image/png" sizes="64x64" href="logo-64.png">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ================= Deck（一屏一节 · 上下滑） ================= */
+  html { scroll-snap-type: y proximity; scroll-padding-top: var(--navh, 72px); }
+  .deck { position: relative; }
+  .slide {
+    scroll-snap-align: start;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 84px 0 78px;
+    position: relative;
+    border-bottom: 1px solid var(--line);
+  }
+  .slide > .wrap { width: 100%; max-width: 960px; }
+  .slide--panel {
+    background:
+      radial-gradient(900px 380px at 85% -8%, rgba(169,129,47,.20), transparent 62%),
+      var(--panel);
+    color: var(--panel-fg);
+    border-bottom-color: transparent;
+  }
+  .slide--alt { background: var(--bg-alt); }
+
+  /* 页码标签 */
+  .sn {
+    display: inline-block;
+    font-family: "Noto Serif SC","Songti SC","SimSun",serif;
+    font-size: 13px; letter-spacing: 3px; font-weight: 700;
+    color: var(--gold-deep);
+    margin-bottom: 16px;
+  }
+  .slide--panel .sn { color: #e6c877; }
+
+  .s-h { font-size: clamp(24px, 3vw, 33px); font-weight: 700; line-height: 1.35; }
+  .s-sub { color: var(--text-soft); font-size: 15px; margin-top: 8px; }
+  .slide--panel .s-sub { color: #b9c1cc; }
+  .s-rule {
+    width: 56px; height: 3px; border-radius: 2px; margin: 20px 0 0;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+
+  .s-body { color: var(--text-soft); font-size: 16.5px; }
+  .s-body > p { margin: 16px 0; }
+  .s-body > p:first-child { margin-top: 0; }
+  .slide--panel .s-body { color: #c9d0d9; }
+
+  .s-list { list-style: none; margin: 20px 0 0; display: grid; gap: 13px; }
+  .s-list > li { position: relative; padding-left: 26px; color: var(--text-soft); font-size: 16px; }
+  .s-list > li::before {
+    content: ""; position: absolute; left: 4px; top: .72em;
+    width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg);
+  }
+  .s-list > li b { color: var(--text); }
+  .slide--panel .s-list > li { color: #c9d0d9; }
+  .slide--panel .s-list > li b { color: var(--panel-fg); }
+
+  .s-num { counter-reset: sn; list-style: none; margin: 20px 0 0; display: grid; gap: 14px; }
+  .s-num > li {
+    counter-increment: sn; position: relative; padding-left: 46px;
+    color: var(--text-soft); font-size: 16px;
+  }
+  .s-num > li::before {
+    content: counter(sn, decimal-leading-zero);
+    position: absolute; left: 0; top: .12em;
+    font-family: "Noto Serif SC","Songti SC","SimSun",serif;
+    font-size: 15px; font-weight: 700; color: var(--gold);
+  }
+  .s-num > li b { color: var(--text); }
+
+  .s-quote {
+    background: var(--gold-soft);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 12px 12px 0;
+    padding: 22px 26px; margin: 26px 0 0;
+    color: var(--text); font-size: 17px;
+  }
+  .s-quote b { color: var(--gold-deep); }
+
+  .s-big {
+    font-family: "Noto Serif SC","Songti SC","SimSun",serif;
+    font-size: clamp(20px, 2.6vw, 27px); font-weight: 700; line-height: 1.7;
+    color: var(--text);
+  }
+  .slide--panel .s-big { color: var(--panel-fg); }
+  .s-big em { font-style: normal; color: var(--gold-deep); }
+  .slide--panel .s-big em { color: #e6c877; }
+
+  .s-cards { display: grid; gap: 16px; margin-top: 24px; }
+  .s-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--gold);
+    border-radius: 12px;
+    padding: 22px 26px;
+    box-shadow: var(--shadow);
+  }
+  .s-card h4 { font-size: 18px; margin-bottom: 6px; }
+  .s-card p { color: var(--text-soft); font-size: 15.5px; }
+  .s-card .mono { color: var(--gold-deep); font-weight: 700; }
+
+  .tbl-wrap {
+    overflow-x: auto;
+    margin-top: 24px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--card);
+    box-shadow: var(--shadow);
+  }
+  table.tbl { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 600px; }
+  table.tbl th, table.tbl td {
+    padding: 13px 16px; text-align: left; vertical-align: top;
+    border-bottom: 1px solid var(--line); color: var(--text-soft);
+  }
+  table.tbl th {
+    background: var(--gold-soft); color: var(--gold-deep);
+    font-weight: 700; font-size: 14px; letter-spacing: 1px; white-space: nowrap;
+  }
+  table.tbl tr:last-child td { border-bottom: 0; }
+  table.tbl td.k { font-weight: 600; color: var(--text); white-space: nowrap; }
+  table.tbl td.meet { color: var(--gold-deep); font-weight: 600; }
+  table.tbl--dense th, table.tbl--dense td { padding: 9px 14px; }
+
+  .toc { display: grid; gap: 12px; margin-top: 28px; }
+  .toc a {
+    display: grid; grid-template-columns: 56px 1fr; gap: 16px; align-items: baseline;
+    text-decoration: none; padding: 14px 18px;
+    border: 1px solid var(--line); border-radius: 12px;
+    background: var(--card); box-shadow: var(--shadow);
+    transition: transform .18s, border-color .18s;
+  }
+  .toc a:hover { transform: translateX(5px); border-color: var(--gold-border); }
+  .toc .n {
+    font-family: "Noto Serif SC","Songti SC","SimSun",serif;
+    color: var(--gold); font-weight: 700; font-size: 17px;
+  }
+  .toc .t { font-size: 17.5px; font-weight: 600; color: var(--text); }
+  .toc .d { display: block; font-size: 13px; color: var(--text-faint); font-weight: 400; margin-top: 3px; }
+
+  .flow { display: grid; gap: 10px; counter-reset: fl; margin: 22px 0 0; }
+  .flow > li {
+    counter-increment: fl; list-style: none; position: relative;
+    padding: 12px 18px 12px 48px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    color: var(--text-soft); font-size: 15.5px;
+  }
+  .flow > li::before {
+    content: counter(fl);
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--gold-soft); color: var(--gold-deep);
+    font-size: 12px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .chap-no {
+    font-family: "Noto Serif SC","Songti SC","SimSun",serif;
+    font-size: clamp(64px, 11vw, 118px); font-weight: 800; line-height: 1;
+    color: #e6c877; letter-spacing: 4px;
+  }
+  .chap-title {
+    font-size: clamp(30px, 5vw, 50px); font-weight: 800; line-height: 1.25;
+    margin-top: 18px; color: var(--panel-fg);
+  }
+
+  .cover-h {
+    font-size: clamp(32px, 6.2vw, 62px); font-weight: 800; line-height: 1.2;
+    margin-top: 4px;
+  }
+  .cover-h .em { color: #e6c877; }
+  .cover-ru {
+    width: 72px; height: 4px; border-radius: 2px; margin: 30px 0;
+    background: linear-gradient(90deg, #e6c877, rgba(230,200,119,0));
+  }
+  .cover-lead { font-size: clamp(16px, 2vw, 18.5px); color: #c9d0d9; max-width: 720px; }
+  .cover-by {
+    margin-top: 34px; font-size: 14px; color: #a8b1bd; letter-spacing: 1px;
+  }
+
+  .s-contact { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 30px; }
+  .s-contact > div {
+    background: rgba(255,255,255,.06);
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 12px; padding: 16px 20px;
+  }
+  .s-contact .k { font-size: 12px; color: #a8b1bd; letter-spacing: 2px; }
+  .s-contact .v { font-size: 16.5px; color: var(--panel-fg); font-weight: 600; margin-top: 4px; word-break: break-all; }
+  @media (max-width: 620px) { .s-contact { grid-template-columns: 1fr; } }
+
+  .s-note {
+    border-top: 1px dashed var(--line);
+    padding-top: 16px; margin-top: 26px;
+    font-size: 14.5px; color: var(--text-soft);
+  }
+  .s-note b { color: var(--gold-deep); }
+
+  /* ---------- 进度条 / 章节浮标 ---------- */
+  .deckbar {
+    position: fixed; left: 0; right: 0; top: var(--navh, 63px);
+    height: 2px; z-index: 45; pointer-events: none;
+  }
+  .deckbar i {
+    display: block; height: 100%; width: 0;
+    background: linear-gradient(90deg, var(--gold), var(--gold-deep));
+  }
+  .deckchip {
+    position: fixed; right: 16px; bottom: 16px; z-index: 45;
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 999px; box-shadow: var(--shadow);
+    padding: 8px 16px; font-size: 13px; color: var(--text-soft);
+    max-width: 62vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    pointer-events: none;
+  }
+  .deckchip b { color: var(--gold-deep); font-weight: 700; }
+  .deckchip span { color: var(--text-faint); }
+  @media (max-width: 620px) {
+    .slide { padding: 64px 0 60px; }
+    .deckchip { font-size: 11.5px; padding: 6px 12px; bottom: 10px; right: 10px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-snap-type: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <img class="seal" src="logo.svg" alt="老唐管理咨询">
+      <span>老唐管理咨询<small>庄敬自强</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="record.html">管理实战</a>
+      <div class="nav-drop is-current">
+        <button type="button" class="nav-drop-btn" aria-haspopup="true" aria-expanded="false" aria-controls="nav-res">资源库 <span class="caret">&#9662;</span></button>
+        <div class="nav-drop-menu" id="nav-res">
+          <a href="meeting.html" class="is-current"><span class="t">高效会议与决策体系指南</span><span class="d">会议怎么开、决策怎么落</span></a>
+          <a href="selfcheck.html"><span class="t">经营自查清单</span><span class="d">25 题红黄绿灯自测</span></a>
+        </div>
+      </div>
+      <a href="manual.html">使用说明书</a>
+      <a href="index.html#contact" class="btn-mini">联系我</a>
+    </div>
+  </div>
+</nav>
+
+<div class="deckbar"><i id="deckbar"></i></div>
+<div class="deckchip" id="deckchip"></div>
+
+<main class="deck">
+
+  <!-- ================= 封面 ================= -->
+  <section class="slide slide--panel" data-chap="封面" data-title="高效会议与决策体系指南">
+    <div class="wrap">
+      <span class="sn">教培机构</span>
+      <h1 class="cover-h">高效会议<br><span class="em">与决策体系指南</span></h1>
+      <div class="cover-ru"></div>
+      <p class="cover-lead">基于我17年教培机构管理经验，并结合对管理学大师德鲁克的著作的研读，我总结出了一份高效会议体系指南，这份指南旨在提升教培机构的经营效能，而不仅仅是提升会议效率。</p>
+      <p class="cover-by">唐平（老唐）　｜　广州庄敬自强管理咨询有限公司　｜　更新日期：2026-09-16</p>
+    </div>
+  </section>
+
+  <!-- ================= 目录 ================= -->
+  <section class="slide" data-chap="目录" data-title="五篇 + 附录">
+    <div class="wrap">
+      <span class="sn">CONTENTS</span>
+      <h2 class="s-h">这份指南讲什么</h2>
+      <div class="s-rule"></div>
+      <div class="toc">
+        <a href="#c1"><span class="n">01</span><span class="t">认知篇<span class="d">会议为什么重要：决策有效性、成本效率、文化领导力</span></span></a>
+        <a href="#c2"><span class="n">02</span><span class="t">规划篇<span class="d">从经营决策倒推，给一个经营周期做好会议整体设计</span></span></a>
+        <a href="#c3"><span class="n">03</span><span class="t">执行篇<span class="d">三个原则、主持人责权、会前会中会后、决策质量</span></span></a>
+        <a href="#c4"><span class="n">04</span><span class="t">领导篇<span class="d">六种带头破坏规则的行为，与真正厉害的领导怎么做</span></span></a>
+        <a href="#c5"><span class="n">05</span><span class="t">治理篇<span class="d">定期体检，治本：会议过多是组织不健全的结果</span></span></a>
+        <a href="#c6"><span class="n">附</span><span class="t">经营分析会开会指南<span class="d">目的、召集人、日程、标准流程、议题收集与筛选</span></span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 01 认知篇 ================= -->
+  <section class="slide slide--panel" id="c1" data-chap="01 认知篇" data-title="会议为什么重要">
+    <div class="wrap">
+      <div class="chap-no">01</div>
+      <h2 class="chap-title">认知篇</h2>
+      <p class="s-body" style="margin-top:20px;max-width:640px;">会议为什么重要？因为会议：</p>
+    </div>
+  </section>
+
+  <section class="slide" data-chap="01 认知篇" data-title="1.1 事关经营决策有效性">
+    <div class="wrap">
+      <span class="sn">1.1</span>
+      <h2 class="s-h">事关经营决策有效性</h2>
+      <div class="s-rule"></div>
+      <div class="s-body">
+        <p>毫不为过地说，大约80%的重大经营决策都是在会议上做出的。</p>
+        <p>会议的议题设置是否合理，是否得到充分研讨，决策能否落实到位，不仅决定了会议的成败，甚至关系到正确决策能否做出，影响公司的生存和发展。</p>
+        <p>决策如何有效？德鲁克有一个非常重要的观点，值得铭记：管理者，首先要聚焦于机会，而不是解决问题。理由如下：</p>
+      </div>
+      <ul class="s-list">
+        <li>解决问题，解决的只是企业内部的问题，但是企业的成果在外部（赢得市场的认可、客户的购买）。也就是说，解决问题并不必然产生成果；</li>
+        <li>解决问题在本质上，只是一个效率改善的问题，是为了“正确的做事”，而企业首先要确保自己“做正确的事”；</li>
+        <li>企业要取得成果，就必须发现和把握外部环境中的机会，把内部资源优先分配给机会。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide slide--alt" data-chap="01 认知篇" data-title="1.1 机会导向：100 块与 1000 块">
+    <div class="wrap">
+      <span class="sn">1.1</span>
+      <h2 class="s-h">机会导向，倒逼我们向外看</h2>
+      <div class="s-rule"></div>
+      <div class="s-body">
+        <p>听起来很抽象，我打个比方就好理解了：现在你有一个问题，如果不解决，你会损失100块钱，你要不要解决？答案是不一定。如果在你解决这个问题的同时，你有一个可以从别人那里赚1000块的机会呢？你还会选择解决问题吗？</p>
+        <p>“损失100块”是自己的事、是内部的事，是萦绕在你心头的“问题”；而从别人那里“赚到1000块”则是外部的事，是取得成果的“机会”，所以机会导向，倒逼我们向外看、向成果看。而不是孜孜于解决问题——很多问题不值得解决。</p>
+      </div>
+      <div class="s-quote">任正非说：企业经营宛如滚滚长江，在奔腾入海的过程中，必然伴随着泥沙俱下，有问题很正常。只要在正确的目标牵引下滚滚向前，过程中的问题都将不再成为问题。但我们也会看到，现实中一些管理者好像天生有“洁癖”，整天拿着显微镜找问题，舍本逐末。企业很多问题是过程性和阶段性的，无须解决却非要解决就是做无效功。</div>
+    </div>
+  </section>
+
+  <section class="slide" data-chap="01 认知篇" data-title="1.2 事关成本和效率">
+    <div class="wrap">
+      <span class="sn">1.2</span>
+      <h2 class="s-h">事关成本和效率</h2>
+      <div class="s-rule"></div>
+      <div class="s-body">
+        <p>会议的直接成本是巨大的。粗算一笔：一场10个人2小时的例会，直接消耗 20 个工时，即便按照时薪100元计算，也高达2000元。随心所欲、毫无目标地开会，相当于无声的烧钱。</p>
+        <p>会议的机会成本也是巨大的。人们在开会的时候，就做不了其他工作，也就是说会议本身并不产生成果，只有会议的决策在会后得到了落实，才能产生真正的成果。</p>
+        <p>除此之外，浪费时间的现象也触目惊心。广告界有句话：我知道我有一半的广告费浪费了，但不知道是哪一半。会议就像广告，有一半时间浪费在看不见的地方：等待迟到者、跑题发言、情绪化争执……。</p>
+      </div>
+      <div class="s-quote">成本大不是问题，问题是成本必须取得相应的成果。会议必须卓有成效，否则就无法匹配其成本。会议不必“圆满结束”，而要“满载而归”。</div>
+    </div>
+  </section>
+
+  <section class="slide slide--alt" data-chap="01 认知篇" data-title="1.3 事关企业文化和领导力">
+    <div class="wrap">
+      <span class="sn">1.3</span>
+      <h2 class="s-h">事关企业文化和领导力</h2>
+      <div class="s-rule"></div>
+      <div class="s-body">
+        <p>开会是集体活动，影响到所有参会者。会开得怎么样，事关企业文化的塑造。会开得怎样，企业文化就是怎样的。会议，是展现、检验和塑造企业文化的重要时刻。</p>
+        <p>领导在会议中发挥重要角色。领导能否对会议取得预期成果负起责任，能否在决策过程中展现开放、包容、理性、务实的态度，能否以身作则直面问题、挖掘机会，对参会者影响重大。可以说，会议，还是管理者发挥领导力的最佳时刻。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide--panel" data-chap="01 认知篇" data-title="认知篇小结">
+    <div class="wrap">
+      <span class="sn">小结</span>
+      <p class="s-big">总而言之，每家教培机构都要认识到会议的重要性，对会议进行通盘考虑、整体规划和顶层设计，建立和完善高效会议体系，本质上是：</p>
+      <ul class="s-list" style="margin-top:26px;">
+        <li>将公司的重大决策匹配到重要会议，确保决策有抓手，会议有成果。</li>
+        <li>对会议做专项时间预算，减少时间浪费，让成本产出成果；</li>
+        <li>从会议抓起，让企业文化“活”在日常，让领导力得到发挥。</li>
+      </ul>
+      <p class="s-big" style="margin-top:30px;">一句话：高效会议体系，是把会议常见的“问题”，转变为聚力增效的“机会”，实现：<em>少开会、开好会，开出成果、开出精神</em>。</p>
+      <p class="s-sub" style="margin-top:22px;">有体系地开会，是一个成熟公司的表现。</p>
+    </div>
+  </section>
+
+  <!-- ================= 02 规划篇 ================= -->
+  <section class="slide slide--panel" id="c2" data-chap="02 规划篇" data-title="从经营决策倒推会议规划">
+    <div class="wrap">
+      <div class="chap-no">02</div>
+      <h2 class="chap-title">规划篇</h2>
+      <p class="s-body" style="margin-top:20px;max-width:640px;">从经营决策的需要出发，给一个经营周期做好会议的整体规划。</p>
+    </div>
+  </section>
+
+  <section class="slide" data-chap="02 规划篇" data-title="2.1 从经营决策的需要出发，整体设计">
+    <div class="wrap">
+      <span class="sn">2.1</span>
+      <h2 class="s-h">从经营决策的需要出发，整体设计</h2>
+      <div class="s-rule"></div>
+      <div class="s-body">
+        <p>国家有5年计划。围绕五年计划的制定，要召开很多会议，会议成果最终体现在其中。</p>
+        <p>每个培训机构，也都有其经营周期（如一年）。在经营周期内的某个时间节点，必须要做出某些重要决策。</p>
+        <p>例如：我以前担任总校长的机构，其经营周期为：每年7月至次年6月。于是，6月底之前我们必须做出下一年度的预算。而要做出预算，就必须制定下一年度的年度计划（含经营目标）。而下一年度的年度计划，又必须依据未来三年的三年计划。这是把机构的发展战略落实到经营中的关键：用长期计划来指导短期计划，把短期计划变成日常经营行为。</p>
+        <p>所以，我们会把这些决策落到重要会议中，形成了一个由宏观战略到日常经营的会议体系：</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide--alt" data-chap="02 规划篇" data-title="2.1 会议体系">
+    <div class="wrap">
+      <span class="sn">2.1</span>
+      <h2 class="s-h">一个经营周期的会议体系</h2>
+      <div class="s-rule"></div>
+      <div class="s-cards">
+        <div class="s-card">
+          <h4>战略研讨会</h4>
+          <p>在4-5月开会，回顾去年制定的三年规划的落实情况，讨论决定未来三年计划（即滚动计划）。</p>
+        </div>
+        <div class="s-card">
+          <h4>年度计划研讨会</h4>
+          <p>在5月底，基于三年计划，开会决定我们下一年度的年度计划。年度计划会后，总部各部门和各分校，分头做下一年度预算，6月底提交，经总校长和董事长批准后执行。</p>
+        </div>
+        <div class="s-card">
+          <h4>经营分析会</h4>
+          <p>每月召开经营分析会，对照年度预算和各项经营目标（如业绩目标、利润目标、教学教研目标、团队发展目标等）进行差异分析，找出问题，发现机会，制定具体的行动计划，落实到位。考虑到回顾的周期，我们对各月的会议定位为（注意经营年度是7月到次年6月）：</p>
+          <ul class="s-list" style="margin-top:14px;">
+            <li>7月 → “年度经营分析会”，回顾分析上一年全年度经营情况</li>
+            <li>1月 → “半年度经营分析会”，回顾分析半年度经营情况</li>
+            <li>4月、10月 → “季度经营分析会”，回顾分析上季度经营情况</li>
+            <li>其他月份 → “月度经营分析会”，回顾分析上月经营情况</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-chap="02 规划篇" data-title="2.1 其他会议与整体规划">
+    <div class="wrap">
+      <span class="sn">2.1</span>
+      <h2 class="s-h">其他会议</h2>
+      <div class="s-rule"></div>
+      <div class="s-cards">
+        <div class="s-card">
+          <h4>年会</h4>
+          <p>全公司年度总结表彰大会，每年一次，固定日期</p>
+        </div>
+        <div class="s-card">
+          <h4>专题会议</h4>
+          <p>每年一次的“教学教研工作专题会”，时长1天<br>每年一次的“招生工作专题会”，时长1天<br>其他：经过研究决定增设的会议</p>
+        </div>
+      </div>
+      <div class="s-body" style="margin-top:24px;">
+        <p>以上就根据机构的情况，把一个经营周期（一年）内，最重要的会议，进行了整体规划。从经营决策的需要，对重要会议的必要性进行了论证，既保证了决策研究落实到会议，又有效地控制了会议的总量（增设会议必须经过研究讨论）。</p>
+      </div>
+      <div class="s-quote">特别说明：以上是整个机构层面的重要会议规划。分校内部、总部各部门内部的会议，由各分校、各部门按照类似的方法进行整体规划，整体原则：还是“少开会、开好会、开出成果、开出精神”。</div>
+    </div>
+  </section>
+
+  <section class="slide slide--alt" data-chap="02 规划篇" data-title="2.2 对会议进行分类设计">
+    <div class="wrap">
+      <span class="sn">2.2</span>
+      <h2 class="s-h">对会议进行分类设计</h2>
+      <div class="s-rule"></div>
+      <div class="s-body">
+        <p>不同类型的会议，其议题、需要做出的决策、产出的成果都是不同的，因此其频率、开会时长、参会人员、准备周期，都应该要区别对待，但又要做到（同类会议）标准化：</p>
+      </div>
+      <div class="tbl-wrap">
+        <table class="tbl">
+          <colgroup><col style="width:19%"><col style="width:25%"><col></colgroup>
+          <thead>
+            <tr><th>会议类型</th><th>频率&amp;时长</th><th>决策产出</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="k">战略研讨会</td><td>每年，时长1天</td><td>（决定公司未来三年发展方向的）三年计划</td></tr>
+            <tr><td class="k">年度计划研讨会</td><td>每年，时长半天</td><td>下一年度经营计划（含各项经营目标，如业绩、利润、团队发展、教学教研、新业务等）</td></tr>
+            <tr><td class="k">经营分析会</td><td>每月，时长半天<br>（年度经营分析会为1天）</td><td>（落实经营计划的）具体行动方案</td></tr>
+            <tr><td class="k">年会</td><td>每年，时长2天</td><td>总结表彰</td></tr>
+            <tr><td class="k">专题会</td><td>每年，时长半天</td><td>（实现关键领域目标的）行动计划</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-chap="02 规划篇" data-title="2.3 会议日程与经营年历">
+    <div class="wrap">
+      <span class="sn">2.3</span>
+      <h2 class="s-h">会议日程与经营年历</h2>
+      <div class="s-rule"></div>
+      <div class="s-body">
+        <p><b>会议日程：</b>我们在年度计划研讨会上，决定重要会议的具体日程（当然，会前由总部人力行政部提前研究，列出具体日程）。</p>
+        <p>然后由总部人力行政部，在企业微信内创建团队共享日程，并设置提前提醒（有些会议是提前一个月提醒，有些是提前一周），以便大家提前准备。</p>
+        <p><b>经营年历：</b>在重要会议日程的基础上，我们又加入外部日历（如开学季、考试季、高考、重要节假日等）和全员活动，形成了一份“经营年历”。</p>
+      </div>
+      <div class="s-quote" style="font-family:'Noto Serif SC','Songti SC','SimSun',serif;font-size:19px;">经营年历 = 重要会议日程 + 外部重大事项日程 + 全员活动</div>
+    </div>
+  </section>
+
+  <section class="slide slide--alt" data-chap="02 规划篇" data-title="2.3 经营年历参考示例">
+    <div class="wrap">
+      <span class="sn">2.3</span>
+      <h2 class="s-h">经营年历：以下为参考示例</h2>
+      <div class="tbl-wrap">
+        <table class="tbl tbl--dense">
+          <thead>
+            <tr><th>月份</th><th>内部</th><th>外部</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="k">07月</td><td>教师星级评定（7月初）<br>年度薪酬回顾（7月初）<br><span class="meet">【会议】年度经营分析会</span><br><span class="meet">【年会】年度总结表彰大会（7.28）</span></td><td>暑假</td></tr>
+            <tr><td class="k">08月</td><td>重要制度集中修订</td><td>暑假</td></tr>
+            <tr><td class="k">09月</td><td>—</td><td>秋学期开学</td></tr>
+            <tr><td class="k">10月</td><td><span class="meet">【会议】Q1季度经营分析</span><br>秋学期人才盘点</td><td>—</td></tr>
+            <tr><td class="k">11月</td><td>—</td><td>—</td></tr>
+            <tr><td class="k">12月</td><td>组织氛围调查<br>IT清理月</td><td>—</td></tr>
+            <tr><td class="k">01月</td><td><span class="meet">【会议】半年度经营分析会</span><br>年度薪酬回顾（1月初）</td><td>—</td></tr>
+            <tr><td class="k">02月</td><td>—</td><td>寒假<br>春学期开学</td></tr>
+            <tr><td class="k">03月</td><td>春学期人才盘点</td><td>—</td></tr>
+            <tr><td class="k">04月</td><td><span class="meet">【会议】Q3季度经营分析会</span><br><span class="meet">【会议】战略研讨会（月底）</span></td><td>—</td></tr>
+            <tr><td class="k">05月</td><td><span class="meet">【会议】年度计划研讨会（月底）</span></td><td>—</td></tr>
+            <tr><td class="k">06月</td><td>下年度预算制定</td><td>高考：6.6-6.8<br>高考成绩查询：6.24-6.26</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="s-body" style="margin-top:24px;">
+        <p>如此一来，机构的经营就有了自己的节奏。有了节奏，大家就能张弛有度；有了节奏，大家就有心理预期，能提前准备、事先安排。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-chap="02 规划篇" data-title="2.4 注意议题筛选">
+    <div class="wrap">
+      <span class="sn">2.4</span>
+      <h2 class="s-h">注意议题筛选</h2>
+      <div class="s-rule"></div>
+      <div class="s-body">
+        <p>很多会议之所以低效，一个重要原因，是因为讨论了不该讨论的议题。关于议题筛选，有三个原则：</p>
+      </div>
+      <ul class="s-num">
+        <li><b>机会导向原则：</b>如前所述，议题选择，不能是“问题导向”，而是“机会导向”：什么行动是取得成果的机会？我们做了什么样的事情，会带来很大成果？</li>
+        <li><b>性质匹配原则：</b>只讨论与本次会议性质（周期跨度）相符的议题。总校长不应该去拍板部门总监或分校校长应该拍板的事情。月度经营分析会不应该讨论年度计划研讨会议才讨论的问题——这些议题应该攒起来，放到年度计划研讨会上讨论。</li>
+        <li><b>议题成熟原则：</b>重大议题，如果没有事先酝酿、充分准备、形成初步方案，就不应该拿出来讨论。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= 03 执行篇 ================= -->
+  <section class="slide slide--panel" id="c3" data-chap="03 执行篇" data-title="怎么把会开好">
+    <div class="wrap">
+      <div class="chap-no">03</div>
+      <h2 class="chap-title">执行篇</h2>
+      <p class="s-body" style="margin-top:20px;max-width:640px;">三个原则、主持人责权、会前会中会后，以及如何提高决策质量。</p>
+    </div>
+  </section>
+
+  <section class="slide" data-chap="03 执行篇" data-title="3.1 三个原则">
+    <div class="wrap">
+      <span class="sn">3.1</span>
+      <h2 class="s-h">三个原则</h2>
+      <div class="s-rule"></div>
+      <div class="s-body">
+        <p>我提出开会两个“二八原则”和“151原则”：</p>
+      </div>
+      <div class="s-cards">
+        <div class="s-card">
+          <h4>重准备</h4>
+          <p>8分精力会前准备，2分精力会中决策。毛主席说，“调查研究是十月怀胎，解决问题是一朝分娩。”会前要充分调查、小范围研究。</p>
+        </div>
+        <div class="s-card">
+          <h4>重落实</h4>
+          <p>2分精力会议决策，8分精力会后落实。德鲁克说：“决策如果没有明确的行动方案，便不能称为‘做了决策’，而是良好的意愿而已。”</p>
+        </div>
+      </div>
+      <div class="s-body" style="margin-top:26px;">
+        <p>具体执行层面，开会“151原则”：</p>
+      </div>
+      <ul class="s-list">
+        <li>提前 1 天发出议题；</li>
+        <li>提前 5 分钟到场；</li>
+        <li>会后 1 小时内发出会议纪要。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide slide--alt" data-chap="03 执行篇" data-title="3.2 明确主持人责权">
+    <div class="wrap">
+      <span class="sn">3.2</span>
+      <h2 class="s-h">明确主持人责权</h2>
+      <div class="s-rule"></div>
+      <div class="s-body">
+        <p>会开不好，往往因为没有明确的责任人。明确会议的第一责任人是主持人——会议没开好，主持人首先要打五十大板。</p>
+        <p>（如果领导自己主持，更要注意。建议领导指定主持人，给年轻人创造锻炼机会）。</p>
+      </div>
+      <div class="s-cards">
+        <div class="s-card">
+          <h4>明确主持人的责任</h4>
+          <ul class="s-list" style="margin-top:10px;">
+            <li>确保会议准时结束；</li>
+            <li>引导参会者理性讨论、充分讨论；</li>
+            <li>确保会议达到预期成果。</li>
+          </ul>
+        </div>
+        <div class="s-card">
+          <h4>相应地，主持人应该有以下权力</h4>
+          <ul class="s-list" style="margin-top:10px;">
+            <li>采取有力措施，维护时间纪律；</li>
+            <li>掌控议程，让大家围绕议题发言，禁止跑题；</li>
+            <li>维护议事规则，禁止打断别人、禁止人身攻击；</li>
+            <li>约定每个人的发言次数和发言时间，超时掐断。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide" data-chap="03 执行篇" data-title="3.2 时间纪律，就一条：禁止迟到">
+    <div class="wrap">
+      <span class="sn">3.2</span>
+      <h2 class="s-h">时间纪律，就一条：禁止迟到</h2>
+      <div class="s-rule"></div>
+      <div class="s-body">
+        <p>这一条，大家都没意见，关键是怎么落地？</p>
+      </div>
+      <ul class="s-list">
+        <li>约定惩罚措施，迟到者乐捐，作为团建经费。领导首先要遵守这条。</li>
+        <li>借鉴某些公司的做法：9:00 召开的会议，9:01 就把会议室的门从里面反锁——只要这样做一次，就可以使所有与会者今后都按时到场。</li>
+        <li>迟到者错过了重要信息，不要重新开始或为他回顾会议内容。记住，迎合迟到者，实际上是在惩罚守时的人。</li>
+        <li>每次会后复盘超时原因，提出整改措施。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide slide--alt" data-chap="03 执行篇" data-title="3.3 会前准备">
+    <div class="wrap">
+      <span class="sn">3.3</span>
+      <h2 class="s-h">会前准备</h2>
+      <div class="s-rule"></div>
+      <div class="s-body">
+        <p>会前四件事：</p>
+      </div>
+      <ul class="s-list">
+        <li><b>议题筛选：</b>按 2.4的原则筛选合适议题；</li>
+        <li><b>明确目标：</b>会议应该在什么时间开完？应该解决什么问题？拿到什么结果？</li>
+        <li><b>明确流程：</b>会有哪些环节，分别多长时间？</li>
+        <li><b>发布通知：</b>提前通知，确保参会人员知晓以上事项，做好准备；</li>
+      </ul>
+      <div class="s-quote">记住：会前准备得越充分——事先有初步沟通、有初步方案、有提前发布议题，大家有思考和准备，流程越清晰——会议花费的时间就越少，会议就越高效。</div>
+    </div>
+  </section>
+
+  <section class="slide" data-chap="03 执行篇" data-title="3.4 会后落实">
+    <div class="wrap">
+      <span class="sn">3.4</span>
+      <h2 class="s-h">会后落实</h2>
+      <div class="s-rule"></div>
+      <div class="s-body">
+        <p>德鲁克说，决策必须包含执行，没有被执行的决策只是良好的愿望。</p>
+        <p>会后三件事：</p>
+      </div>
+      <ul class="s-list">
+        <li>会后 1 小时内发出会议纪要。会议纪要本质上是个行动清单：决定了要做什么事（任务），谁去做（责任人）、什么时候完成（完成时限）。</li>
+        <li>把会议结论告知需要知晓的人；</li>
+        <li>复盘会议：会议是否达到预期目标？以后如何改进？</li>
+      </ul>
+      <div class="s-quote">补充一点：下次会议，首先应该回顾和检查上次会议决策的落实情况，形成闭环。</div>
+    </div>
+  </section>
+
+  <section class="slide slide--alt" data-chap="03 执行篇" data-title="3.5 如何提高决策质量">
+    <div class="wrap">
+      <span class="sn">3.5</span>
+      <h2 class="s-h">如何提高决策质量</h2>
+      <div class="s-rule"></div>
+      <div class="s-body">
+        <p>提高决策质量的四条措施：</p>
+      </div>
+      <ul class="s-list">
+        <li>议题应该是一条具体的、明确的、可操作的行动方案或行动建议；</li>
+        <li>同一议题，让正、反两方充分辩论，分开表决（同意的、反对的分别表决）；</li>
+        <li>要求发言人都对着主持人发言，防止情绪化表达、引发争吵；</li>
+        <li>轮流发言，让每个人都有发言机会；</li>
+      </ul>
+      <div class="s-cards" style="margin-top:26px;">
+        <div class="s-card">
+          <h4>决策机制：民主集中制</h4>
+          <p>先让大家轮流发表意见，（主持人请）领导最后拍板，拍板之后，不应再讨论。</p>
+          <p style="margin-top:8px;">（主持人应该在其他所有同事之后、在领导前，发表意见）</p>
+        </div>
+        <div class="s-card">
+          <h4>进阶修炼</h4>
+          <p>关于会议规则，可以进一步学习《罗伯特议事规则》，西方人开会开了几百年，有成熟的规则可学。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 04 领导篇 ================= -->
+  <section class="slide slide--panel" id="c4" data-chap="04 领导篇" data-title="领导是会议的关键">
+    <div class="wrap">
+      <div class="chap-no">04</div>
+      <h2 class="chap-title">领导篇</h2>
+      <p class="s-body" style="margin-top:20px;max-width:640px;">领导的作风是怎样的，公司的文化就是怎样的。</p>
+    </div>
+  </section>
+
+  <section class="slide" data-chap="04 领导篇" data-title="4.1 病灶：六种带头破坏规则的行为">
+    <div class="wrap">
+      <span class="sn">4.1</span>
+      <h2 class="s-h">病灶：六种带头破坏规则的行为</h2>
+      <div class="s-rule"></div>
+      <div class="s-body">
+        <p>很多公司，之所以开不好会，不是因为别的，首要原因是领导不重视。不仅不重视，还带头破坏规则：领导迟到、领导早退、领导不准备、领导一言堂、领导随意增加议题、领导急于表态。</p>
+        <p>关于会议的重要性不再赘述。糟糕的会议只会导致公司决策失误、执行不力、士气低迷、人心涣散，让领导威信扫地、让企业文化沦为口号。</p>
+      </div>
+      <div class="s-quote">记住：领导的作风是怎样的，公司的文化就是怎样的。</div>
+    </div>
+  </section>
+
+  <section class="slide slide--alt" data-chap="04 领导篇" data-title="4.2 药方：真正厉害的领导怎么做">
+    <div class="wrap">
+      <span class="sn">4.2</span>
+      <h2 class="s-h">药方：真正厉害的领导怎么做</h2>
+      <div class="s-rule"></div>
+      <ul class="s-num">
+        <li><b>带头遵守规则。</b> 不小心破坏规则要自罚。</li>
+        <li><b>不急于表态。</b> 领导要最后表态，表态之前不动声色，表情“中立”。</li>
+        <li><b>要敢于拍板，但不垄断话语权。</b> 领导要拍板，还要垄断话语权，这是灾难；反过来，优柔寡断、不敢拍板，同样不行。该拍板的时候要拍板。</li>
+        <li><b>拍完板就翻篇。</b> 不要拍完板又讨论——那就无休无止。</li>
+        <li><b>对会议成果负起责任。</b>厉害的领导，会以实际行动，让会议活泼生动、卓有成效。他必须以身作则，树立标杆。</li>
+      </ul>
+      <div class="s-quote">我认为，会议是发挥领导力的最佳时机。领导力是什么？是责任，是行动，是榜样。</div>
+    </div>
+  </section>
+
+  <!-- ================= 05 治理篇 ================= -->
+  <section class="slide slide--panel" id="c5" data-chap="05 治理篇" data-title="给会议体系做体检">
+    <div class="wrap">
+      <div class="chap-no">05</div>
+      <h2 class="chap-title">治理篇</h2>
+      <p class="s-body" style="margin-top:20px;max-width:640px;">定期给会议体系做体检，并从组织上治本。</p>
+    </div>
+  </section>
+
+  <section class="slide" data-chap="05 治理篇" data-title="5.1 定期给会议体系做“体检”">
+    <div class="wrap">
+      <span class="sn">5.1</span>
+      <h2 class="s-h">定期给会议体系做“体检”</h2>
+      <div class="s-rule"></div>
+      <div class="s-body">
+        <p>德鲁克认为，任何组织都要“有计划地放弃”。我们必须定期对会议体系进行体检，砍掉赘肉，重新论证会议的必要性。</p>
+        <p>体检三问：</p>
+      </div>
+      <ul class="s-num">
+        <li>哪些会可以取消？（如一对一沟通可以解决的不必开会）</li>
+        <li>哪些会可以合并？</li>
+        <li>会议超时、会议没有取得预期成果的原因是什么？如何改进？</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide slide--alt" data-chap="05 治理篇" data-title="5.2 治本：会议过多是组织不健全的结果">
+    <div class="wrap">
+      <span class="sn">5.2</span>
+      <h2 class="s-h">治本：会议过多是组织不健全的结果</h2>
+      <div class="s-rule"></div>
+      <div class="s-body">
+        <p>还有一个隐蔽原因：公司的制度体系、组织架构不健全，导致会议很多。 组织架构不清晰，责权利不明确，那就只有通过会议来解决；普遍性问题，不去制定制度规则，而是每次都当做特殊问题去研究，那肯定就是会议泛滥了。</p>
+        <p>德鲁克说：会议过多，是组织不健全的表现。 治本三策：</p>
+      </div>
+      <ul class="s-list">
+        <li>理清组织架构，明确责权利——能靠结构解决的问题，不应该靠会议解决；</li>
+        <li>针对普遍性问题，制定制度流程——要靠制度流程解决的，不能反复开会研究；</li>
+        <li>能够两人沟通、异步沟通解决的问题，不需要强行开会。</li>
+      </ul>
+      <div class="s-quote s-big" style="font-size:20px;">一句话：少开会、开好会、开出成果、开出精神。</div>
+    </div>
+  </section>
+
+  <!-- ================= 附：经营分析会开会指南 ================= -->
+  <section class="slide slide--panel" id="c6" data-chap="附录" data-title="经营分析会开会指南">
+    <div class="wrap">
+      <div class="chap-no">附</div>
+      <h2 class="chap-title">教培机构「经营分析会」<br>开会指南</h2>
+    </div>
+  </section>
+
+  <section class="slide" data-chap="附录" data-title="经营分析会的目的 / 召集人和参会人">
+    <div class="wrap">
+      <span class="sn">附</span>
+      <h2 class="s-h">经营分析会的目的</h2>
+      <div class="s-rule"></div>
+      <ul class="s-list">
+        <li>通过差异分析，挖掘机会，找出问题</li>
+        <li>研讨、决定解决方案</li>
+        <li>形成共识，明确行动方案</li>
+        <li>沉淀集体经验（分校之间、部门之间交流经验，并沉淀下来）</li>
+      </ul>
+      <div class="s-cards" style="margin-top:28px;">
+        <div class="s-card">
+          <h4>召集人和参会人</h4>
+          <p><span class="mono">召集人：</span>由总经理召集</p>
+          <p><span class="mono">参会人：</span>各分校校长、各部门总监</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide--alt" data-chap="附录" data-title="会议日程安排 / 标准流程">
+    <div class="wrap">
+      <span class="sn">附</span>
+      <h2 class="s-h">会议日程安排</h2>
+      <div class="s-rule"></div>
+      <ul class="s-list">
+        <li>由行政部，在年度末提前排定下一年度会议日程，设置提前提醒</li>
+        <li>会议日程确定后，在企业微信内及时共享，让其他参会人加入</li>
+      </ul>
+      <div class="s-body" style="margin-top:24px;">
+        <p>各个月份的会议定位：（假设 经营年度为 7月至次年6月）</p>
+      </div>
+      <ul class="s-list">
+        <li>4月、10月 → “季度经营分析会”，汇报季度经营情况</li>
+        <li>1月 → “半年度经营分析会”，汇报半年度经营情况</li>
+        <li>7月 → “年度经营分析会”，汇报全年度经营情况</li>
+        <li>其他月份 → “月度经营分析会”，汇报月度经营情况</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="slide" data-chap="附录" data-title="标准流程">
+    <div class="wrap">
+      <span class="sn">附</span>
+      <h2 class="s-h">标准流程</h2>
+      <div class="s-rule"></div>
+      <ol class="flow">
+        <li>回顾上次会议的议题 </li>
+        <li>讨论本次会议的议题</li>
+        <li>各分校、部门汇报及交流 </li>
+        <li>总校长总结</li>
+        <li>发出会议记录</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="slide slide--alt" data-chap="附录" data-title="会议准备 / 议题的收集与筛选">
+    <div class="wrap">
+      <span class="sn">附</span>
+      <h2 class="s-h">会议准备</h2>
+      <div class="s-rule"></div>
+      <ul class="s-list">
+        <li>参会人提前在群内发出汇报文件；</li>
+        <li>汇报内容要求：讲重点、讲措施，不要过多讲细节、讲故事、讲个案</li>
+        <li>会后各自复盘，持续优化汇报内容</li>
+      </ul>
+      <h2 class="s-h" style="margin-top:36px;">议题的收集与筛选</h2>
+      <div class="s-rule"></div>
+      <ul class="s-list">
+        <li><b>收集：</b>各分校/部门把要提交的议题登记到“议题收集”栏；建议在会前一周的经营班子会（或管理层周会）先讨论确定要上会的议题</li>
+        <li><b>筛选（由召集人把关）：</b>简单议题不上会，群内直接解决；复杂议题必须基于事先公布、已基本成熟的行动方案再讨论；不讨论还停留在“想法”阶段、未经调研、没有方案的临时议题；不讨论重复议题（除非有一半参会人附议）</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= 注释 ================= -->
+  <section class="slide" data-chap="注释" data-title="两处说明">
+    <div class="wrap">
+      <span class="sn">注</span>
+      <h2 class="s-h">两处说明</h2>
+      <div class="s-rule"></div>
+      <div class="s-note" style="border-top:0;padding-top:0;margin-top:28px;font-size:16px;">
+        <p style="margin:0 0 18px;"><b>一、</b>该机构有总部和8所分校。总部设人力行政部、财务部、教研院；分校以区域为单位划分，负责招生、教学，独立核算。</p>
+        <p style="margin:0;"><b>二、</b>差异分析：跟往年同期对比、跟预算/计划指标对比、跟兄弟部门/分校对比，分析差异产生的原因，挖掘机会，找出问题。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 落款 ================= -->
+  <section class="slide slide--panel" data-chap="作者与联系方式" data-title="唐平（老唐）">
+    <div class="wrap">
+      <span class="sn">作者与联系方式</span>
+      <h2 class="s-h" style="font-size:clamp(26px,4vw,38px);">唐平（老唐）</h2>
+      <p class="s-sub">更新日期：2026-09-16</p>
+      <div class="s-contact">
+        <div><div class="k">作者</div><div class="v">唐平（老唐）</div></div>
+        <div><div class="k">单位</div><div class="v">广州庄敬自强管理咨询有限公司</div></div>
+        <div><div class="k">微信号</div><div class="v">tangcping</div></div>
+        <div><div class="k">邮箱</div><div class="v">tohyo@foxmail.com</div></div>
+        <div><div class="k">公众号</div><div class="v">老唐谈教育管理</div></div>
+        <div><div class="k">手机号</div><div class="v">&#49;&#57;&#49; &#50;&#52;&#50;&#48; &#48;&#53;&#48;&#56;</div></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 老唐管理咨询 · 广州庄敬自强管理咨询有限公司 · 唐平</span>
+    <span>
+      <a href="index.html">首页</a>
+      <a href="record.html">管理实战记录</a>
+      <a href="meeting.html">高效会议与决策体系指南</a>
+      <a href="selfcheck.html">经营自查清单</a>
+      <a href="manual.html">使用说明书</a>
+      <a href="index.html#contact">联系我</a>
+    </span>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+<script>
+(function () {
+  var nav = document.querySelector('.nav');
+  function syncNav() {
+    var h = nav ? Math.round(nav.getBoundingClientRect().height) : 63;
+    document.documentElement.style.setProperty('--navh', h + 'px');
+  }
+  syncNav();
+  window.addEventListener('resize', syncNav);
+  window.addEventListener('load', syncNav);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncNav);
+
+  var slides = [].slice.call(document.querySelectorAll('.slide'));
+  var bar = document.getElementById('deckbar');
+  var chip = document.getElementById('deckchip');
+  var current = -1;
+
+  function update() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    if (bar) bar.style.width = (max > 0 ? Math.min(100, window.scrollY / max * 100) : 0) + '%';
+
+    var mid = window.scrollY + window.innerHeight * 0.4;
+    var idx = 0;
+    for (var i = 0; i < slides.length; i++) if (slides[i].offsetTop <= mid) idx = i;
+    if (idx !== current && chip) {
+      current = idx;
+      chip.innerHTML = '<b>' + (slides[idx].dataset.chap || '') + '</b> <span>' +
+        (slides[idx].dataset.title || '') + '</span>';
+    }
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  window.addEventListener('load', update);
+  update();
+
+  document.addEventListener('keydown', function (e) {
+    if (e.target && /INPUT|TEXTAREA/.test(e.target.tagName)) return;
+    var down = (e.key === 'ArrowDown' || e.key === 'PageDown');
+    var up = (e.key === 'ArrowUp' || e.key === 'PageUp');
+    if (!down && !up) return;
+    e.preventDefault();
+    var mid = window.scrollY + window.innerHeight * 0.4, n = 0;
+    for (var i = 0; i < slides.length; i++) if (slides[i].offsetTop <= mid) n = i;
+    var t = down ? Math.min(slides.length - 1, n + 1) : Math.max(0, n - 1);
+    slides[t].scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+})();
+</script>
+</body>
+</html>
