@@ -13,7 +13,14 @@
 <meta property="og:title" content="教培机构高效会议与决策体系指南">
 <meta property="og:description" content="基于 17 年教培机构管理经验与德鲁克管理思想总结的高效会议与决策体系指南：认知、规划、执行、领导、治理五篇，附经营分析会开会指南。">
 <meta property="og:url" content="https://kuaieltang.github.io/meeting.html">
-<meta property="og:image" content="https://kuaieltang.github.io/img-meeting.jpg">
+<meta property="og:image" content="https://kuaieltang.github.io/og-meeting.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="教培机构高效会议与决策体系指南 — 唐平（老唐）">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="教培机构高效会议与决策体系指南">
+<meta name="twitter:description" content="少开会、开好会，开出成果、开出精神。基于 17 年教培机构管理经验与德鲁克管理思想。">
+<meta name="twitter:image" content="https://kuaieltang.github.io/og-meeting.jpg">
 <meta property="og:locale" content="zh_CN">
 <link rel="icon" type="image/svg+xml" href="logo.svg">
 <link rel="icon" type="image/png" sizes="64x64" href="logo-64.png">
@@ -183,6 +190,79 @@
     margin-top: 18px; color: var(--panel-fg);
   }
 
+  /* ================= 图示（内联 SVG · 随主题换色） ================= */
+  /* 纸墨金 + 藏青，与站上插画同色域；SVG 内一律用 var(--*)，深色模式自动翻转 */
+  .fig {
+    margin: 26px 0 0;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    padding: 20px 22px 16px;
+    overflow: hidden;
+  }
+  .fig svg { display: block; width: 100%; height: auto; }
+  .fig figcaption {
+    font-size: 13px; color: var(--text-faint); letter-spacing: 1px;
+    text-align: center; margin-top: 12px;
+    padding-top: 12px; border-top: 1px dashed var(--line);
+  }
+  .fig--tight { margin-top: 20px; }
+
+  /* SVG 内部语义色（供 fig 内的元素引用） */
+  .fig {
+    --ink-svg: #1f2733;        /* 墨（图内主文字） */
+    --ink2-svg: #46505f;       /* 墨次级（图内说明文字） */
+    --navy-svg: #22314a;       /* 藏青（插画主色） */
+    --navy-soft: #3c4f6b;
+    --gold-svg: #a9812f;
+    --gold-lite: #e6c877;
+    --paper-svg: #f7f1e2;      /* 插画纸底 */
+    --paper-2: #ede4d0;
+    --red-svg: #a6392b;        /* 档位红（仅用于警示编号） */
+    /* 落在深色块（藏青/金）上的文字色 —— 随主题翻转 */
+    --on-navy: #eef1f5;        /* 藏青块上的字 */
+    --on-navy-2: #c3ccd8;      /* 藏青块上的次要字 */
+    --on-navy-accent: #e6c877; /* 藏青块上的强调字（金） */
+    --on-gold: #2a2114;        /* 金块上的字（深墨，保证对比） */
+    --on-gold-2: #4a3c1e;      /* 金块上的次要字 */
+    --on-gold-soft: #8a6a24;   /* 金浅底上的金色字（比主金更深，保证对比） */
+  }
+  .slide--panel .fig {
+    --ink-svg: #f0ede6;
+    --ink2-svg: #b9c1cc;
+    --navy-svg: #4d6a91;
+    --navy-soft: #6885a5;
+    --gold-svg: #d2ab5b;
+    --paper-svg: #303a48;    /* 较深墨面板 #1f2733 提亮，保留“纸块”层次 */
+    --paper-2: #374252;
+    --red-svg: #d97b6c;
+    --on-navy: #eef1f5;
+    --on-navy-2: #c3ccd8;
+    --on-navy-accent: #e6c877;
+    --on-gold: #2a2114;
+    --on-gold-2: #4a3c1e;
+    --on-gold-soft: #8a6a24;
+  }
+  @media (prefers-color-scheme: dark) {
+    .fig {
+      --ink-svg: #e9e7e2;
+      --ink2-svg: #b7bfc9;
+      --navy-svg: #527096;     /* 深色下大幅提亮：与卡片底 #1c222c 对比 3.13 倍 */
+      --navy-soft: #5d7896;    /* 比 navy-svg 略深，避免块上白字对比不足 */
+      --gold-svg: #d2ab5b;
+      --paper-svg: #333d4c;    /* 较卡片底明显提亮，块面才立得住 */
+      --paper-2: #3a4453;
+      --red-svg: #d97b6c;
+      --on-navy: #f2f5f9;      /* 深色下藏青块更亮，字需更亮 */
+      --on-navy-2: #dfe5ec;
+      --on-navy-accent: #ffe6a8;
+      --on-gold: #241b0d;      /* 深色下金块更亮，字仍需深色 */
+      --on-gold-2: #3d3016;
+      --on-gold-soft: #e0c078; /* 深色金浅底上用亮金 */
+    }
+  }
+
   .cover-h {
     font-size: clamp(32px, 6.2vw, 62px); font-weight: 800; line-height: 1.2;
     margin-top: 4px;
@@ -233,8 +313,13 @@
   }
   .deckchip b { color: var(--gold-deep); font-weight: 700; }
   .deckchip span { color: var(--text-faint); }
+  /* 内容较高的屏（含图示）纵向自动留白收敛，避免被视口裁切 */
+  .slide--long { padding: 56px 0 52px; }
+  .slide--long .fig { margin-top: 22px; }
+
   @media (max-width: 620px) {
     .slide { padding: 64px 0 60px; }
+    .slide--long { padding: 46px 0 44px; }
     .deckchip { font-size: 11.5px; padding: 6px 12px; bottom: 10px; right: 10px; }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -336,10 +421,44 @@
         <p>“损失100块”是自己的事、是内部的事，是萦绕在你心头的“问题”；而从别人那里“赚到1000块”则是外部的事，是取得成果的“机会”，所以机会导向，倒逼我们向外看、向成果看。而不是孜孜于解决问题——很多问题不值得解决。</p>
       </div>
       <div class="s-quote">任正非说：企业经营宛如滚滚长江，在奔腾入海的过程中，必然伴随着泥沙俱下，有问题很正常。只要在正确的目标牵引下滚滚向前，过程中的问题都将不再成为问题。但我们也会看到，现实中一些管理者好像天生有“洁癖”，整天拿着显微镜找问题，舍本逐末。企业很多问题是过程性和阶段性的，无须解决却非要解决就是做无效功。</div>
+      <figure class="fig fig--tight">
+        <svg viewBox="0 0 800 268" role="img" aria-label="机会导向对比图：解决问题只是内部效率改善，把握机会才带来外部成果">
+          <defs>
+            <marker id="arw2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,1 L9,5 L0,9 z" fill="var(--gold-svg)"/>
+            </marker>
+          </defs>
+          <!-- 左：解决问题（内部） -->
+          <rect x="18" y="20" width="352" height="216" rx="14" fill="var(--paper-svg)" stroke="var(--line)" stroke-width="1.5"/>
+          <text x="42" y="52" font-size="13.5" font-weight="700" fill="var(--text-faint)" letter-spacing="2">向内看 · 解决问题</text>
+          <text x="42" y="94" font-size="24" font-weight="800" fill="var(--ink-svg)" font-family="'Noto Serif SC',serif">损失 100 元</text>
+          <text x="42" y="122" font-size="14" fill="var(--text-faint)">企业内部的事 · 萦绕心头的问题</text>
+          <line x1="42" y1="142" x2="346" y2="142" stroke="var(--line)" stroke-width="1"/>
+          <text x="42" y="176" font-size="14.5" font-weight="700" fill="var(--ink-svg)">只是「正确地做事」</text>
+          <text x="42" y="200" font-size="13" fill="var(--text-faint)">效率改善 · 不必然产生成果</text>
+
+          <!-- 中间分隔：天平/选择 -->
+          <text x="400" y="132" text-anchor="middle" font-size="26" font-weight="800" fill="var(--gold-svg)">?</text>
+          <line x1="400" y1="150" x2="400" y2="196" stroke="var(--line)" stroke-width="2"/>
+
+          <!-- 右：把握机会（外部） -->
+          <rect x="430" y="20" width="352" height="216" rx="14" fill="var(--navy-svg)"/>
+          <text x="454" y="52" font-size="13.5" font-weight="700" fill="var(--gold-lite)" letter-spacing="2">向外看 · 把握机会</text>
+          <text x="454" y="94" font-size="24" font-weight="800" fill="var(--gold-lite)" font-family="'Noto Serif SC',serif">赚到 1000 元</text>
+          <text x="454" y="122" font-size="14" fill="#c9d0d9">企业外部的事 · 取得成果的机会</text>
+          <line x1="454" y1="142" x2="758" y2="142" stroke="rgba(230,200,119,.32)" stroke-width="1"/>
+          <text x="454" y="176" font-size="14.5" font-weight="700" fill="var(--gold-lite)">首先「做正确的事」</text>
+          <text x="454" y="200" font-size="13" fill="var(--on-navy-2)">把内部资源优先分配给机会</text>
+
+          <!-- 底部金线：结论 -->
+          <line x1="18" y1="256" x2="782" y2="256" stroke="var(--gold-svg)" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <figcaption>很多问题不值得解决——资源优先分配给机会，而不是分配给问题</figcaption>
+      </figure>
     </div>
   </section>
 
-  <section class="slide" data-chap="01 认知篇" data-title="1.2 事关成本和效率">
+  <section class="slide slide--long" data-chap="01 认知篇" data-title="1.2 事关成本和效率">
     <div class="wrap">
       <span class="sn">1.2</span>
       <h2 class="s-h">事关成本和效率</h2>
@@ -350,6 +469,52 @@
         <p>除此之外，浪费时间的现象也触目惊心。广告界有句话：我知道我有一半的广告费浪费了，但不知道是哪一半。会议就像广告，有一半时间浪费在看不见的地方：等待迟到者、跑题发言、情绪化争执……。</p>
       </div>
       <div class="s-quote">成本大不是问题，问题是成本必须取得相应的成果。会议必须卓有成效，否则就无法匹配其成本。会议不必“圆满结束”，而要“满载而归”。</div>
+      <figure class="fig">
+        <svg viewBox="0 0 800 300" role="img" aria-label="会议成本换算图：10 人 2 小时等于 20 工时，按时薪 100 元计为 2000 元">
+          <defs>
+            <marker id="arw1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,1 L9,5 L0,9 z" fill="var(--gold-svg)"/>
+            </marker>
+          </defs>
+          <!-- 左：10 个人 -->
+          <text x="34" y="40" font-size="14" font-weight="700" fill="var(--gold-svg)" letter-spacing="2">直接成本</text>
+          <g>
+            <!-- 两排 5 个圆点代表人 -->
+            <g fill="var(--navy-svg)">
+              <circle cx="46" cy="86" r="11"/><circle cx="76" cy="86" r="11"/><circle cx="106" cy="86" r="11"/><circle cx="136" cy="86" r="11"/><circle cx="166" cy="86" r="11"/>
+              <circle cx="46" cy="116" r="11"/><circle cx="76" cy="116" r="11"/><circle cx="106" cy="116" r="11"/><circle cx="136" cy="116" r="11"/><circle cx="166" cy="116" r="11"/>
+            </g>
+            <text x="106" y="152" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink-svg)">10 人</text>
+          </g>
+          <text x="212" y="106" font-size="22" fill="var(--gold-svg)" font-weight="700">×</text>
+          <!-- 中：2 小时 -->
+          <g>
+            <circle cx="252" cy="101" r="30" fill="none" stroke="var(--navy-soft)" stroke-width="2.5"/>
+            <path d="M252,101 L252,79" stroke="var(--navy-soft)" stroke-width="3" stroke-linecap="round"/>
+            <path d="M252,101 L268,110" stroke="var(--gold-svg)" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="252" cy="101" r="3.5" fill="var(--gold-svg)"/>
+          </g>
+          <text x="252" y="152" text-anchor="middle" font-size="15" font-weight="700" fill="var(--ink-svg)">2 小时</text>
+          <text x="300" y="106" font-size="20" fill="var(--gold-svg)" font-weight="700">=</text>
+          <!-- 中右：20 工时 -->
+          <rect x="326" y="66" width="118" height="70" rx="12" fill="var(--paper-svg)" stroke="var(--line)" stroke-width="1.5"/>
+          <text x="385" y="98" text-anchor="middle" font-size="27" font-weight="800" fill="var(--ink-svg)" font-family="'Noto Serif SC',serif">20</text>
+          <text x="385" y="119" text-anchor="middle" font-size="13" fill="var(--ink2-svg)">个工时</text>
+          <line x1="452" y1="101" x2="492" y2="101" stroke="var(--gold-svg)" stroke-width="2" marker-end="url(#arw1)"/>
+          <!-- 右：2000 元 -->
+          <rect x="502" y="52" width="264" height="98" rx="14" fill="var(--navy-svg)"/>
+          <text x="528" y="88" font-size="13" fill="var(--gold-lite)" letter-spacing="2">按时薪 100 元计算</text>
+          <text x="528" y="128" font-size="34" font-weight="800" fill="var(--gold-lite)" font-family="'Noto Serif SC',serif">2000 元</text>
+          <text x="746" y="128" text-anchor="end" font-size="14" fill="var(--on-navy-2)">每场</text>
+          <!-- 底部注释 -->
+          <line x1="34" y1="196" x2="766" y2="196" stroke="var(--line)" stroke-width="1"/>
+          <text x="34" y="230" font-size="13.5" font-weight="700" fill="var(--ink-svg)">这笔钱花得值不值，不看会议开得“圆满”，</text>
+          <text x="34" y="254" font-size="13.5" font-weight="700" fill="var(--ink-svg)">要看会后的行动有没有产出成果。</text>
+          <text x="766" y="226" text-anchor="end" font-size="12.5" fill="var(--text-faint)">另有：机会成本 + 看不见的浪费</text>
+          <text x="766" y="250" text-anchor="end" font-size="12.5" fill="var(--text-faint)">（等待迟到者 · 跑题发言 · 情绪化争执）</text>
+        </svg>
+        <figcaption>一场 10 人 2 小时的例会，直接成本就有 2000 元——随心所欲地开会，相当于无声地烧钱</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -405,7 +570,7 @@
     </div>
   </section>
 
-  <section class="slide" data-chap="02 规划篇" data-title="2.2 从经营决策的需要出发，整体设计">
+  <section class="slide slide--long" data-chap="02 规划篇" data-title="2.2 从经营决策的需要出发，整体设计">
     <div class="wrap">
       <span class="sn">2.2</span>
       <h2 class="s-h">从经营决策的需要出发，整体设计</h2>
@@ -417,6 +582,62 @@
         <p>所以，我们会把这些决策落到重要会议中，形成了一个由宏观战略到日常经营的会议体系：</p>
       </div>
       <div class="s-note"><b>注</b>｜该机构有总部和8所分校。总部设人力行政部、财务部、教研院；分校以区域为单位划分，负责招生、教学，独立核算。</div>
+      <figure class="fig">
+        <svg viewBox="0 0 800 330" role="img" aria-label="经营周期会议体系图：三年计划经战略研讨会产出，落到年度计划研讨会，再到预算与月度经营分析会">
+          <defs>
+            <marker id="arw3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,1 L9,5 L0,9 z" fill="var(--gold-svg)"/>
+            </marker>
+          </defs>
+          <!-- 4-5月 战略研讨会 -->
+          <rect x="18" y="22" width="182" height="80" rx="12" fill="var(--navy-svg)"/>
+          <text x="38" y="48" font-size="12.5" fill="var(--gold-lite)" letter-spacing="1.5">4-5 月 · 时长 1 天</text>
+          <text x="38" y="74" font-size="17" font-weight="800" fill="#f5efe2" font-family="'Noto Serif SC',serif">战略研讨会</text>
+          <text x="38" y="93" font-size="12.5" fill="#c9d0d9">产出：三年计划</text>
+
+          <line x1="206" y1="62" x2="238" y2="62" stroke="var(--gold-svg)" stroke-width="2" marker-end="url(#arw3)"/>
+
+          <!-- 5月底 年度计划研讨会 -->
+          <rect x="246" y="22" width="182" height="80" rx="12" fill="var(--paper-svg)" stroke="var(--gold-border)" stroke-width="2"/>
+          <text x="266" y="48" font-size="12.5" fill="var(--gold-svg)" letter-spacing="1.5">5 月底 · 时长半天</text>
+          <text x="266" y="74" font-size="17" font-weight="800" fill="var(--ink-svg)" font-family="'Noto Serif SC',serif">年度计划研讨会</text>
+          <text x="266" y="93" font-size="12.5" fill="var(--text-faint)">产出：下年度经营计划</text>
+
+          <line x1="434" y1="62" x2="466" y2="62" stroke="var(--gold-svg)" stroke-width="2" marker-end="url(#arw3)"/>
+
+          <!-- 6月 预算 -->
+          <rect x="474" y="22" width="182" height="80" rx="12" fill="var(--paper-svg)" stroke="var(--line)" stroke-width="1.5"/>
+          <text x="494" y="48" font-size="12.5" fill="var(--gold-svg)" letter-spacing="1.5">6 月底前</text>
+          <text x="494" y="74" font-size="17" font-weight="800" fill="var(--ink-svg)" font-family="'Noto Serif SC',serif">编制年度预算</text>
+          <text x="494" y="93" font-size="12.5" fill="var(--text-faint)">批准后执行</text>
+
+          <!-- 向下汇聚箭头 -->
+          <path d="M400,108 L400,138" stroke="var(--gold-svg)" stroke-width="2" marker-end="url(#arw3)"/>
+
+          <!-- 每月经营分析会（长条） -->
+          <rect x="18" y="146" width="764" height="66" rx="12" fill="var(--paper-svg)" stroke="var(--gold-border)" stroke-width="2"/>
+          <text x="42" y="172" font-size="14.5" font-weight="800" fill="var(--ink-svg)" font-family="'Noto Serif SC',serif">每月 · 经营分析会</text>
+          <text x="42" y="196" font-size="13" fill="var(--text-faint)">对照年度预算与经营目标做差异分析 → 找问题、挖机会 → 定行动方案 → 落实到位</text>
+          <!-- 四个节点 · 上下两行排布，避免文字重叠 -->
+          <g font-size="12.5" font-weight="700">
+            <circle cx="556" cy="172" r="5.5" fill="var(--gold-svg)"/><text x="570" y="177" fill="var(--ink-svg)">7 月 · 年度</text>
+            <circle cx="686" cy="172" r="5.5" fill="var(--gold-svg)"/><text x="700" y="177" fill="var(--ink-svg)">1 月 · 半年</text>
+            <circle cx="556" cy="196" r="5.5" fill="var(--navy-soft)"/><text x="570" y="201" fill="var(--text-faint)">4、10 月 · 季度</text>
+            <circle cx="686" cy="196" r="5.5" fill="var(--navy-soft)"/><text x="700" y="201" fill="var(--text-faint)">其他 · 月度</text>
+          </g>
+
+          <!-- 底部：一周期闭环（环形） -->
+          <line x1="18" y1="238" x2="782" y2="238" stroke="var(--line)" stroke-width="1"/>
+          <g>
+            <circle cx="82" cy="284" r="24" fill="none" stroke="var(--gold-svg)" stroke-width="2.5"/>
+            <path d="M82,262 A22,22 0 1 1 60.5,286" fill="none" stroke="var(--gold-lite)" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M60.5,286 l-3,-9 l9,3 z" fill="var(--gold-svg)"/>
+          </g>
+          <text x="124" y="280" font-size="14.5" font-weight="700" fill="var(--ink-svg)">一个经营周期＝每年 7 月 → 次年 6 月</text>
+          <text x="124" y="301" font-size="13" fill="var(--text-faint)">长期计划指导短期计划，短期计划变成日常经营行为</text>
+        </svg>
+        <figcaption>从宏观战略到日常经营的会议体系：决策有抓手，会议有成果</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -470,7 +691,7 @@
     </div>
   </section>
 
-  <section class="slide slide--alt" data-chap="02 规划篇" data-title="2.3 对会议进行分类设计">
+  <section class="slide slide--long slide--alt" data-chap="02 规划篇" data-title="2.3 对会议进行分类设计">
     <div class="wrap">
       <span class="sn">2.3</span>
       <h2 class="s-h">对会议进行分类设计</h2>
@@ -493,6 +714,69 @@
           </tbody>
         </table>
       </div>
+      <figure class="fig fig--tight">
+        <svg viewBox="0 0 800 292" role="img" aria-label="五类会议的频率、时长与决策产出对照条">
+          <text x="18" y="28" font-size="13" font-weight="700" fill="var(--gold-svg)" letter-spacing="2">按 决 策 重 量 排 序</text>
+          <g font-size="13">
+            <!-- 表头 -->
+            <text x="18" y="58" font-size="12" fill="var(--text-faint)" letter-spacing="1">会议类型 / 频率</text>
+            <text x="300" y="58" font-size="12" fill="var(--text-faint)" letter-spacing="1">单次时长</text>
+            <text x="480" y="58" font-size="12" fill="var(--text-faint)" letter-spacing="1">决策产出</text>
+          </g>
+          <line x1="18" y1="68" x2="782" y2="68" stroke="var(--line)" stroke-width="1.5"/>
+
+          <!-- 战略研讨会 -->
+          <rect x="18" y="80" width="764" height="36" rx="9" fill="var(--card)" stroke="var(--line)" stroke-width="1"/>
+          <rect x="18" y="80" width="6" height="36" rx="3" fill="var(--navy-svg)"/>
+          <text x="40" y="103" font-size="14" font-weight="700" fill="var(--ink-svg)">战略研讨会</text>
+          <text x="150" y="103" font-size="12.5" fill="var(--text-faint)">每年</text>
+          <rect x="300" y="90" width="120" height="16" rx="5" fill="var(--line)"/>
+          <rect x="300" y="90" width="120" height="16" rx="5" fill="var(--navy-svg)"/>
+          <text x="434" y="103" font-size="12.5" fill="var(--text-faint)">1 天</text>
+          <text x="460" y="103" font-size="13" fill="var(--ink2-svg)">决定未来三年发展方向的三年计划</text>
+
+          <!-- 年度计划研讨会 -->
+          <rect x="18" y="122" width="764" height="36" rx="9" fill="var(--card)" stroke="var(--line)" stroke-width="1"/>
+          <rect x="18" y="122" width="6" height="36" rx="3" fill="var(--navy-soft)"/>
+          <text x="40" y="145" font-size="14" font-weight="700" fill="var(--ink-svg)">年度计划研讨会</text>
+          <text x="150" y="145" font-size="12.5" fill="var(--text-faint)">每年</text>
+          <rect x="300" y="132" width="120" height="16" rx="5" fill="var(--line)"/>
+          <rect x="300" y="132" width="60" height="16" rx="5" fill="var(--navy-soft)"/>
+          <text x="434" y="145" font-size="12.5" fill="var(--text-faint)">半天</text>
+          <text x="460" y="145" font-size="13" fill="var(--ink2-svg)">下一年度经营计划（含各项经营目标）</text>
+
+          <!-- 经营分析会 -->
+          <rect x="18" y="164" width="764" height="36" rx="9" fill="var(--gold-soft)" stroke="var(--gold-border)" stroke-width="1.5"/>
+          <rect x="18" y="164" width="6" height="36" rx="3" fill="var(--gold-svg)"/>
+          <text x="40" y="187" font-size="14" font-weight="700" fill="var(--ink-svg)">经营分析会</text>
+          <text x="150" y="187" font-size="12.5" fill="var(--on-gold-soft)" font-weight="700">每月</text>
+          <rect x="300" y="174" width="120" height="16" rx="5" fill="var(--line)"/>
+          <rect x="300" y="174" width="60" height="16" rx="5" fill="var(--gold-svg)"/>
+          <text x="434" y="187" font-size="12.5" fill="var(--text-faint)">半天</text>
+          <text x="460" y="187" font-size="13" fill="var(--ink2-svg)">落实经营计划的具体行动方案</text>
+
+          <!-- 年会 -->
+          <rect x="18" y="206" width="764" height="36" rx="9" fill="var(--card)" stroke="var(--line)" stroke-width="1"/>
+          <rect x="18" y="206" width="6" height="36" rx="3" fill="var(--gold-lite)"/>
+          <text x="40" y="229" font-size="14" font-weight="700" fill="var(--ink-svg)">年会</text>
+          <text x="150" y="229" font-size="12.5" fill="var(--text-faint)">每年</text>
+          <rect x="300" y="216" width="120" height="16" rx="5" fill="var(--line)"/>
+          <rect x="300" y="216" width="120" height="16" rx="5" fill="var(--gold-lite)"/>
+          <text x="434" y="229" font-size="12.5" fill="var(--text-faint)">2 天</text>
+          <text x="460" y="229" font-size="13" fill="var(--ink2-svg)">总结表彰</text>
+
+          <!-- 专题会 -->
+          <rect x="18" y="248" width="764" height="36" rx="9" fill="var(--card)" stroke="var(--line)" stroke-width="1"/>
+          <rect x="18" y="248" width="6" height="36" rx="3" fill="var(--gold-lite)"/>
+          <text x="40" y="271" font-size="14" font-weight="700" fill="var(--ink-svg)">专题会</text>
+          <text x="150" y="271" font-size="12.5" fill="var(--text-faint)">每年</text>
+          <rect x="300" y="258" width="120" height="16" rx="5" fill="var(--line)"/>
+          <rect x="300" y="258" width="60" height="16" rx="5" fill="var(--gold-lite)"/>
+          <text x="434" y="271" font-size="12.5" fill="var(--text-faint)">半天</text>
+          <text x="460" y="271" font-size="13" fill="var(--ink2-svg)">实现关键领域目标的行动计划</text>
+        </svg>
+        <figcaption>同类会议标准化：频率、时长、参会人、准备周期都要区别对待</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -510,7 +794,7 @@
     </div>
   </section>
 
-  <section class="slide slide--alt" data-chap="02 规划篇" data-title="2.4 经营年历参考示例">
+  <section class="slide slide--long slide--alt" data-chap="02 规划篇" data-title="2.4 经营年历参考示例">
     <div class="wrap">
       <span class="sn">2.4</span>
       <h2 class="s-h">经营年历：以下为参考示例</h2>
@@ -538,6 +822,77 @@
       <div class="s-body" style="margin-top:24px;">
         <p>如此一来，机构的经营就有了自己的节奏。有了节奏，大家就能张弛有度；有了节奏，大家就有心理预期，能提前准备、事先安排。</p>
       </div>
+      <figure class="fig fig--tight">
+        <svg viewBox="0 0 800 296" role="img" aria-label="经营年历环形图：7 月至次年 6 月共 12 个月，标注重要会议与外部节点">
+          <defs>
+            <linearGradient id="ring9" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="var(--navy-svg)"/>
+              <stop offset="1" stop-color="var(--navy-soft)"/>
+            </linearGradient>
+          </defs>
+          <!-- 中心 -->
+          <g transform="translate(206,156)">
+            <circle r="86" fill="none" stroke="var(--line)" stroke-width="1"/>
+            <circle r="86" fill="none" stroke="url(#ring9)" stroke-width="16"
+                    stroke-dasharray="108 20" stroke-dashoffset="0" transform="rotate(-90)"/>
+            <text y="-8" text-anchor="middle" font-size="15" font-weight="800" fill="var(--ink-svg)" font-family="'Noto Serif SC',serif">经营年历</text>
+            <text y="14" text-anchor="middle" font-size="11.5" fill="var(--text-faint)">7 月 → 次年 6 月</text>
+            <text y="36" text-anchor="middle" font-size="11" fill="var(--gold-svg)">12 个月一个节奏</text>
+          </g>
+
+          <!-- 月份节点（12 点，从 7 月顺时针） -->
+          <g font-size="11.5" font-weight="700">
+            <!-- 7月 -->
+            <circle cx="206" cy="54" r="26" fill="var(--navy-svg)"/>
+            <text x="206" y="52" text-anchor="middle" fill="var(--gold-lite)" font-size="11">07月</text>
+            <text x="206" y="66" text-anchor="middle" fill="#c9d0d9" font-size="9.5">年度分析</text>
+            <!-- 10月 -->
+            <circle cx="304" cy="98" r="20" fill="var(--navy-soft)"/>
+            <text x="304" y="102" text-anchor="middle" fill="#f5efe2" font-size="10.5">10月</text>
+            <!-- 1月 -->
+            <circle cx="304" cy="214" r="24" fill="var(--navy-svg)"/>
+            <text x="304" y="212" text-anchor="middle" fill="var(--gold-lite)" font-size="10.5">01月</text>
+            <text x="304" y="226" text-anchor="middle" fill="#c9d0d9" font-size="9.5">半年</text>
+            <!-- 2月 -->
+            <circle cx="262" cy="266" r="17" fill="var(--paper-2)" stroke="var(--navy-soft)" stroke-width="1.5"/>
+            <text x="262" y="270" text-anchor="middle" fill="var(--ink-svg)" font-size="10.5">02月</text>
+            <!-- 4月 -->
+            <circle cx="150" cy="266" r="21" fill="var(--gold-svg)"/>
+            <text x="150" y="270" text-anchor="middle" fill="#fffdf8" font-size="10.5">04月</text>
+            <!-- 5月 -->
+            <circle cx="104" cy="214" r="22" fill="var(--gold-svg)"/>
+            <text x="104" y="218" text-anchor="middle" fill="#fffdf8" font-size="10.5">05月</text>
+            <!-- 6月 -->
+            <circle cx="104" cy="98" r="19" fill="var(--paper-2)" stroke="var(--gold-svg)" stroke-width="1.5"/>
+            <text x="104" y="102" text-anchor="middle" fill="var(--ink-svg)" font-size="10.5">06月</text>
+          </g>
+
+          <!-- 右侧：四个关键会议 -->
+          <line x1="392" y1="52" x2="392" y2="268" stroke="var(--line)" stroke-width="1"/>
+          <g>
+            <text x="416" y="56" font-size="13" font-weight="700" fill="var(--gold-svg)" letter-spacing="2">关 键 节 点</text>
+
+            <circle cx="424" cy="88" r="5.5" fill="var(--navy-svg)"/>
+            <text x="440" y="86" font-size="13.5" font-weight="700" fill="var(--ink-svg)">7 月 · 年度经营分析会 + 年会</text>
+            <text x="440" y="104" font-size="12" fill="var(--text-faint)">回顾全年 · 总结表彰（7.28）</text>
+
+            <circle cx="424" cy="134" r="5.5" fill="var(--navy-svg)"/>
+            <text x="440" y="132" font-size="13.5" font-weight="700" fill="var(--ink-svg)">1 月 · 半年度经营分析会</text>
+            <text x="440" y="150" font-size="12" fill="var(--text-faint)">期中盘点 · 薪酬回顾</text>
+
+            <circle cx="424" cy="180" r="5.5" fill="var(--gold-svg)"/>
+            <text x="440" y="178" font-size="13.5" font-weight="700" fill="var(--ink-svg)">4 月 · 季度分析 + 战略研讨会</text>
+            <text x="440" y="196" font-size="12" fill="var(--text-faint)">决策未来三年方向（滚动计划）</text>
+
+            <circle cx="424" cy="226" r="5.5" fill="var(--gold-svg)"/>
+            <text x="440" y="224" font-size="13.5" font-weight="700" fill="var(--ink-svg)">5 月 · 年度计划研讨会</text>
+            <text x="440" y="242" font-size="12" fill="var(--text-faint)">定下年度计划 → 6 月编预算</text>
+
+            <text x="416" y="278" font-size="12" fill="var(--text-faint)">外部刻度：暑假 · 秋学期开学 · 寒假 · 高考（6.6-6.8）</text>
+          </g>
+        </svg>
+        <figcaption>经营年历 = 重要会议日程 + 外部重大事项 + 全员活动，机构经营就有了自己的节奏</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -550,7 +905,7 @@
     </div>
   </section>
 
-  <section class="slide" data-chap="03 执行篇" data-title="3.1 三个原则">
+  <section class="slide slide--long" data-chap="03 执行篇" data-title="3.1 三个原则">
     <div class="wrap">
       <span class="sn">3.1</span>
       <h2 class="s-h">三个原则</h2>
@@ -576,6 +931,63 @@
         <li>提前 5 分钟到场；</li>
         <li>会后 1 小时内发出会议纪要。</li>
       </ul>
+      <figure class="fig">
+        <svg viewBox="0 0 800 288" role="img" aria-label="两个二八原则与 151 原则示意图：8 分精力会前准备、2 分精力会中决策，会后再用 8 分精力落实">
+          <defs>
+            <marker id="arw5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,1 L9,5 L0,9 z" fill="var(--gold-svg)"/>
+            </marker>
+          </defs>
+
+          <!-- 上：精力分配条 -->
+          <text x="18" y="26" font-size="13" font-weight="700" fill="var(--gold-svg)" letter-spacing="2">精 力 分 配</text>
+
+          <!-- 条 1：会前 8 / 会中 2 -->
+          <text x="18" y="60" font-size="13.5" font-weight="700" fill="var(--ink-svg)">重准备</text>
+          <rect x="100" y="44" width="480" height="22" rx="6" fill="var(--paper-2)"/>
+          <rect x="100" y="44" width="384" height="22" rx="6" fill="var(--navy-svg)"/>
+          <rect x="484" y="44" width="96" height="22" rx="6" fill="var(--gold-svg)"/>
+          <text x="292" y="60" text-anchor="middle" font-size="13" font-weight="700" fill="#f5efe2">8 分 · 会前准备</text>
+          <text x="532" y="60" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--on-gold)">2 分</text>
+          <text x="596" y="60" font-size="13" fill="var(--text-faint)">会中决策</text>
+
+          <!-- 条 2：会中 2 / 会后 8 -->
+          <text x="18" y="106" font-size="13.5" font-weight="700" fill="var(--ink-svg)">重落实</text>
+          <rect x="100" y="90" width="480" height="22" rx="6" fill="var(--paper-2)"/>
+          <rect x="100" y="90" width="96" height="22" rx="6" fill="var(--gold-svg)"/>
+          <rect x="196" y="90" width="384" height="22" rx="6" fill="var(--navy-svg)"/>
+          <text x="148" y="106" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--on-gold)">2 分</text>
+          <text x="388" y="106" text-anchor="middle" font-size="13" font-weight="700" fill="#f5efe2">8 分 · 会后落实</text>
+          <text x="596" y="106" font-size="13" fill="var(--text-faint)">决策→行动</text>
+
+          <line x1="18" y1="134" x2="782" y2="134" stroke="var(--line)" stroke-width="1"/>
+
+          <!-- 下：151 时间轴 -->
+          <text x="18" y="164" font-size="13" font-weight="700" fill="var(--gold-svg)" letter-spacing="2">1 5 1 原 则</text>
+
+          <!-- 时间轴 -->
+          <line x1="76" y1="232" x2="726" y2="232" stroke="var(--line)" stroke-width="2.5" stroke-linecap="round"/>
+          <!-- 节点 1 -->
+          <circle cx="146" cy="232" r="11" fill="var(--navy-svg)"/>
+          <text x="146" y="237" text-anchor="middle" font-size="12" font-weight="800" fill="var(--gold-lite)">1</text>
+          <text x="146" y="208" text-anchor="middle" font-size="12.5" fill="var(--text-faint)">会前 1 天</text>
+          <text x="146" y="262" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink-svg)">发出议题</text>
+          <!-- 节点 5 -->
+          <circle cx="396" cy="232" r="11" fill="var(--navy-svg)"/>
+          <text x="396" y="237" text-anchor="middle" font-size="12" font-weight="800" fill="var(--gold-lite)">5</text>
+          <text x="396" y="208" text-anchor="middle" font-size="12.5" fill="var(--text-faint)">会前 5 分钟</text>
+          <text x="396" y="262" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink-svg)">到场</text>
+          <!-- 节点 1 -->
+          <circle cx="646" cy="232" r="11" fill="var(--gold-svg)"/>
+          <text x="646" y="237" text-anchor="middle" font-size="12" font-weight="800" fill="#fffdf8">1</text>
+          <text x="646" y="208" text-anchor="middle" font-size="12.5" fill="var(--text-faint)">会后 1 小时内</text>
+          <text x="646" y="262" text-anchor="middle" font-size="13.5" font-weight="700" fill="var(--ink-svg)">发出纪要</text>
+          <!-- 时间流向（贴两端，不与节点标签抢位） -->
+          <text x="30" y="237" font-size="12" fill="var(--text-faint)">会前</text>
+          <text x="762" y="237" text-anchor="end" font-size="12" fill="var(--text-faint)">会后</text>
+        </svg>
+        <figcaption>8 分精力用在会前准备，8 分精力用在会后落实——真正留给开会的只有 2 分</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -664,7 +1076,7 @@
     </div>
   </section>
 
-  <section class="slide slide--alt" data-chap="03 执行篇" data-title="3.5 如何提高决策质量">
+  <section class="slide slide--long slide--alt" data-chap="03 执行篇" data-title="3.5 如何提高决策质量">
     <div class="wrap">
       <span class="sn">3.5</span>
       <h2 class="s-h">如何提高决策质量</h2>
@@ -698,6 +1110,61 @@
           <p>关于会议规则，可以进一步学习《罗伯特议事规则》，西方人开会开了几百年，有成熟的规则可学。</p>
         </div>
       </div>
+      <figure class="fig">
+        <svg viewBox="0 0 800 272" role="img" aria-label="民主集中制发言顺序图：参会者 A、B、C 依次发言，主持人随后发表自己的意见，领导最后拍板">
+          <defs>
+            <marker id="arw6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,1 L9,5 L0,9 z" fill="var(--gold-svg)"/>
+            </marker>
+          </defs>
+          <text x="18" y="28" font-size="13" font-weight="700" fill="var(--gold-svg)" letter-spacing="2">发 言 顺 序</text>
+
+          <!-- 参会者（三个小节点） -->
+          <g>
+            <circle cx="70" cy="86" r="30" fill="var(--paper-2)" stroke="var(--navy-soft)" stroke-width="1.5"/>
+            <text x="70" y="91" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink-svg)">参会者A</text>
+            <circle cx="148" cy="86" r="30" fill="var(--paper-2)" stroke="var(--navy-soft)" stroke-width="1.5"/>
+            <text x="148" y="91" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink-svg)">参会者B</text>
+            <circle cx="226" cy="86" r="30" fill="var(--paper-2)" stroke="var(--navy-soft)" stroke-width="1.5"/>
+            <text x="226" y="91" text-anchor="middle" font-size="11" font-weight="700" fill="var(--ink-svg)">参会者C</text>
+            <text x="54" y="136" font-size="12" fill="var(--text-faint)">轮流发言，人人有机会</text>
+          </g>
+          <line x1="258" y1="86" x2="316" y2="86" stroke="var(--gold-svg)" stroke-width="2" marker-end="url(#arw6)"/>
+
+          <!-- 主持人 -->
+          <circle cx="352" cy="86" r="32" fill="var(--navy-soft)"/>
+          <text x="352" y="91" text-anchor="middle" font-size="12" font-weight="700" fill="var(--on-navy)">主持人</text>
+          <text x="352" y="140" text-anchor="middle" font-size="11.5" fill="var(--text-faint)">发表自己的意见</text>
+          <line x1="388" y1="86" x2="438" y2="86" stroke="var(--gold-svg)" stroke-width="2" marker-end="url(#arw6)"/>
+
+          <!-- 领导拍板 -->
+          <circle cx="472" cy="86" r="30" fill="var(--navy-svg)"/>
+          <text x="472" y="92" text-anchor="middle" font-size="13" font-weight="800" fill="var(--on-navy-accent)">领导</text>
+          <text x="472" y="140" text-anchor="middle" font-size="12.5" font-weight="700" fill="var(--gold-svg)">最后拍板</text>
+
+          <!-- 翻篇标识 -->
+          <line x1="516" y1="86" x2="548" y2="86" stroke="var(--gold-svg)" stroke-width="2" marker-end="url(#arw6)"/>
+          <rect x="558" y="58" width="224" height="56" rx="12" fill="var(--paper-svg)" stroke="var(--gold-border)" stroke-width="1.5"/>
+          <text x="670" y="82" text-anchor="middle" font-size="14.5" font-weight="800" fill="var(--ink-svg)" font-family="'Noto Serif SC',serif">拍完板，就翻篇</text>
+          <text x="670" y="102" text-anchor="middle" font-size="12" fill="var(--on-gold-soft)">拍板之后不再讨论，否则无休无止</text>
+
+          <line x1="18" y1="164" x2="782" y2="164" stroke="var(--line)" stroke-width="1"/>
+
+          <!-- 四条措施 -->
+          <text x="18" y="192" font-size="13" font-weight="700" fill="var(--gold-svg)" letter-spacing="2">提 高 决 策 质 量</text>
+          <g font-size="13" fill="var(--ink-svg)">
+            <circle cx="28" cy="218" r="4" fill="var(--gold-svg)"/>
+            <text x="42" y="223">议题要是具体、明确、可操作的行动方案</text>
+            <circle cx="28" cy="244" r="4" fill="var(--gold-svg)"/>
+            <text x="42" y="249">正反两方充分辩论，分开表决</text>
+            <circle cx="424" cy="218" r="4" fill="var(--gold-svg)"/>
+            <text x="438" y="223">对着主持人发言，防情绪化发言</text>
+            <circle cx="424" cy="244" r="4" fill="var(--gold-svg)"/>
+            <text x="438" y="249">轮流发言，人人有份</text>
+          </g>
+        </svg>
+        <figcaption>先民主后集中：参会者轮流说、主持人随后发表自己的意见、领导最后拍板，拍完即翻篇</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -720,6 +1187,53 @@
         <p>关于会议的重要性不再赘述。糟糕的会议只会导致公司决策失误、执行不力、士气低迷、人心涣散，让领导威信扫地、让企业文化沦为口号。</p>
       </div>
       <div class="s-quote">记住：领导的作风是怎样的，公司的文化就是怎样的。</div>
+      <figure class="fig">
+        <svg viewBox="0 0 800 238" role="img" aria-label="领导破坏会议规则的六种行为：迟到、早退、不准备、一言堂、随意增加议题、急于表态">
+          <defs>
+            <marker id="arw7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,1 L9,5 L0,9 z" fill="var(--gold-svg)"/>
+            </marker>
+          </defs>
+          <text x="18" y="28" font-size="13" font-weight="700" fill="var(--gold-svg)" letter-spacing="2">六 种 带 头 破 坏 规 则 的 行 为</text>
+
+          <g>
+            <!-- 2 行 × 3 列 -->
+            <rect x="18" y="46" width="240" height="60" rx="11" fill="var(--paper-svg)" stroke="var(--line)" stroke-width="1.5"/>
+            <text x="40" y="74" font-size="12" fill="var(--red-svg)" font-weight="800">01</text>
+            <text x="66" y="74" font-size="14.5" font-weight="700" fill="var(--ink-svg)">领导迟到</text>
+            <text x="40" y="94" font-size="12" fill="var(--text-faint)">守时的人反被惩罚</text>
+
+            <rect x="280" y="46" width="240" height="60" rx="11" fill="var(--paper-svg)" stroke="var(--line)" stroke-width="1.5"/>
+            <text x="302" y="74" font-size="12" fill="var(--red-svg)" font-weight="800">02</text>
+            <text x="328" y="74" font-size="14.5" font-weight="700" fill="var(--ink-svg)">领导早退</text>
+            <text x="302" y="94" font-size="12" fill="var(--text-faint)">决策无人拍板</text>
+
+            <rect x="542" y="46" width="240" height="60" rx="11" fill="var(--paper-svg)" stroke="var(--line)" stroke-width="1.5"/>
+            <text x="564" y="74" font-size="12" fill="var(--red-svg)" font-weight="800">03</text>
+            <text x="590" y="74" font-size="14.5" font-weight="700" fill="var(--ink-svg)">领导不准备</text>
+            <text x="564" y="94" font-size="12" fill="var(--text-faint)">议题临时抓瞎</text>
+
+            <rect x="18" y="118" width="240" height="60" rx="11" fill="var(--paper-svg)" stroke="var(--line)" stroke-width="1.5"/>
+            <text x="40" y="146" font-size="12" fill="var(--red-svg)" font-weight="800">04</text>
+            <text x="66" y="146" font-size="14.5" font-weight="700" fill="var(--ink-svg)">领导一言堂</text>
+            <text x="40" y="166" font-size="12" fill="var(--text-faint)">别人不再开口</text>
+
+            <rect x="280" y="118" width="240" height="60" rx="11" fill="var(--paper-svg)" stroke="var(--line)" stroke-width="1.5"/>
+            <text x="302" y="146" font-size="12" fill="var(--red-svg)" font-weight="800">05</text>
+            <text x="328" y="146" font-size="14.5" font-weight="700" fill="var(--ink-svg)">随意增加议题</text>
+            <text x="302" y="166" font-size="12" fill="var(--text-faint)">议程失控</text>
+
+            <rect x="542" y="118" width="240" height="60" rx="11" fill="var(--paper-svg)" stroke="var(--line)" stroke-width="1.5"/>
+            <text x="564" y="146" font-size="12" fill="var(--red-svg)" font-weight="800">06</text>
+            <text x="590" y="146" font-size="14.5" font-weight="700" fill="var(--ink-svg)">急于表态</text>
+            <text x="564" y="166" font-size="12" fill="var(--text-faint)">讨论提前关门</text>
+          </g>
+
+          <line x1="18" y1="196" x2="782" y2="196" stroke="var(--gold-svg)" stroke-width="2.5" stroke-linecap="round"/>
+          <text x="400" y="222" text-anchor="middle" font-size="14" font-weight="700" fill="var(--ink-svg)">糟糕的会议 → 决策失误 · 执行不力 · 士气低迷 · 人心涣散 · 威信扫地</text>
+        </svg>
+        <figcaption>开不好会，首要原因不是别的，是领导不重视，还带头破坏规则</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -765,7 +1279,7 @@
     </div>
   </section>
 
-  <section class="slide slide--alt" data-chap="05 治理篇" data-title="5.2 治本：会议过多是组织不健全的结果">
+  <section class="slide slide--long slide--alt" data-chap="05 治理篇" data-title="5.2 治本：会议过多是组织不健全的结果">
     <div class="wrap">
       <span class="sn">5.2</span>
       <h2 class="s-h">治本：会议过多是组织不健全的结果</h2>
@@ -780,6 +1294,54 @@
         <li>能够两人沟通、异步沟通解决的问题，不需要强行开会。</li>
       </ul>
       <div class="s-quote s-big" style="font-size:20px;">一句话：少开会、开好会、开出成果、开出精神。</div>
+      <figure class="fig">
+        <svg viewBox="0 0 800 296" role="img" aria-label="治本三策漏斗图：先靠组织架构解决，再靠制度流程解决，最后才轮到开会">
+          <defs>
+            <marker id="arw8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0,1 L9,5 L0,9 z" fill="var(--gold-svg)"/>
+            </marker>
+          </defs>
+          <text x="18" y="26" font-size="13" font-weight="700" fill="var(--gold-svg)" letter-spacing="2">治 本 三 策 · 逐 层 拦 下 不 该 开 的 会</text>
+
+          <!-- 第 1 层：组织架构（最宽） -->
+          <rect x="30" y="46" width="500" height="56" rx="12" fill="var(--navy-svg)"/>
+          <text x="54" y="71" font-size="12" fill="var(--gold-lite)" font-weight="800">01</text>
+          <text x="82" y="71" font-size="15" font-weight="700" fill="#f5efe2">理清组织架构，明确责权利</text>
+          <text x="54" y="92" font-size="12" fill="#c9d0d9">能靠结构解决的问题，不应该靠会议解决</text>
+
+          <line x1="258" y1="110" x2="258" y2="128" stroke="var(--gold-svg)" stroke-width="2" marker-end="url(#arw8)"/>
+
+          <!-- 第 2 层：制度流程（收窄） -->
+          <rect x="104" y="136" width="352" height="56" rx="12" fill="var(--navy-soft)"/>
+          <text x="128" y="161" font-size="12" fill="var(--on-navy-accent)" font-weight="800">02</text>
+          <text x="156" y="161" font-size="15" font-weight="700" fill="#f5efe2">针对普遍性问题，制定制度流程</text>
+          <text x="128" y="182" font-size="12" fill="var(--on-navy-2)">要靠制度流程解决的，不能反复开会研究</text>
+
+          <line x1="280" y1="200" x2="280" y2="218" stroke="var(--gold-svg)" stroke-width="2" marker-end="url(#arw8)"/>
+
+          <!-- 第 3 层：不必开会（最窄） -->
+          <rect x="178" y="226" width="204" height="46" rx="12" fill="var(--gold-svg)"/>
+          <text x="196" y="248" font-size="12" fill="var(--on-gold)" font-weight="800">03</text>
+          <text x="220" y="248" font-size="13" font-weight="700" fill="var(--on-gold)">能沟通解决的，不必开会</text>
+
+          <!-- 右侧：被拦截的量 -->
+          <g>
+            <text x="558" y="60" font-size="12.5" fill="var(--text-faint)">被结构拦下</text>
+            <rect x="558" y="68" width="224" height="16" rx="5" fill="var(--paper-2)"/>
+            <rect x="558" y="68" width="190" height="16" rx="5" fill="var(--navy-svg)"/>
+            <text x="558" y="110" font-size="12.5" fill="var(--text-faint)">被制度拦下</text>
+            <rect x="558" y="118" width="224" height="16" rx="5" fill="var(--paper-2)"/>
+            <rect x="558" y="118" width="112" height="16" rx="5" fill="var(--navy-soft)"/>
+            <text x="558" y="160" font-size="12.5" fill="var(--text-faint)">真正必须开的会</text>
+            <rect x="558" y="168" width="224" height="16" rx="5" fill="var(--paper-2)"/>
+            <rect x="558" y="168" width="46" height="16" rx="5" fill="var(--gold-svg)"/>
+          </g>
+
+          <line x1="18" y1="256" x2="782" y2="256" stroke="var(--line)" stroke-width="1"/>
+          <text x="470" y="282" font-size="13.5" fill="var(--text-faint)">德鲁克：会议过多，是组织不健全的表现。</text>
+        </svg>
+        <figcaption>会议过多是果，组织不健全才是因——治本要从架构和制度下手</figcaption>
+      </figure>
     </div>
   </section>
 
