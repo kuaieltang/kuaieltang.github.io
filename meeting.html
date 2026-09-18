@@ -334,6 +334,48 @@ section.slide{padding:0;}                 /* 站点 section{padding:64px 0} 会�
   .deck-nav{transform:translateY(0);}
   .deck-nav .nav{background:rgba(247,244,237,.86);}
 }
+
+/* ===========================================
+   LANDSCAPE MODE — 手机竖屏「转横」查看
+   16:9 的放映页在竖屏手机上只能缩成一条，字小到看不清。
+   横屏模式把 1920×1080 舞台整体旋转 90°，铺满整个竖屏视口，
+   相当于把手机横过来看；同时把顶部导航一起转，保证随时能退出。
+   由右上角悬浮按钮切换（见 .rotate-btn），状态存 localStorage。
+   =========================================== */
+.rotate-btn{position:fixed;top:132px;right:12px;z-index:10002;
+  display:none;align-items:center;gap:6px;padding:10px 14px;
+  border:1px solid var(--gold-border);border-radius:999px;
+  background:rgba(255,253,248,.95);color:var(--ink);
+  font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.02em;
+  cursor:pointer;box-shadow:0 6px 20px rgba(31,39,51,.16);
+  -webkit-tap-highlight-color:transparent;transition:opacity .25s ease;}
+.rotate-btn svg{display:block;flex:none;}
+/* 显隐由 JS 判定（触屏设备 + 竖屏）后加 .show；媒体查询在部分无头/桌面浏览器
+   上不肯认 hover:none，所以不做唯一依据。 */
+.rotate-btn.show{display:inline-flex;}
+.rotate-btn.active{background:var(--panel);color:var(--panel-gold);border-color:var(--panel);}
+/* 全屏时按钮贴到屏幕上沿；横屏模式下按钮处在旋转坐标系里，改贴左下角 */
+:fullscreen .rotate-btn.show{top:14px;right:14px;}
+body.force-land:fullscreen .rotate-btn.show{top:auto;right:auto;bottom:14px;left:14px;}
+
+/* 横屏模式：舞台由 JS 在 transform 里做 translate + rotate 铺满视口。
+   transform-origin 统一用舞台几何中心（绝对像素，不随 left/top 漂移），
+   横竖屏共用同一套居中公式。 */
+.deck-stage{transform-origin:960px 540px;}
+/* 顶部导航的横屏形态：压成贴底细条（JS 加 .land-bar），不旋转 */
+body.force-land .deck-nav{transition:none;}
+body.force-land .deck-nav.land-bar{
+  top:auto;bottom:0;transform:translateY(0);
+  border-top:1px solid var(--line);border-bottom:0;
+  box-shadow:0 -4px 14px rgba(31,39,51,.08);}
+body.force-land .deck-nav.land-bar .nav-inner{padding:3px 10px;gap:8px;}
+body.force-land .deck-nav.land-bar .brand{font-size:0;}
+body.force-land .deck-nav.land-bar .brand .seal{width:22px;height:22px;}
+body.force-land .deck-nav.land-bar .nav-links{gap:0;}
+body.force-land .deck-nav.land-bar .nav-links > a,
+body.force-land .deck-nav.land-bar .nav-drop-btn{
+  padding:4px 7px;font-size:11px;line-height:1.2;}
+body.force-land .deck-nav.land-bar .nav-drop-menu{bottom:100%;top:auto;max-height:44vh;overflow:auto;}
 </style>
 </head>
 <body>
@@ -1202,6 +1244,17 @@ section.slide{padding:0;}                 /* 站点 section{padding:64px 0} 会�
   <div class="count" id="counter">01 / 38</div>
 </div>
 
+<!-- 手机竖屏「转横」查看（仅触屏竖屏出现；切横屏会顺带请求全屏） -->
+<button class="rotate-btn" id="rotateBtn" type="button" aria-pressed="false"
+        title="横屏查看（把手机横过来看的等效效果）">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M4 9V6a2 2 0 0 1 2-2h2"/><path d="M16 4h2a2 2 0 0 1 2 2v3"/>
+    <path d="M4 15v3a2 2 0 0 0 2 2h2"/><path d="M16 20h2a2 2 0 0 0 2-2v-3"/>
+  </svg>
+  <span class="rotate-label">横屏查看</span>
+</button>
+
 <div class="edit-hotzone"></div>
 <button class="edit-toggle" id="editToggle" title="编辑模式（E）">✏️</button>
 <div class="edit-hint" id="editHint">编辑模式：点任意文字改写，Ctrl+S 保存，再按 E 退出</div>
@@ -1234,11 +1287,23 @@ class SlidePresentation{
       if(Number.isFinite(n)&&n>0)this.go(Math.min(n-1,this.total-1));
     });
   }
-  /* 固定 16:9 舞台整体等比缩放，不重排内容 */
+  /* 固定 16:9 舞台整体等比缩放，不重排内容。
+     统一以元素几何中心（960px 540px）为 transform-origin，
+     于是「元素中心 = origin + translate」，横竖屏可用同一套公式：
+       tx = vw/2 - 960,  ty = vh/2 - 540
+     横屏时再叠加 rotate(90deg)，画面即恰好铺满竖屏视口。
+     注意：平移必须写在 transform 里，不要用 left/top —— 改 left/top 会把
+     transform-origin 一起挪走，导致旋转后的画面跑出屏幕。 */
   scale(){
-    const f=Math.min(window.innerWidth/1920,window.innerHeight/1080);
+    const a=document.body.classList.contains('force-land')?90:0;
+    const rad=a*Math.PI/180, cos=Math.cos(rad), sin=Math.sin(rad);
+    const vw=window.innerWidth, vh=window.innerHeight;
+    /* 缩放系数：保证旋转后的画面能装进视口 */
+    const f=Math.min((vw*Math.abs(cos)+vh*Math.abs(sin))/1920,
+                     (vw*Math.abs(sin)+vh*Math.abs(cos))/1080);
     this.stage.style.transform=
-      `translate(${(window.innerWidth-1920*f)/2}px,${(window.innerHeight-1080*f)/2}px) scale(${f})`;
+      `translate(${vw/2-960}px,${vh/2-540}px) rotate(${a}deg) scale(${f})`;
+    if(window.__navRotate)window.__navRotate(a);
   }
   bindKeys(){
     document.addEventListener('keydown',e=>{
@@ -1345,7 +1410,9 @@ class InlineEditor{
 /* 启动 */
 const editor=new InlineEditor();
 editor.load();
-new SlidePresentation();
+window.deck=new SlidePresentation();
+/* 视口变化时重算（旋转模式依赖 innerWidth/innerHeight） */
+window.addEventListener('orientationchange',()=>setTimeout(()=>window.deck.scale(),120));
 
 /* 编辑按钮：JS 控制显隐（CSS 的 ~ 选择器会因 pointer-events 断掉 hover 链） */
 (function(){
@@ -1388,6 +1455,98 @@ new SlidePresentation();
   document.addEventListener('click',function(e){
     if(e.target&&e.target.closest&&e.target.closest('.nav-drop'))open();
   });
+})();
+
+/* ===========================================
+   LANDSCAPE MODE — 手机竖屏「转横」
+   思路：不依赖屏幕方向 API（iOS Safari 不支持锁定），
+   而是把整个 16:9 舞台 rotate(90deg) 铺满竖屏视口，
+   视觉上等同「把手机横过来看」；顶部导航一并旋转，
+   保证横屏时仍能点到退出入口。状态存 localStorage。
+   =========================================== */
+(function(){
+  var btn=document.getElementById('rotateBtn');
+  if(!btn)return;
+  var KEY='laotang-meeting-deck-land';
+  var label=btn.querySelector('.rotate-label');
+  var fsEl=document.fullscreenElement||document.webkitFullscreenElement||null;
+
+  /* 按钮显隐：手机竖屏（窄高）时出现。
+     判定放宽到「视口较窄 + 竖屏」，不硬依赖握持介质检测——
+     宁可桌面窄窗口多看到一个按钮，也不要手机上找不到入口。 */
+  function syncBtn(){
+    var portrait=window.innerHeight>window.innerWidth;
+    var narrow=Math.min(window.innerWidth,window.innerHeight)<=860;
+    var on=document.body.classList.contains('force-land');
+    btn.classList.toggle('show',(portrait&&narrow)||on);
+  }
+  window.__syncRotateBtn=syncBtn;
+
+  function apply(on){
+    document.body.classList.toggle('force-land',on);
+    btn.classList.toggle('active',on);
+    btn.setAttribute('aria-pressed',on?'true':'false');
+    if(label)label.textContent=on?'退出横屏':'横屏查看';
+    try{on?localStorage.setItem(KEY,'1'):localStorage.removeItem(KEY);}catch(err){}
+    if(window.deck)window.deck.scale();
+    syncBtn();
+    /* 旋转后重算一次：等浏览器完成布局再收尾 */
+    setTimeout(function(){if(window.deck)window.deck.scale();syncBtn();},160);
+  }
+  /* 横屏模式下屏幕只剩一条竖边可用，旋转整条导航会算不准落点。
+     改为：导航**不旋转**，压缩成贴在屏幕底部的细条（品牌只留印章、菜单横排），
+     既保证随时能退出，又不会挡到旋转后的正文。 */
+  /* 横屏模式下把导航压成贴在屏幕底部的细条（不旋转）。
+     旋转整条导航的落点很难算准（origin 会漂），而且会挡住旋转后的正文；
+     压成底条既保证随时能退出，也不抢内容。 */
+  window.__navRotate=function(a){
+    var nav=document.getElementById('deckNav');
+    if(!nav)return;
+    if(!a){
+      nav.classList.remove('land-bar');
+      nav.style.width='';
+      return;
+    }
+    nav.classList.add('land-bar');
+    nav.style.width=window.innerWidth+'px';
+  };
+  function enterFs(){
+    var el=document.documentElement;
+    if(document.fullscreenElement||document.webkitFullscreenElement)return;
+    try{
+      var p=el.requestFullscreen?el.requestFullscreen({navigationUI:'hide'})
+                                :(el.webkitRequestFullscreen&&el.webkitRequestFullscreen());
+      if(p&&p.catch)p.catch(function(){});
+    }catch(err){}
+  }
+  function exitFs(){
+    try{
+      if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen();
+      else if(document.webkitFullscreenElement&&document.webkitExitFullscreen)document.webkitExitFullscreen();
+    }catch(err){}
+  }
+  btn.addEventListener('click',function(){
+    var on=!document.body.classList.contains('force-land');
+    apply(on);
+    if(on)enterFs();       /* 全屏是加分项，失败也不影响旋转效果 */
+    else exitFs();
+  });
+  /* 用户按系统返回/手势退出全屏时，同步退出横屏模式 */
+  function onFsChange(){
+    var now=document.fullscreenElement||document.webkitFullscreenElement||null;
+    if(fsEl&&!now&&document.body.classList.contains('force-land'))apply(false);
+    fsEl=now;
+  }
+  document.addEventListener('fullscreenchange',onFsChange);
+  document.addEventListener('webkitfullscreenchange',onFsChange);
+  window.addEventListener('resize',syncBtn);
+  window.addEventListener('orientationchange',function(){setTimeout(syncBtn,150);});
+  /* 恢复上次选择；也支持 ?land=1 直接用链接进横屏（便于发到微信/打印二维码） */
+  syncBtn();
+  try{
+    var q=/[?&]land=(1|on|true)/.test(location.search);
+    if(q||localStorage.getItem(KEY)==='1')apply(true);
+  }catch(err){}
 })();
 </script>
 
