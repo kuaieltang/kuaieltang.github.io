@@ -20,9 +20,15 @@
   </url>
   <url>
     <loc>https://kuaieltang.github.io/meeting.html</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-09-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://kuaieltang.github.io/meeting-read.html</loc>
+    <lastmod>2026-09-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://kuaieltang.github.io/manual.html</loc>
