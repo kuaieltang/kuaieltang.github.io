@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f4ed">
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="#12151b">
+<title>资源库 · 经营决策与会议资料 | 老唐管理咨询</title>
+<meta name="description" content="老唐管理咨询公开资料库：《教培机构经营决策系统》PDF 版（33 页可搜索）、经营决策体系放映版（75 屏）、高效会议与决策体系指南、经营自查清单（25 题）。全部免费取用。">
+<link rel="canonical" href="https://kuaieltang.github.io/library.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="老唐管理咨询">
+<meta property="og:title" content="资源库 · 经营决策与会议资料">
+<meta property="og:description" content="经营决策、会议管理、经营自查——17 年教培管理经验攒下的方法与工具，拿来就能用。全部免费取用。">
+<meta property="og:url" content="https://kuaieltang.github.io/library.html">
+<meta property="og:image" content="https://kuaieltang.github.io/og-library.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="老唐管理咨询 · 资源库">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="资源库 · 经营决策与会议资料">
+<meta name="twitter:description" content="经营决策、会议管理、经营自查——17 年教培管理经验攒下的方法与工具，拿来就能用。">
+<meta name="twitter:image" content="https://kuaieltang.github.io/og-library.jpg">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<link rel="icon" type="image/png" sizes="64x64" href="logo-64.png">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ---------- 资源库页面专属组件（颜色一律走站点变量，兼容深色模式） ---------- */
+  .res-feature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 42px;
+    align-items: center;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 38px 40px;
+  }
+  /* 封面保持 1200×630 原始比例，不做拉伸裁剪；用内边距把卡片挤出来，避免被文字栏撑高 */
+  .res-feature .cover {
+    display: block;
+    background: var(--gold-soft);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .res-feature .cover img { width: 100%; height: auto; display: block; }
+  .res-feature .body { display: flex; flex-direction: column; }
+  .res-feature h3 { font-size: 25px; line-height: 1.36; margin: 6px 0 12px; }
+  .res-feature .desc { color: var(--text-soft); font-size: 15.5px; }
+  .res-feature .acts { margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+  .kind {
+    font-size: 12px; font-weight: 600; letter-spacing: 2px;
+    color: var(--gold-deep); text-transform: uppercase;
+  }
+
+  .tags { display: flex; gap: 8px; flex-wrap: wrap; margin: 14px 0 0; }
+  .tag {
+    font-size: 13px; color: var(--gold-deep); font-weight: 600;
+    background: var(--gold-soft); border: 1px solid var(--gold-border);
+    border-radius: 999px; padding: 4px 13px; letter-spacing: 1px;
+  }
+
+  .res-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .res {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 30px 30px 28px;
+    box-shadow: var(--shadow);
+    display: flex; flex-direction: column;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .res:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.16); }
+  .res .top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+  .res .no {
+    font-family: "Noto Serif SC","Songti SC","SimSun",serif;
+    font-size: 26px; font-weight: 700; color: var(--gold); line-height: 1;
+  }
+  .res h3 { font-size: 20px; line-height: 1.4; margin: 16px 0 10px; }
+  .res p { color: var(--text-soft); font-size: 15px; }
+  .res .acts { margin-top: auto; padding-top: 22px; display: flex; gap: 10px; flex-wrap: wrap; }
+  .btn-sm { padding: 9px 20px; font-size: 14.5px; border-radius: 8px; }
+
+  .use-note {
+    margin-top: 34px;
+    background: var(--gold-soft);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 12px 12px 0;
+    padding: 22px 26px;
+    color: var(--text);
+    font-size: 15px;
+  }
+  .use-note b { color: var(--gold-deep); }
+
+  @media (max-width: 900px) {
+    .res-feature { grid-template-columns: 1fr; gap: 26px; padding: 26px 24px; }
+    .res-feature h3 { font-size: 22px; }
+  }
+  @media (max-width: 760px) {
+    .res-grid { grid-template-columns: 1fr; }
+  }
+</style>
+<!-- 百度统计 -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?043c0b5ba553f957fb49d6e25bbfd659";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <img class="seal" src="logo.svg" alt="老唐管理咨询">
+      <span>老唐管理咨询<small>庄敬自强</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html">首页</a>
+      <a href="record.html">管理实战</a>
+      <div class="nav-drop is-current">
+        <a class="nav-drop-btn" href="library.html">资源库 <span class="caret">&#9662;</span></a>
+        <div class="nav-drop-menu" id="nav-res">
+          <a href="library.html" class="is-current"><span class="t">资源库总览</span><span class="d">全部资料一览</span></a>
+          <a href="decision-system.html"><span class="t">教培机构经营决策系统（PDF 版）</span><span class="d">33 页 · 可搜索</span></a>
+          <a href="decision-deck.html"><span class="t">经营决策体系 · 放映版</span><span class="d">75 屏 · 投影或阅读</span></a>
+          <a href="meeting.html"><span class="t">高效会议与决策体系指南</span><span class="d">38 屏放映版 · 投影讲解用</span></a>
+          <a href="meeting-read.html"><span class="t">会议指南 · 图文阅读版</span><span class="d">手机可读 · 含 9 张图示</span></a>
+          <a href="selfcheck.html"><span class="t">经营自查清单</span><span class="d">25 题红黄绿灯自测</span></a>
+        </div>
+      </div>
+      <a href="manual.html">使用说明书</a>
+      <a href="index.html#contact" class="btn-mini">联系我</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="wrap">
+    <div class="crumb">首页 / 资源库</div>
+    <h1>资源库</h1>
+    <p class="sub">经营决策、会议管理、经营自查——把我在教培行业 17 年攒下的方法与工具，整理成可以拿来就用的资料。全部免费取用，欢迎转发给需要的同行。</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">主推资料</span>
+    <h2 class="section-title">教培机构经营决策系统</h2>
+    <div class="rule" style="margin-bottom:34px;"></div>
+
+    <div class="res-feature">
+      <a class="cover" href="decision-system.html">
+        <img src="og-decision.jpg" alt="《教培机构经营决策系统》PDF 版封面">
+      </a>
+      <div class="body">
+        <span class="kind">PDF 版 · 33 页 · 可搜索</span>
+        <h3>一套把「做对决策」和「把会开好」串起来的完整体系</h3>
+        <p class="desc">公司要发展，需要持续做对关键经营决策。决策是本体，会议是载体。全文 33 页：决策篇 6 篇讲清关键决策是什么、议题从哪来、何时做、谁来做、怎么做对、怎么用人；会议篇 5 篇给出会议设计、运行、掌舵与治理的具体做法；另有落地篇与附录工具。</p>
+        <div class="tags">
+          <span class="tag">决策篇 6 篇</span>
+          <span class="tag">会议篇 5 篇</span>
+          <span class="tag">落地篇</span>
+          <span class="tag">附录工具</span>
+        </div>
+        <div class="acts">
+          <a href="decision-system.html" class="btn btn-primary">打开阅读</a>
+          <a href="decision-system.pdf" class="btn btn-ghost" download>直接下载 PDF</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="wrap">
+    <span class="eyebrow">全部资料</span>
+    <h2 class="section-title">共 5 份，按需取用</h2>
+    <p class="section-lead">同一套内容做了不同形态：要投影讲解用放映版，要在手机上看用阅读版，要打印或转发用 PDF。</p>
+
+    <div class="res-grid">
+
+      <article class="res">
+        <div class="top">
+          <span class="no">02</span>
+          <span class="kind">网页 · 放映版</span>
+        </div>
+        <h3>经营决策体系 · 放映版</h3>
+        <p>与 PDF 同源，做成一屏一个话题的网页放映版，共 75 屏。投影讲解、发链接给管理层阅读都合适，方向键、空格或滚轮翻页。</p>
+        <div class="tags"><span class="tag">75 屏</span><span class="tag">免注册</span></div>
+        <div class="acts">
+          <a href="decision-deck.html" class="btn btn-primary btn-sm">打开放映版</a>
+        </div>
+      </article>
+
+      <article class="res">
+        <div class="top">
+          <span class="no">03</span>
+          <span class="kind">网页 · 放映版</span>
+        </div>
+        <h3>高效会议与决策体系指南</h3>
+        <p>把「会怎么开才有成果」拆成 38 屏：会议怎么设计、怎么运行、领导怎么掌舵、怎么给会议做定期体检。适合管理层一起过一遍。</p>
+        <div class="tags"><span class="tag">38 屏</span><span class="tag">投影讲解</span></div>
+        <div class="acts">
+          <a href="meeting.html" class="btn btn-primary btn-sm">打开指南</a>
+        </div>
+      </article>
+
+      <article class="res">
+        <div class="top">
+          <span class="no">04</span>
+          <span class="kind">网页 · 图文阅读版</span>
+        </div>
+        <h3>会议指南 · 图文阅读版</h3>
+        <p>同一份指南的图文阅读版，一屏一节上下滑动，配 9 张图示，手机上读最舒服。适合转发到工作群。</p>
+        <div class="tags"><span class="tag">手机可读</span><span class="tag">9 张图示</span></div>
+        <div class="acts">
+          <a href="meeting-read.html" class="btn btn-primary btn-sm">打开阅读版</a>
+        </div>
+      </article>
+
+      <article class="res">
+        <div class="top">
+          <span class="no">05</span>
+          <span class="kind">网页 · 可交互</span>
+        </div>
+        <h3>教培机构经营自查清单</h3>
+        <p>25 个问题，凭第一直觉点完，立刻拿到一张您机构的「经营体检单」：几盏红灯、红灯扎堆在哪一块，一目了然，结果可一键复制。</p>
+        <div class="tags"><span class="tag">25 题</span><span class="tag">15 分钟</span></div>
+        <div class="acts">
+          <a href="selfcheck.html" class="btn btn-primary btn-sm">开始自查</a>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="use-note">
+      <b>怎么用更好：</b>建议先花 15 分钟做完<strong>经营自查清单</strong>，看看机构亮了几盏红灯；再带着结果读<strong>经营决策系统</strong>，对照自己的会议与决策习惯找差距。想深入聊，随时找我。
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div>
+        <span class="eyebrow" style="color:#e6c877;">联系方式</span>
+        <h2 class="section-title">资料看完了，欢迎聊聊您机构的情况</h2>
+        <p class="lead">这些资料是我从真实经营里总结出来的，不是理论。如果您在对照落地的过程中遇到卡点，或者想让我帮您看看贵机构的会议与决策机制，欢迎联系我。</p>
+        <ul class="contact-list">
+          <li><span class="k">公司</span><span class="v">广州庄敬自强管理咨询有限公司</span></li>
+          <li><span class="k">创始人</span><span class="v">唐平（老唐）</span></li>
+          <li><span class="k">所在地</span><span class="v">广州市黄埔区</span></li>
+          <li><span class="k">公众号</span><span class="v">老唐谈教育管理</span></li>
+        </ul>
+      </div>
+      <div class="contact-card">
+        <h3>手机 / 微信同号</h3>
+        <p>欢迎来电或加微信，聊聊您机构的现状与困惑。</p>
+        <div class="big">&#49;&#57;&#49; &#50;&#52;&#50;&#48; &#48;&#53;&#48;&#56;</div>
+        <div class="note">唐平 · 广州庄敬自强管理咨询有限公司</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 老唐管理咨询 · 广州庄敬自强管理咨询有限公司 · 唐平</span>
+    <span>
+      <a href="index.html">首页</a>
+      <a href="record.html">管理实战记录</a>
+      <a href="meeting.html">高效会议与决策体系指南</a>
+      <a href="selfcheck.html">经营自查清单</a>
+      <a href="manual.html">使用说明书</a>
+      <a href="index.html#contact">联系我</a>
+    </span>
+  </div>
+</footer>
+
+<script src="nav.js"></script>
+
+</body>
+</html>
