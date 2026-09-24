@@ -48,8 +48,11 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:100%;height:100%;margin:0;overflow:hidden;background:var(--stage-bg)}
 .deck-viewport{position:fixed;inset:0;overflow:hidden;background:var(--stage-bg)}
+/* transform-origin 取舞台几何中心（绝对像素，不随 left/top 漂移）：
+   于是「元素中心 = origin + translate」，横竖屏共用同一套居中公式。
+   ⚠️ 不要用 50% 50%（语义随元素尺寸漂移），也不要用回 0 0 —— 见 JS 里 scale()。 */
 .deck-stage{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;
-  transform-origin:0 0;background:var(--slide-bg)}
+  transform-origin:960px 540px;background:var(--slide-bg)}
 .slide{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;display:block;
   visibility:hidden;opacity:0;pointer-events:none;background:var(--slide-bg)}
 .slide.active,.slide.visible{visibility:visible;opacity:1;pointer-events:auto;z-index:1}
@@ -195,10 +198,27 @@ table.dense th{font-size:17px}
 .ctrl button{background:none;border:0;color:#f5efe2;font-size:17px;cursor:pointer;
   padding:4px 9px;border-radius:8px;font-family:var(--sans)}
 .ctrl button:hover{background:rgba(224,207,159,.16)}
-.ctrl .cnum{font-family:var(--mono);font-size:16px;color:#e6c877;min-width:74px;text-align:center}
+.ctrl .cnum{font-family:var(--mono);font-size:16px;color:#e6c877;min-width:74px;
+  text-align:center;white-space:nowrap}
 .ctrl .cbar{position:absolute;left:0;bottom:0;height:2px;background:var(--gold);width:0;
   transition:width .28s var(--ease)}
 .ctrl-wrap{position:relative;border-radius:999px;overflow:hidden}
+/* 手机窄屏：控件条压到一行内（基准版约 425px 宽，390px 视口会折成三行），
+   并把默认 opacity 提到 1 —— 触屏没有 hover，.2 的"半隐身"在手机上等于用不了；
+   键盘操作提示（F 全屏 / E 编辑）在手机上没意义，收起。 */
+@media (max-width:760px){
+  .ctrl{gap:8px;padding:6px 10px;opacity:1}
+  .ctrl button{padding:6px 7px;font-size:14px;white-space:nowrap}
+  .ctrl .cnum{min-width:0;font-size:14px;white-space:nowrap}
+  .hint{display:none}
+}
+/* 触屏没有 hover，控件条会一直停在 .2 的"半隐身"，等于点不到翻页。
+   注意：本机无头浏览器对 hover:none 判定不可靠，所以这条只作增强、不作唯一依据——
+   万一不生效，只是退化成原来的半隐身，不会挡住任何入口。 */
+@media (hover:none){
+  .ctrl{opacity:1}
+  .hint{display:none}
+}
 
 .hint{position:fixed;right:26px;bottom:26px;z-index:1000;color:rgba(245,239,226,.5);
   font-size:15px;font-family:var(--sans);letter-spacing:.03em;
@@ -221,6 +241,32 @@ table.dense th{font-size:17px}
 [contenteditable="true"]:focus{outline:2px dashed var(--gold);outline-offset:5px;border-radius:4px}
 
 /* ============================================================
+   横屏模式 —— 手机竖屏「转横」查看
+   16:9 的舞台在竖屏手机上只能缩成一条，字小到看不清。
+   横屏模式把 1920x1080 舞台整体旋转 90°，铺满整个竖屏视口，
+   等效于「把手机横过来看」；由右上角悬浮按钮切换，状态存 localStorage。
+   不依赖屏幕方向 API（iOS Safari 不支持锁定），也不靠媒体查询判定设备
+   （部分无头/桌面浏览器不认 hover:none）——显隐由 JS 判定后加 .show。
+   ============================================================ */
+.rotate-btn{position:fixed;top:14px;right:14px;z-index:10002;
+  display:none;align-items:center;gap:6px;padding:10px 14px;
+  border:1px solid var(--gold-line);border-radius:999px;
+  background:rgba(255,253,248,.95);color:var(--ink);
+  font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.02em;
+  cursor:pointer;box-shadow:0 6px 20px rgba(31,39,51,.22);
+  -webkit-tap-highlight-color:transparent;transition:opacity .25s ease}
+.rotate-btn svg{display:block;flex:none}
+.rotate-btn.show{display:inline-flex}
+.rotate-btn.active{background:var(--panel);color:var(--panel-num);border-color:var(--panel)}
+/* 全屏时按钮贴到屏幕上沿；横屏模式下按钮处在旋转坐标系里，改贴左下角 */
+:fullscreen .rotate-btn.show{top:14px;right:14px}
+body.force-land:fullscreen .rotate-btn.show{top:auto;right:auto;bottom:14px;left:14px}
+/* 横屏时正文占满全屏，翻页提示先收起来，别压着内容 */
+body.force-land .hint{opacity:0;pointer-events:none}
+/* 横屏时舞台只占视口高度的一部分（上下留边），把控件条放到留边里，不压住正文 */
+body.force-land .deck-controls{bottom:6px}
+
+/* ============================================================
    打印
    ============================================================ */
 @media print{
@@ -231,7 +277,7 @@ table.dense th{font-size:17px}
     opacity:1 !important;pointer-events:auto !important;width:1920px;height:1080px;
     break-after:page;page-break-after:always}
   .slide:last-child{break-after:auto;page-break-after:auto}
-  .deck-controls,.hint,.edit-hotzone,.edit-toggle,.edit-bar{display:none !important}
+  .deck-controls,.hint,.edit-hotzone,.edit-toggle,.edit-bar,.rotate-btn{display:none !important}
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.2s !important}
@@ -477,6 +523,16 @@ var _hmt = _hmt || [];
     <div class="cbar" id="cbar"></div>
   </div>
 </div>
+
+<button class="rotate-btn" id="rotateBtn" type="button" aria-pressed="false"
+        title="横屏查看（把手机横过来看的等效效果）">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M4 9V6a2 2 0 0 1 2-2h2"/><path d="M16 4h2a2 2 0 0 1 2 2v3"/>
+    <path d="M4 15v3a2 2 0 0 0 2 2h2"/><path d="M16 20h2a2 2 0 0 0 2-2v-3"/>
+  </svg>
+  <span class="rotate-label">横屏查看</span>
+</button>
 <div class="hint" id="hint">← → 或滚轮翻页　·　F 全屏　·　E 编辑</div>
 
 <script>
@@ -499,12 +555,22 @@ class Deck {
     this.go(this.i, true);
     this.hintFade();
   }
-  /* 舞台等比缩放：整块缩放，绝不重排内容 */
+  /* 舞台等比缩放（+ 可选横屏旋转）：整块缩放，绝不重排内容。
+     transform-origin 已设为舞台几何中心 (960px,540px)，因此
+     「元素中心 = origin + translate」恒成立 —— 居中条件永远是
+       tx = vw/2 - 960,  ty = vh/2 - 540
+     与旋转角度无关，横竖屏共用同一套公式。
+     横屏（a=90）时 1920x1080 被旋成 1080x1920，缩放系数按旋转后的外接框算。
+     ⚠️ 平移必须写在 transform 里，绝不能用 left/top 代替：改 left/top 会把
+        transform-origin 一起挪走，旋转后的画面会整个跑出屏幕。 */
   scale(){
-    const f = Math.min(window.innerWidth/1920, window.innerHeight/1080);
-    const x = (window.innerWidth  - 1920*f)/2;
-    const y = (window.innerHeight - 1080*f)/2;
-    this.stage.style.transform = `translate(${x}px,${y}px) scale(${f})`;
+    const a = document.body.classList.contains('force-land') ? 90 : 0;
+    const rad = a*Math.PI/180, cos = Math.cos(rad), sin = Math.sin(rad);
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const f = Math.min((vw*Math.abs(cos) + vh*Math.abs(sin))/1920,
+                       (vw*Math.abs(sin) + vh*Math.abs(cos))/1080);
+    this.stage.style.transform =
+      `translate(${vw/2-960}px,${vh/2-540}px) rotate(${a}deg) scale(${f})`;
   }
   go(n, silent){
     n = Math.max(0, Math.min(n, this.slides.length-1));
@@ -631,6 +697,83 @@ window.deck = deck;
   document.getElementById('btnSave').addEventListener('click',()=>deck.save());
   document.getElementById('btnExp').addEventListener('click',()=>deck.exportHTML());
   document.getElementById('btnRst').addEventListener('click',()=>deck.reset());
+})();
+
+/* ============================================================
+   横屏模式 —— 手机竖屏「转横」
+   思路：不依赖屏幕方向 API（iOS Safari 不支持锁定方向），
+   而是把整个 16:9 舞台 rotate(90deg) 铺满竖屏视口，
+   视觉上等同「把手机横过来看」。状态存 localStorage。
+   ============================================================ */
+(function(){
+  var btn=document.getElementById('rotateBtn');
+  if(!btn)return;
+  var KEY='laotang-decision-deck-land';
+  var label=btn.querySelector('.rotate-label');
+  var fsEl=document.fullscreenElement||document.webkitFullscreenElement||null;
+  var T=function(){ try{return window.top!==window.self;}catch(e){return false;} };
+
+  /* 按钮显隐：手机竖屏（窄高）时出现。
+     判定放宽到「视口较窄 + 竖屏」，不硬依赖握持介质检测——
+     宁可桌面窄窗口多看到一个按钮，也不要手机上找不到入口。 */
+  function syncBtn(){
+    var portrait=window.innerHeight>window.innerWidth;
+    var narrow=Math.min(window.innerWidth,window.innerHeight)<=860;
+    var on=document.body.classList.contains('force-land');
+    btn.classList.toggle('show',(portrait&&narrow)||on);
+  }
+  window.__syncRotateBtn=syncBtn;
+
+  function apply(on){
+    document.body.classList.toggle('force-land',on);
+    btn.classList.toggle('active',on);
+    btn.setAttribute('aria-pressed',on?'true':'false');
+    if(label)label.textContent=on?'退出横屏':'横屏查看';
+    try{on?localStorage.setItem(KEY,'1'):localStorage.removeItem(KEY);}catch(err){}
+    if(window.deck)window.deck.scale();
+    syncBtn();
+    /* 旋转后重算一次：等浏览器完成布局再收尾 */
+    setTimeout(function(){if(window.deck)window.deck.scale();syncBtn();},160);
+  }
+  function enterFs(){
+    /* 在 iframe 里（内嵌预览）就不要再请求全屏，交给宿主控制 */
+    if(T())return;
+    var el=document.documentElement;
+    if(document.fullscreenElement||document.webkitFullscreenElement)return;
+    try{
+      var p=el.requestFullscreen?el.requestFullscreen({navigationUI:'hide'})
+                                :(el.webkitRequestFullscreen&&el.webkitRequestFullscreen());
+      if(p&&p.catch)p.catch(function(){});
+    }catch(err){}
+  }
+  function exitFs(){
+    try{
+      if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen();
+      else if(document.webkitFullscreenElement&&document.webkitExitFullscreen)document.webkitExitFullscreen();
+    }catch(err){}
+  }
+  btn.addEventListener('click',function(){
+    var on=!document.body.classList.contains('force-land');
+    apply(on);
+    if(on)enterFs();       /* 全屏是加分项，失败也不影响旋转效果 */
+    else exitFs();
+  });
+  /* 用户按系统返回/手势退出全屏时，同步退出横屏模式 */
+  function onFsChange(){
+    var now=document.fullscreenElement||document.webkitFullscreenElement||null;
+    if(fsEl&&!now&&document.body.classList.contains('force-land'))apply(false);
+    fsEl=now;
+  }
+  document.addEventListener('fullscreenchange',onFsChange);
+  document.addEventListener('webkitfullscreenchange',onFsChange);
+  window.addEventListener('resize',syncBtn);
+  window.addEventListener('orientationchange',function(){setTimeout(syncBtn,150);});
+  /* 恢复上次选择；也支持 ?land=1 直接用链接进横屏（便于发到微信/打印二维码） */
+  syncBtn();
+  try{
+    var q=/[?&]land=(1|on|true)/.test(location.search);
+    if(q||localStorage.getItem(KEY)==='1')apply(true);
+  }catch(err){}
 })();
 
 </script>
