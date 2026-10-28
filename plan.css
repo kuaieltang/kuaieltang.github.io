@@ -1,0 +1,279 @@
+/* ============================================================
+   产品服务手册 · 专属样式
+   继承 style.css 的纸墨金设计系统，仅追加本页所需组件
+   ============================================================ */
+
+/* ---------- 页面头（面包屑式） ---------- */
+.page-hero {
+  padding: 64px 0 52px;
+  background:
+    radial-gradient(1000px 420px at 88% -20%, rgba(169,129,47,.13), transparent 62%),
+    var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::after {
+  content: "产品手册";
+  position: absolute; right: -26px; top: 26px;
+  font-family: "Noto Serif SC","Songti SC","SimSun",serif;
+  font-size: 132px; font-weight: 700;
+  color: var(--watermark); letter-spacing: 8px;
+  pointer-events: none; white-space: nowrap;
+}
+.page-hero h1 {
+  font-size: clamp(28px, 4.6vw, 44px);
+  font-weight: 800; line-height: 1.24; margin-bottom: 16px;
+}
+.page-hero .lead {
+  color: var(--text-soft); max-width: 760px; font-size: 16.5px;
+}
+.crumb { font-size: 13.5px; color: var(--text-faint); letter-spacing: 1px; margin-bottom: 20px; }
+.crumb a { color: var(--text-faint); text-decoration: none; }
+.crumb a:hover { color: var(--gold-deep); }
+.crumb span { margin: 0 8px; color: var(--gold-border); }
+
+/* ---------- 服务对象条 ---------- */
+.who-strip {
+  background: var(--panel); color: var(--panel-fg);
+  border-radius: var(--radius); padding: 30px 34px;
+  margin-top: 30px;
+}
+.who-strip .k {
+  font-size: 13px; letter-spacing: 3px; color: #e6c877; font-weight: 600;
+  margin-bottom: 12px;
+}
+.who-strip .v { font-size: 18px; line-height: 1.7; }
+.who-strip .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.who-strip .tags span {
+  font-size: 13px; padding: 4px 13px; border-radius: 999px;
+  background: rgba(230,200,119,.14); color: #e6c877; border: 1px solid rgba(230,200,119,.3);
+}
+
+/* ---------- 产品阶梯（核心区） ---------- */
+.ladder { display: grid; gap: 0; margin-top: 12px; }
+
+.tier {
+  display: grid;
+  grid-template-columns: 132px 1fr;
+  gap: 26px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform .2s, box-shadow .2s;
+}
+.tier:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(0,0,0,.14); }
+
+.tier-side {
+  background: var(--bg-alt);
+  border-right: 1px solid var(--line);
+  padding: 26px 18px;
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center;
+}
+.tier-side .step {
+  font-family: "Noto Serif SC","Songti SC","SimSun",serif;
+  font-size: 13px; letter-spacing: 2px; color: var(--gold-deep); font-weight: 700;
+}
+.tier-side .lv {
+  font-family: "Noto Serif SC","Songti SC","SimSun",serif;
+  font-size: 25px; font-weight: 800; color: var(--text);
+  margin: 6px 0 4px; letter-spacing: 2px;
+}
+.tier-side .role { font-size: 12.5px; color: var(--text-faint); letter-spacing: 1px; }
+
+.tier-body { padding: 26px 30px 28px; }
+
+.tier-head {
+  display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+  padding-bottom: 14px; margin-bottom: 16px;
+  border-bottom: 1px dashed var(--line);
+}
+.tier-head h3 { font-size: 21px; }
+.tier-head .price {
+  font-family: "Noto Serif SC","Songti SC","SimSun",serif;
+  font-size: 19px; font-weight: 700; color: var(--gold-deep);
+  letter-spacing: .5px;
+}
+.tier-head .price small { font-family: inherit; font-size: 13px; color: var(--text-faint); font-weight: 400; }
+
+.tier-body > p { color: var(--text-soft); font-size: 15px; margin-bottom: 16px; }
+
+.tier-items { display: grid; gap: 10px; }
+.tier-item {
+  display: grid; grid-template-columns: 116px 1fr auto;
+  gap: 16px; align-items: baseline;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line);
+}
+.tier-item:last-child { border-bottom: 0; }
+.tier-item .tname { font-weight: 600; font-size: 15.5px; }
+.tier-item .tdesc { color: var(--text-soft); font-size: 14.5px; }
+.tier-item .tprice {
+  font-family: "Noto Serif SC","Songti SC","SimSun",serif;
+  font-weight: 700; color: var(--gold-deep); font-size: 16px; white-space: nowrap;
+}
+.tier-item .tprice small { display: block; font-family: inherit; font-size: 12px; color: var(--text-faint); font-weight: 400; }
+
+.tier-note {
+  margin-top: 16px; padding: 13px 17px;
+  background: var(--gold-soft);
+  border: 1px solid var(--gold-border);
+  border-radius: 10px;
+  font-size: 14px; color: var(--gold-deep); line-height: 1.75;
+}
+.tier-note b { color: var(--text); }
+
+/* 社群层特殊标记 */
+.tier.tier-entry .tier-side { background: var(--gold-soft); border-right-color: var(--gold-border); }
+
+/* 表格内的独立徽章（style.css 的 .badge 只在 .svc 内生效） */
+td .badge {
+  font-size: 11.5px; color: var(--gold-deep);
+  background: var(--gold-soft);
+  padding: 2px 9px; border-radius: 999px; letter-spacing: 1px;
+  border: 1px solid var(--gold-border);
+  white-space: nowrap;
+}
+
+/* ---------- 模块三组 ---------- */
+.mgroup { margin-bottom: 30px; }
+.mgroup-head {
+  display: flex; align-items: center; gap: 14px;
+  padding-bottom: 12px; margin-bottom: 18px;
+  border-bottom: 2px solid var(--gold-border);
+}
+.mgroup-head .gname {
+  font-family: "Noto Serif SC","Songti SC","SimSun",serif;
+  font-size: 20px; font-weight: 700; color: var(--text);
+}
+.mgroup-head .gsub { font-size: 13.5px; color: var(--text-faint); letter-spacing: 1px; }
+.mgroup-head .gline { flex: 1; }
+
+.mods { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.mod {
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 24px 26px;
+  box-shadow: var(--shadow);
+}
+.mod .mno {
+  font-family: "Noto Serif SC","Songti SC","SimSun",serif;
+  font-size: 14px; font-weight: 700; color: var(--gold); letter-spacing: 1px;
+}
+.mod h4 { font-size: 18px; margin: 6px 0 10px; }
+.mod .mtags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.mod .mtags span {
+  font-size: 12.5px; padding: 3px 11px; border-radius: 999px;
+  background: var(--bg-alt); color: var(--text-soft); border: 1px solid var(--line);
+}
+
+/* ---------- 深度陪跑三档表 ---------- */
+table.plan {
+  width: 100%; border-collapse: collapse; margin-top: 10px;
+  background: var(--card); border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow);
+}
+table.plan th {
+  background: var(--panel); color: #f0ede6;
+  font-size: 13.5px; font-weight: 600; letter-spacing: 1px;
+  text-align: left; padding: 14px 16px;
+}
+table.plan th.hi { background: var(--gold-deep); color: #201a0e; }
+table.plan td {
+  padding: 13px 16px; border-bottom: 1px solid var(--line);
+  font-size: 14.5px; vertical-align: top; color: var(--text-soft);
+}
+table.plan tr:last-child td { border-bottom: 0; }
+table.plan td.p {
+  font-family: "Noto Serif SC","Songti SC","SimSun",serif;
+  font-size: 19px; font-weight: 700; color: var(--gold-deep); white-space: nowrap;
+}
+table.plan td b { color: var(--text); }
+table.plan .row-hi td { background: rgba(169,129,47,.06); }
+table.plan .row-hi td.p { color: var(--gold-deep); }
+
+/* ---------- 对赌条款 ---------- */
+.bet-box {
+  background: var(--panel); color: var(--panel-fg);
+  border-radius: var(--radius); padding: 36px 38px;
+  position: relative; overflow: hidden;
+}
+.bet-box::before {
+  content: "对";
+  position: absolute; right: 20px; top: -18px;
+  font-size: 140px; font-family: "Noto Serif SC","Songti SC","SimSun",serif;
+  color: rgba(230,200,119,.1); pointer-events: none;
+}
+.bet-box h3 { color: #fff; font-size: 22px; margin-bottom: 6px; position: relative; }
+.bet-box .bsub { color: #aeb6c2; font-size: 14.5px; margin-bottom: 26px; position: relative; }
+.bet-rows { display: grid; gap: 14px; position: relative; }
+.bet-row {
+  display: grid; grid-template-columns: 128px 1fr; gap: 18px;
+  padding: 13px 0; border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.bet-row:last-child { border-bottom: 0; }
+.bet-row .bk { color: #e6c877; font-weight: 600; font-size: 14.5px; letter-spacing: 1px; }
+.bet-row .bv { color: #d5dae1; font-size: 14.5px; line-height: 1.8; }
+.bet-row .bv b { color: #fff; }
+.bet-hint {
+  margin-top: 24px; padding: 16px 20px;
+  background: rgba(230,200,119,.1); border: 1px solid rgba(230,200,119,.28);
+  border-radius: 10px; font-size: 14px; color: #e8dfc8; line-height: 1.8; position: relative;
+}
+
+/* ---------- 起步路径 ---------- */
+.path { display: grid; gap: 0; }
+.path-step {
+  display: grid; grid-template-columns: 54px 1fr; gap: 20px;
+  padding-bottom: 26px; position: relative;
+}
+.path-step:last-child { padding-bottom: 0; }
+.path-step::before {
+  content: ""; position: absolute; left: 26px; top: 44px; bottom: 0;
+  width: 1px; background: var(--gold-border);
+}
+.path-step:last-child::before { display: none; }
+.path-dot {
+  width: 54px; height: 54px; border-radius: 50%;
+  background: var(--gold-soft); border: 1px solid var(--gold-border);
+  color: var(--gold-deep);
+  display: flex; align-items: center; justify-content: center;
+  font-family: "Noto Serif SC","Songti SC","SimSun",serif;
+  font-size: 19px; font-weight: 800;
+  position: relative; z-index: 1;
+}
+.path-body h4 { font-size: 18px; margin-bottom: 6px; }
+.path-body p { color: var(--text-soft); font-size: 15px; }
+.path-body .pmeta {
+  margin-top: 8px; font-size: 13.5px; color: var(--gold-deep);
+  font-weight: 600; letter-spacing: .5px;
+}
+
+/* ---------- 提示条 ---------- */
+.note-strip {
+  background: var(--bg-alt);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--gold);
+  border-radius: 0 12px 12px 0;
+  padding: 20px 26px; margin-top: 8px;
+  font-size: 14.5px; color: var(--text-soft); line-height: 1.85;
+}
+.note-strip b { color: var(--text); }
+
+/* ---------- 移动端 ---------- */
+@media (max-width: 900px) {
+  .mods { grid-template-columns: 1fr; }
+  .tier { grid-template-columns: 1fr; }
+  .tier-side {
+    border-right: 0; border-bottom: 1px solid var(--line);
+    flex-direction: row; justify-content: center; gap: 12px;
+    padding: 16px;
+  }
+  .tier-side .lv { margin: 0; font-size: 21px; }
+  .tier-item { grid-template-columns: 1fr; gap: 6px; }
+  .tier-item .tprice { font-size: 15px; }
+  .bet-row { grid-template-columns: 1fr; gap: 6px; }
+  .page-hero::after { font-size: 88px; }
+  table.plan { display: block; overflow-x: auto; white-space: nowrap; }
+}
